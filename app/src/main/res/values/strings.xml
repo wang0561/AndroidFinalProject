@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">StartActivity</string>
+    <string name="welcom_message">Welcom to Final Project</string>
+    <string name="livingroom">Living Room</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="house">House</string>
+    <string name="auto">Automobile</string>
+</resources>
