@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/livingroom"
+        android:title="@string/livingroom"
+        android:icon="@drawable/livingroom48"
+        android:orderInCategory="101"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/kitchen"
+        android:title="@string/kitchen"
+        android:icon="@drawable/kitchen48"
+        android:orderInCategory="201"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/house"
+        android:title="@string/house"
+        android:icon="@drawable/house48"
+        android:orderInCategory="301"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/auto"
+        android:title="@string/auto"
+        android:icon="@drawable/car48"
+        android:orderInCategory="401"
+        app:showAsAction="always" />
+
 
 </menu>

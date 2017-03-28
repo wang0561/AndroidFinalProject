@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">StartActivity</string>
+    <string name="app_name">CST2335Final</string>
     <string name="welcom_message">Welcom to Final Project</string>
     <string name="livingroom">Living Room</string>
     <string name="kitchen">Kitchen</string>
     <string name="house">House</string>
     <string name="auto">Automobile</string>
+    <string name="title_activity_start">StartActivity</string>
 </resources>
