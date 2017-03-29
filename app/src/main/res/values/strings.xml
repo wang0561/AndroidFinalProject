@@ -6,4 +6,17 @@
     <string name="house">House</string>
     <string name="auto">Automobile</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="living_blinds">Window Blinds Control</string>
+    <string name="living_colorlamp3">Colorful Lamp</string>
+    <string name="living_tvcontrol">TV Control</string>
+    <string name="living_tvonoff">On/Off</string>
+    <string name="living_lamp3logout">Go Back</string>
+    <string name="living_tvlogout">Go Back</string>
+    <string name="living_blindslogout">Go Back</string>
+    <string name="living_lamp3colorshow">Here shows your color choice</string>
+    <string name="living_lamp3colorchoose">Color Choose</string>
+    <string name="living_lamponoff">Lamp On/Off</string>
+    <string name="living_lampreturn">Go Back</string>
+    <string name="living_lamp2dim">Lamp Dimmable</string>
+    <string name="living_lamp2logout">Go Back</string>
 </resources>
