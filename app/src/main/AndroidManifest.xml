@@ -44,10 +44,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MicrowaveActivity" />
+        <activity android:name=".KitchenLightActivity"></activity>
+
+
         <activity android:name=".HouseFragmentDetails"></activity>
 
         <activity android:name=".AutoTempActivity" />
         <activity android:name=".AutoTempDisplay"></activity>
+
 
     </application>
 
