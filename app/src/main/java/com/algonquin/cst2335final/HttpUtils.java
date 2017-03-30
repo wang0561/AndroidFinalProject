@@ -1,4 +1,4 @@
-package com.algonquin.cst2335.androidlabs;
+package com.algonquin.cst2335final;
 
 /**
  * Created by beaul on 2017-03-10.
@@ -7,12 +7,12 @@ package com.algonquin.cst2335.androidlabs;
 
 //package com.terry.bobobo;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 /**
  * @author Terry E-mail: yaoxinghuo at 126 dot com

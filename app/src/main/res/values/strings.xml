@@ -1,9 +1,43 @@
 <resources>
-    <string name="app_name">CST2335Final</string>
-    <string name="welcom_message">Welcom to Final Project</string>
+    <string name="app_name">CST2335 Final Project</string>
+    <string name="welcom_message">Welcom to CST2355 Final Project</string>
     <string name="livingroom">Living Room</string>
     <string name="kitchen">Kitchen</string>
     <string name="house">House</string>
     <string name="auto">Automobile</string>
-    <string name="title_activity_start">StartActivity</string>
+
+    <string name="HouseActivityName">House</string>
+    <string name="HouseHintString">Please type something here</string>
+    <string name="confirmB">Confirm</string>
+
+
+    <string name="title_activity_start">FinalProject</string>
+    <string name="autotemperature">Temperature</string>
+    <string name="autoradio">Radio</string>
+    <string name="autogps">GPS</string>
+    <string name="autolight">Light</string>
+    <string name="autohelp">Help</string>
+    <string name="autosettemperature">Set Vehicle Temperature</string>
+    <string name="autosetlowtemperature">Set The Lowest Vehicle Temperature</string>
+    <string name="autosethightemperature">Set The Highest Vehicle Temperature</string>
+    <string name="autotempset">Set</string>
+    <string name="autotempexit">Exit</string>
+    <string name="autotempdisplay">Display</string>
+
+
+    <string name="living_blinds">Window Blinds Control</string>
+    <string name="living_colorlamp3">Colorful Lamp</string>
+    <string name="living_tvcontrol">TV Control</string>
+    <string name="living_tvonoff">On/Off</string>
+    <string name="living_lamp3logout">Go Back</string>
+    <string name="living_tvlogout">Go Back</string>
+    <string name="living_blindslogout">Go Back</string>
+    <string name="living_lamp3colorshow">Here shows your color choice</string>
+    <string name="living_lamp3colorchoose">Color Choose</string>
+    <string name="living_lamponoff">Lamp On/Off</string>
+    <string name="living_lampreturn">Go Back</string>
+    <string name="living_lamp2dim">Lamp Dimmable</string>
+    <string name="living_lamp2logout">Go Back</string>
+
+
 </resources>

@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.algonquin.cst2335final">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,8 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LivingRoomActivity" />
+        <activity android:name=".Lamp1Activity" />
+        <activity android:name=".Lamp2Activity" />
+        <activity android:name=".Lamp3Activity" />
+        <activity android:name=".TVActivity" />
+        <activity android:name=".BlindsActivity" />
         <activity android:name=".KitchenActivity" />
-        <activity android:name=".HouseActivity" />
+        <activity
+            android:name=".HouseActivity"
+            android:label="@string/HouseActivityName" />
         <activity android:name=".AutoActivity" />
         <activity
             android:name=".StartActivity"
@@ -23,6 +43,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MicrowaveActivity" />
+        <activity android:name=".KitchenLightActivity"></activity>
+
+
+        <activity android:name=".HouseFragmentDetails"></activity>
+
+        <activity android:name=".AutoTempActivity" />
+        <activity android:name=".AutoTempDisplay"></activity>
+
+
     </application>
 
 </manifest>

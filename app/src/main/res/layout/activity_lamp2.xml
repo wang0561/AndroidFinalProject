@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.algonquin.cst2335final.Lamp2Activity">
+
+    <TextView
+        android:id="@+id/lamp2dim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/living_lamp2dim" />
+
+    <SeekBar
+        android:id="@+id/lamp2seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/lamp2logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/living_lamp2logout" />
+</LinearLayout>

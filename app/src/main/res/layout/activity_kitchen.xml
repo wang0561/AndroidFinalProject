@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_kitchen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.algonquin.cst2335final.KitchenActivity">
 
-</android.support.constraint.ConstraintLayout>
+>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WELCOME TO MY KITCHEN"
+        android:layout_gravity="center"
+
+        android:textSize="25dp"
+        android:singleLine="true"
+        android:textColor="@android:color/holo_blue_light" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/theList" />
+    <Button
+        android:id="@+id/kitchenReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return to Home Page"/>
+    <Button
+        android:id="@+id/kitchenSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SETTING"/>
+
+
+</LinearLayout>
