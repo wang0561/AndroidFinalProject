@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.algonquin.cst2335final.AutoTempActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView android:text = "@string/autosettemperature"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/autotemptextview1"
+        android:textSize = "25dp"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true" />
+
+
+    <EditText
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/autotempeditText1"
+        android:hint = "Enter the Lowest Temperature Here"
+        android:focusable = "true"
+        android:inputType="numberDecimal"
+        android:textColorHighlight = "#ff7eff15"
+        android:textColorHint = "#ffff25e6"
+        android:layout_marginTop = "46dp"
+        android:layout_below = "@+id/autotemptextview1"
+        android:layout_alignParentLeft = "true"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/autotempeditText2"
+        android:layout_below="@+id/autotempeditText1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/autotempeditText1"
+        android:layout_alignEnd="@+id/autotempeditText1"
+        android:textColorHint="#ffff299f"
+        android:hint="Enter the highest temperature here" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "46dp"
+        android:text="@string/autotempset"
+        android:id="@+id/autotempbutton1"
+        android:layout_below="@+id/autotempeditText2"
+        />
+
+
+    <Button
+        android:id="@+id/autotempbutton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/autotempbutton3"
+        android:layout_alignParentEnd="true"
+        android:text="@string/autotempdisplay" />
+
+    <Button
+        android:id="@+id/autotempbutton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/autotempexit"
+        android:layout_below="@+id/autotempbutton1"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp" />
+
+
+</RelativeLayout>

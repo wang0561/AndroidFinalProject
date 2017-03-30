@@ -26,5 +26,10 @@
         android:orderInCategory="401"
         app:showAsAction="always" />
 
+    <item android:id="@+id/about"
+        android:title="About"
+        android:orderInCategory="501"
+        app:showAsAction="never" />
+
 
 </menu>

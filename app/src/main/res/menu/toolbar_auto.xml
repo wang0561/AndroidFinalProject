@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/autotemperature"
+        android:title="@string/autotemperature"
+        android:icon="@drawable/autotemperature48"
+        android:orderInCategory="101"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/autoradio"
+        android:title="@string/autoradio"
+        android:icon="@drawable/autoradio48"
+        android:orderInCategory="201"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/autogps"
+        android:title="@string/autogps"
+        android:icon="@drawable/autogps48"
+        android:orderInCategory="301"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/autolight"
+        android:title="@string/autolight"
+        android:icon="@drawable/autolight48"
+        android:orderInCategory="401"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/autohelp"
+        android:title="@string/autohelp"
+        android:orderInCategory="501"
+        app:showAsAction="never" />
 
 </menu>
