@@ -23,6 +23,12 @@
     <string name="autotempset">Set</string>
     <string name="autotempexit">Exit</string>
     <string name="autotempdisplay">Display</string>
+    <string name="autowelcome">Welcome To Auto Application</string>
+    <string name="autoactivityreturn">Return</string>
+    <string name="autoactivitysetting">Set</string>
+    <string name="autolightdim">Auto Light Dimable</string>
+    <string name="autoheadlightswitch">Normal/High</string>
+
 
 
     <string name="living_blinds">Window Blinds Control</string>

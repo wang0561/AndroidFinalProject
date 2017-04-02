@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
@@ -12,37 +14,46 @@ import android.widget.Toast;
 
 public class AutoGoogleMap extends AppCompatActivity {
 
+    private Button b_get;
     private TrackGPS gps;
     double longitude;
     double latitude;
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_start);
-
-        /*
-        gps = new TrackGPS(AutoGoogleMap.this);
+        b_get = (Button)findViewById(R.id.get);
 
 
-        if(gps.canGetLocation()){
 
-            longitude = gps.getLongitude();
-            latitude = gps .getLatitude();
+        b_get.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            Toast.makeText(getApplicationContext(),"Longitude:"+Double.toString(longitude)+"\nLatitude:"+Double.toString(latitude),Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+                gps = new TrackGPS(AutoGoogleMap.this);
 
-            gps.showSettingsAlert();
-        }
-*/
 
-        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        if (mapIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(mapIntent);
-        }
+                if(gps.canGetLocation()){
+
+
+                    longitude = gps.getLongitude();
+                    latitude = gps .getLatitude();
+
+                    Toast.makeText(getApplicationContext(),"Longitude:"+Double.toString(longitude)+"\nLatitude:"+Double.toString(latitude),Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+
+                    gps.showSettingsAlert();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gps.stopUsingGPS();
     }
 }

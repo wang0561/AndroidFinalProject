@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/autoconstrainlayout"
-    tools:context="com.algonquin.cst2335final.AutoActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:id="@+id/autoactivitylayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        tools:context="com.algonquin.cst2335final.AutoActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/autotoolbar"
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:text="@string/autowelcome"
+            android:layout_gravity="center"
 
-    </android.support.design.widget.AppBarLayout>
+            android:textSize="20dp"
+            android:singleLine="true"
+            android:textColor="@android:color/holo_blue_light" />
 
-    <!--include layout="@layout/content_start" /-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoactivitylistview" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/autofab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <Button
+            android:id="@+id/autoAvtivityReturn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/autoactivityreturn"/>
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/autoSetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/autoactivitysetting"/>
+
+
+    </LinearLayout>

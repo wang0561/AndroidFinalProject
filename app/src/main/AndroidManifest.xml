@@ -13,7 +13,9 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
 
     <application
         android:allowBackup="true"
@@ -43,17 +45,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MicrowaveActivity" />
-        <activity android:name=".KitchenLightActivity"></activity>
-
-
-        <activity android:name=".HouseFragmentDetails"></activity>
-
+        <activity android:name=".KitchenLightActivity" />
+        <activity android:name=".HouseFragmentDetails" />
         <activity android:name=".AutoTempActivity" />
-        <activity android:name=".AutoTempDisplay"></activity>
-
-
+        <activity android:name=".AutoTempDisplay" />
+        <activity android:name=".AutoLight"></activity>
     </application>
 
 </manifest>

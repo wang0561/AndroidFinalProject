@@ -10,9 +10,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class AutoActivity extends AppCompatActivity {
+
+    protected ListView autoActivityListView;
+    protected String[] autoItems =new String[]{"Temperature","FM Radio","Google Navigation","Auto Light"};
+    protected Button autoActivityReturnButton;
 
     protected static final String ACTIVITY_NAME = "AutoActivity";
 
@@ -21,68 +29,71 @@ public class AutoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.autotoolbar);
-  //      setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.autofab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+
+        autoActivityListView=(ListView)findViewById(R.id.autoactivitylistview);
+        autoActivityListView.setAdapter(new ArrayAdapter<String>(this, R.layout.kitchen_row, autoItems ));
+        autoActivityReturnButton=(Button)findViewById(R.id.autoAvtivityReturn);
+        autoActivityReturnButton.setOnClickListener(e->{
+            startActivityForResult(new Intent(this, StartActivity.class),5);
         });
-    }
+
+        autoActivityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                switch(position)
+                {
+
+                    case 0:
+                        startActivityForResult(new Intent(AutoActivity.this, AutoTempActivity.class),5);
+                        break;
+                    case 1:
+                        //Start the Screen_Two activity, with 10 as the result code
+
+                        startActivityForResult(new Intent(AutoActivity.this, FridgeActivity.class),5);
+                        break;
+                    case 2: //light
+
+                        TrackGPS gps = new TrackGPS(AutoActivity.this);
+                        double longitude=75.6972;
+                        double latitude=45.4215;
+                        if(gps.canGetLocation()){
+
+                            longitude = gps.getLongitude();
+                            latitude = gps .getLatitude();
+
+                            Toast.makeText(getApplicationContext(),"Longitude:"+Double.toString(longitude)+"\nLatitude:"+Double.toString(latitude),Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+
+                            gps.showSettingsAlert();
+                        }
 
 
-    public boolean onCreateOptionsMenu (Menu m){
+                        // Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+                        Uri gmmIntentUri = Uri.parse("geo:"+latitude+","+longitude);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
+                        break;
 
-        getMenuInflater().inflate(R.menu.toolbar_auto, m );
-        return true;
+                    case 3: //light
+                        startActivityForResult(new Intent(AutoActivity.this, AutoLight.class ), 5);
+                        break;
 
-    }
 
-    public boolean onOptionsItemSelected(MenuItem mi){
-
-        int id =mi.getItemId();
-
-        switch( id ){
-
-            case R.id.autotemperature:
-                Intent intentLivingRoom = new Intent(AutoActivity.this, AutoTempActivity.class);
-                startActivityForResult(intentLivingRoom, 5);
-                break;
-
-            case R.id.autoradio:
-                Intent intentKitchen = new Intent(AutoActivity.this, KitchenActivity.class);
-                startActivityForResult(intentKitchen, 5);
-                break;
-
-            case R.id.autogps:
-               /* Intent intentHouse= new Intent(AutoActivity.this, AutoGoogleMap.class);
-                startActivityForResult(intentHouse, 5);
-
-                */
-                Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent);
                 }
-                break;
+            }
 
-            case R.id.autolight:
-                Intent intentAuto= new Intent(AutoActivity.this, KitchenActivity.class);
-                startActivityForResult(intentAuto, 5);
-                break;
 
-            case R.id.autohelp:
+        });
 
-                Toast.makeText(this, "CST2355 Final Project Automobile part by Bo Liu", Toast.LENGTH_LONG).show();
-                break;
-        }
-
-        return true;
     }
+
 
 }
