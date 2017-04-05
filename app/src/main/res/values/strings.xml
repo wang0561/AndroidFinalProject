@@ -44,6 +44,8 @@
     <string name="living_lampreturn">Go Back</string>
     <string name="living_lamp2dim">Lamp Dimmable</string>
     <string name="living_lamp2logout">Go Back</string>
-
+    <string name="living_deletemessage">Delete This Item</string>
+    <string name="living_roomcustombt">Customization CheckBox</string>
+    <string name="living_refreshbt">Refresh Status</string>
 
 </resources>

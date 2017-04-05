@@ -28,6 +28,9 @@
         <activity android:name=".Lamp1Activity" />
         <activity android:name=".Lamp2Activity" />
         <activity android:name=".Lamp3Activity" />
+        <activity android:name=".LivingFragmentActivity" />
+        <activity android:name=".LivingRoomDatabaseHelper" />
+        <activity android:name=".LivingRoomMessageDetails" />
         <activity android:name=".TVActivity" />
         <activity android:name=".BlindsActivity" />
         <activity android:name=".KitchenActivity" />
