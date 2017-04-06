@@ -62,7 +62,6 @@ public class StartActivity extends AppCompatActivity {
 
 
                 startActivity(intentHouse);
-
                 break;
 
             case R.id.auto:

@@ -31,7 +31,12 @@
         android:id="@+id/kitchenSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SETTING"/>
+        android:text="REFRESH"/>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/KitchenRefProgress"/>
 
 
 </LinearLayout>

@@ -55,6 +55,11 @@
         <activity android:name=".MicrowaveActivity" />
         <activity android:name=".KitchenLightActivity" />
 
+        <activity android:name=".HouseFragmentDetails" />
+        <activity android:name=".AutoTempActivity" />
+        <activity android:name=".AutoTempDisplay" />
+
+
         <activity android:name=".AutoTempActivity" />
         <activity android:name=".AutoTempDisplay" />
         <activity android:name=".HouseNumberPickers" />

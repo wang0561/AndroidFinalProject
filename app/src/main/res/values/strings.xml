@@ -67,9 +67,11 @@
     <string name="micro_ok">ok</string>
     <string name="micro_cancel">cancel</string>
 
+
     <string name="living_deletemessage">Delete This Item</string>
     <string name="living_roomcustombt">Customization CheckBox</string>
     <string name="living_refreshbt">Refresh Status</string>
+
 
 
 </resources>

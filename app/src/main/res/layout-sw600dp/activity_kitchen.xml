@@ -45,11 +45,21 @@
         android:id="@+id/kitchenSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SETTING"
+
+        android:text="REFERESH"
+
         android:layout_below="@+id/kitchenReturn"
         android:layout_alignParentStart="true"
 
         android:layout_alignEnd="@+id/kitchenReturn" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/KitchenRefProgress"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/kitchenSetting"/>
 
 
 </RelativeLayout>
