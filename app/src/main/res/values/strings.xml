@@ -6,9 +6,19 @@
     <string name="house">House</string>
     <string name="auto">Automobile</string>
 
+
     <string name="HouseActivityName">House</string>
     <string name="HouseHintString">Please type something here</string>
     <string name="confirmB">Confirm</string>
+    <string name="labelHouseNumberPicker">Number Picker</string>
+    <string name="houseHour">Hour</string>
+    <string name="houseMinute">Minute</string>
+    <string name="houseSecond">Second</string>
+    <string name="houseMonth">Month</string>
+    <string name="houseDay">Day</string>
+    <string name="houseYear">Year</string>
+    <string name="houseSubmit">Submit</string>
+    <string name="houseTemp">Temperature</string>
 
 
     <string name="title_activity_start">FinalProject</string>
@@ -23,6 +33,19 @@
     <string name="autotempset">Set</string>
     <string name="autotempexit">Exit</string>
     <string name="autotempdisplay">Display</string>
+    <string name="autowelcome">Welcome To Auto Application</string>
+    <string name="autoactivityreturn">Return</string>
+    <string name="autoactivitysetting">Set</string>
+    <string name="autolightdim">Auto Light Dimable</string>
+    <string name="autoheadlightswitch">Normal/High</string>
+    <string name="fmwelcome">Welcome to FM Radio Setting/High</string>
+    <string name="autoFmChannelName">Auto FM Channel Name</string>
+    <string name="fmChSet">set Channel</string>
+    <string name="fmfrtunecontr">FM Radio Channel Tune</string>
+    <string name="autofmvolumcontr">FM Volume control</string>
+    <string name="mute">Mute</string>
+
+
 
 
     <string name="living_blinds">Window Blinds Control</string>
@@ -38,6 +61,17 @@
     <string name="living_lampreturn">Go Back</string>
     <string name="living_lamp2dim">Lamp Dimmable</string>
     <string name="living_lamp2logout">Go Back</string>
+
+    <string name="micro_dialog_title">Exit</string>
+    <string name="micro_dialog_message">Do you want to finish the activity?</string>
+    <string name="micro_ok">ok</string>
+    <string name="micro_cancel">cancel</string>
+
+
+    <string name="living_deletemessage">Delete This Item</string>
+    <string name="living_roomcustombt">Customization CheckBox</string>
+    <string name="living_refreshbt">Refresh Status</string>
+
 
 
 </resources>

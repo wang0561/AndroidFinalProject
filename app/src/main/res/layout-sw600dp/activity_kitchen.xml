@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_kitchen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WELCOME TO MY KITCHEN"
+        android:layout_gravity="center"
+
+        android:textSize="25dp"
+        android:singleLine="true"
+        android:textColor="@android:color/holo_blue_light"
+        android:id="@+id/kitchenwelcome"/>
+
+    <Button
+        android:id="@+id/kitchenReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return to Home Page"
+        android:layout_below="@+id/theList"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/kitchenfragmentHolder" />
+
+    <ListView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/theList"
+        android:layout_below="@+id/kitchenwelcome"
+        android:layout_alignParentStart="true" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/theList"
+        android:layout_below="@+id/kitchenwelcome"
+        android:id="@+id/kitchenfragmentHolder"
+        android:layout_alignParentBottom="true"></FrameLayout>
+
+    <Button
+        android:id="@+id/kitchenSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="REFERESH"
+
+        android:layout_below="@+id/kitchenReturn"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignEnd="@+id/kitchenReturn" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/KitchenRefProgress"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/kitchenSetting"/>
+
+
+</RelativeLayout>

@@ -30,38 +30,6 @@
         android:layout_marginEnd="29dp"
         android:id="@+id/buttonsetfridge" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-
-        android:ems="10"
-        android:layout_marginTop="52dp"
-        android:id="@+id/editTextfridge"
-        android:layout_below="@+id/fridgetextview"
-        android:layout_alignEnd="@+id/fridgetextview" />
-
-    <TextView
-        android:text="Freezer Temp: -10 °C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextfridge"
-        android:layout_alignStart="@+id/fridgetextview"
-        android:layout_marginTop="98dp"
-        android:id="@+id/freezertextView" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-
-        android:ems="10"
-        android:layout_below="@+id/freezertextView"
-        android:layout_alignStart="@+id/editTextfridge"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="74dp"
-        android:id="@+id/editTextfreezer" />
-
     <Button
         android:text="SET"
         android:layout_width="wrap_content"
@@ -70,13 +38,55 @@
         android:layout_alignStart="@+id/buttonsetfridge"
         android:id="@+id/buttonsetfreezer" />
 
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonSave"
+        android:layout_alignStart="@+id/editTextfreezer"
+        android:id="@+id/fridgeprogressbar"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginTop="38dp"
+        android:id="@+id/editTextfridge"
+        android:layout_below="@+id/fridgetextview"
+        android:layout_alignEnd="@+id/fridgetextview" />
+
+    <TextView
+        android:text="Freezer Temp: -10 °C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:id="@+id/freezertextView"
+        android:layout_below="@+id/editTextfridge"
+        android:layout_alignStart="@+id/fridgetextview" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginTop="58dp"
+        android:id="@+id/editTextfreezer"
+        android:layout_below="@+id/freezertextView"
+        android:layout_alignEnd="@+id/freezertextView" />
+
     <Button
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/buttonSave"
         android:layout_below="@+id/editTextfreezer"
-        android:layout_alignEnd="@+id/editTextfreezer"
-        android:layout_marginTop="26dp"
-        android:id="@+id/buttonSave" />
+        android:layout_toStartOf="@+id/freezertextView"
+        android:layout_marginTop="20dp" />
+
 
 </RelativeLayout>

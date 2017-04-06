@@ -5,8 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_autogps"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.algonquin.cst2335final.StartActivity"
     tools:showIn="@layout/activity_start">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Location"
+        android:id="@+id/get"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_autogps"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_autogps"
+        app:layout_constraintRight_toRightOf="@+id/activity_autogps"
+        app:layout_constraintTop_toTopOf="@+id/activity_autogps" />
 
 </android.support.constraint.ConstraintLayout>

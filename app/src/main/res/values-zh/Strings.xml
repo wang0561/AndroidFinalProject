@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">期末项目</string>
+    <string name="living_blinds">窗帘控制</string>
+    <string name="living_colorlamp3">灯光色彩控制</string>
+    <string name="living_tvcontrol">电视控制</string>
+    <string name="living_tvonoff">开/关</string>
+    <string name="living_lamp3logout">返回</string>
+    <string name="living_tvlogout">返回k</string>
+    <string name="living_blindslogout">返回</string>
+    <string name="living_lamp3colorshow">灯光颜色显示</string>
+    <string name="living_lamp3colorchoose">灯光颜色选择</string>
+    <string name="living_lamponoff">灯光控制</string>
+    <string name="living_lampreturn">返回</string>
+    <string name="living_lamp2dim">灯光调控</string>
+    <string name="living_lamp2logout">返回</string>
+    <string name="living_deletemessage">删除</string>
+    <string name="living_roomcustombt">自选</string>
+</resources>

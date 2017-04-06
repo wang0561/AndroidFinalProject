@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/house_weather_layout">
+
+    <ImageView
+
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:minHeight="200dp"
+        android:minWidth="200dp"
+        android:id="@+id/imageWeather"
+
+        />
+    <TextView
+        android:text="Current Temperature"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/currentTemp"
+        android:layout_below="@id/imageWeather" />
+
+    <TextView
+        android:text="min temperature"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/minTemp"
+        android:layout_below="@id/currentTemp"
+        />
+
+    <TextView
+        android:text="max temperature"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/maxTemp"
+        android:layout_below="@id/minTemp"
+        />
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/houseProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_below="@id/maxTemp"
+        />
+
+</RelativeLayout>
