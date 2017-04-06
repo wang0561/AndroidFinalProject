@@ -57,6 +57,7 @@ public class StartActivity extends AppCompatActivity {
             case R.id.house:
                 Intent intentHouse= new Intent(StartActivity.this, HouseActivity.class);
                 startActivity(intentHouse);
+
                 break;
 
             case R.id.auto:

@@ -15,10 +15,13 @@ public class KitchenActivity extends AppCompatActivity {
     protected ListView listView;
     protected String[] kitchenItems =new String[]{"MicroWave","Samsung Fridge","Main Ceiling Light"};
     protected Button returnButton;
+    protected boolean isTablet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen);
+        isTablet=(findViewById(R.id.kitchenfragmentHolder)!=null);
         listView=(ListView)findViewById(R.id.theList);
         listView.setAdapter(new ArrayAdapter<>(this, R.layout.kitchen_row, kitchenItems ));
         returnButton=(Button)findViewById(R.id.kitchenReturn);
@@ -30,11 +33,12 @@ public class KitchenActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-
-                switch(position)
+             if(!isTablet){
+                switch((int)id)
                 {
                     case 0: //Microwave
-                        startActivityForResult(new Intent(KitchenActivity.this, MicrowaveActivity.class),5);
+
+                        startActivity(new Intent(KitchenActivity.this, MicrowaveActivity.class));
                         break;
                     case 1: //fridge
                         //Start the Screen_Two activity, with 10 as the result code
@@ -46,6 +50,13 @@ public class KitchenActivity extends AppCompatActivity {
                         break;
 
                 }
+             }else {
+                 Bundle bundle=new Bundle();
+                 bundle.putLong("ID",id);
+                 KitchenFragment frag=new KitchenFragment(KitchenActivity.this);
+                 frag.setArguments(bundle);
+                 getFragmentManager().beginTransaction().replace(R.id.kitchenfragmentHolder,frag).commit();
+             }
             }
         });
     }

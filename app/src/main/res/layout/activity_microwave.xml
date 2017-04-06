@@ -9,8 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.algonquin.cst2335final.MicrowaveActivity">
-
-
     <TextView
         android:text="Enter time in seconds"
         android:layout_width="wrap_content"
@@ -67,7 +65,8 @@
         android:text="time"
         android:layout_alignBaseline="@+id/buttonMicStop"
         android:layout_alignBottom="@+id/buttonMicStop"
-        android:layout_toEndOf="@+id/editTime" />
+        android:layout_toEndOf="@+id/editTime"
+        android:textSize="25dp"/>
 
     <Button
         android:text="EXIT"
@@ -77,4 +76,7 @@
         android:layout_alignStart="@+id/buttonMicCancel"
         android:layout_marginTop="14dp"
         android:id="@+id/buttonMicexit" />
+
+
+
 </RelativeLayout>

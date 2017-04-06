@@ -2,13 +2,16 @@ package com.algonquin.cst2335final;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,7 +42,7 @@ public class MicrowaveActivity extends AppCompatActivity {
         stop.setEnabled(false);
         //start button listener
         start.setOnClickListener((v)->{
-          start.setEnabled(false);
+            start.setEnabled(false);
             cancel.setEnabled(true);
             stop.setEnabled(true);
             isPause=false;
@@ -48,13 +51,13 @@ public class MicrowaveActivity extends AppCompatActivity {
             long timeSet= 1000*Long.parseLong(inputTime.getText().toString());
             long interval=1000;
             new CountDownTimer(timeSet,interval){
-                 @Override
+                @Override
                 public void onFinish(){
-                      show.setText("Time up");
+                    show.setText("Time up");
 //                     Vibrator vibrator=(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 //                     vibrator.vibrate(500);
 //                     vibrator.cancel();
-                 }
+                }
                 @Override
                 public void onTick(long milluntilfinished){
                     if(isPause || isCancel){
@@ -67,37 +70,40 @@ public class MicrowaveActivity extends AppCompatActivity {
             }.start();
         });
         //stop button listener
-        stop.setOnClickListener((v)->{
-           if(stop.isChecked()){
-             isPause=true;
-               stop.setText("resume");
-           }else{
-               isPause=false;
-               long timeSet= remainTime;
-               long interval=1000;
-               new CountDownTimer(timeSet,interval){
-                   @Override
-                   public void onFinish(){
-                       show.setText("Time up");
+        stop.setOnClickListener(new View.OnClickListener()
+
+
+        { public void onClick(View view){
+            if(stop.isChecked()){
+                isPause=true;
+                stop.setText("resume");
+            }else{
+                isPause=false;
+                long timeSet= remainTime;
+                long interval=1000;
+                new CountDownTimer(timeSet,interval){
+                    @Override
+                    public void onFinish(){
+                        show.setText("Time up");
 //                       Vibrator vibrator=(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 //                       vibrator.vibrate(500);
 //                       vibrator.cancel();
-                   }
-                   @Override
-                   public void onTick(long milluntilfinished){
-                       if(isPause || isCancel){
-                           cancel();
-                       }else{
-                           show.setText(""+milluntilfinished/1000);
-                           remainTime=milluntilfinished;
-                       }
-                   }
-               }.start();
-           }
-        });
+                    }
+                    @Override
+                    public void onTick(long milluntilfinished){
+                        if(isPause || isCancel){
+                            cancel();
+                        }else{
+                            show.setText(""+milluntilfinished/1000);
+                            remainTime=milluntilfinished;
+                        }
+                    }
+                }.start();
+            }
+        }});
         //cancel button listener
         cancel.setOnClickListener((v)->{
-       isCancel=true;
+            isCancel=true;
             show.setText("0");
             start.setEnabled(true);
             cancel.setEnabled(false);
@@ -112,12 +118,12 @@ public class MicrowaveActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-              update();
+                update();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-             update();
+                update();
             }
             public void update(){
                 show.setText(inputTime.getText());
@@ -126,11 +132,25 @@ public class MicrowaveActivity extends AppCompatActivity {
         });
 
         exit.setOnClickListener((v)->{
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("Response", "States saved");
-            setResult(Activity.RESULT_OK, resultIntent);
-            finish();
-        });
+            AlertDialog.Builder builder = new AlertDialog.Builder(MicrowaveActivity.this);
+            builder.setMessage(R.string.micro_dialog_message).setTitle(R.string.micro_dialog_title).setPositiveButton(R.string.micro_ok,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //USER CLICK OK
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("Response", "My information to share");
+                            setResult(Activity.RESULT_OK, resultIntent);
+                            finish();
 
+                        }
+                    }).setNegativeButton(R.string.micro_cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //user click cancel
+
+                }
+            }).show();
+        });
     }
 }

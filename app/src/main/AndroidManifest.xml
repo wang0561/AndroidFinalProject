@@ -15,7 +15,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+
     <uses-feature android:name="android.hardware.location.gps" />
+
 
     <application
         android:allowBackup="true"
@@ -34,6 +36,7 @@
         <activity android:name=".TVActivity" />
         <activity android:name=".BlindsActivity" />
         <activity android:name=".KitchenActivity" />
+        <activity android:name=".FridgeActivity" />
         <activity
             android:name=".HouseActivity"
             android:label="@string/HouseActivityName" />
@@ -53,10 +56,12 @@
         <activity android:name=".HouseFragmentDetails" />
         <activity android:name=".AutoTempActivity" />
         <activity android:name=".AutoTempDisplay" />
+
         <activity android:name=".AutoLight" />
         <activity android:name=".AutoFMActivity" />
         <activity android:name=".AutoFMPhoneFrameLayout" />
         <activity android:name=".AutoFMFragment"></activity>
+
     </application>
 
 </manifest>

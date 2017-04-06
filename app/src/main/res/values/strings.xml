@@ -52,8 +52,15 @@
     <string name="living_lampreturn">Go Back</string>
     <string name="living_lamp2dim">Lamp Dimmable</string>
     <string name="living_lamp2logout">Go Back</string>
+
+    <string name="micro_dialog_title">Exit</string>
+    <string name="micro_dialog_message">Do you want to finish the activity?</string>
+    <string name="micro_ok">ok</string>
+    <string name="micro_cancel">cancel</string>
+
     <string name="living_deletemessage">Delete This Item</string>
     <string name="living_roomcustombt">Customization CheckBox</string>
     <string name="living_refreshbt">Refresh Status</string>
+
 
 </resources>
