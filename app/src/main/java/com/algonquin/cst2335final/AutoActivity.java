@@ -52,7 +52,7 @@ public class AutoActivity extends AppCompatActivity {
                     case 1:
                         //Start the Screen_Two activity, with 10 as the result code
 
-                        startActivityForResult(new Intent(AutoActivity.this, FridgeActivity.class),5);
+                        startActivityForResult(new Intent(AutoActivity.this, AutoFMActivity.class),5);
                         break;
                     case 2: //light
 

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.algonquin.cst2335final.AutoFMActivity">
+
+
+    <TextView
+        android:id="@+id/autofmtvwelcome"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:text="@string/fmwelcome"
+        android:textSize="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:id="@+id/autofmlistview"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/autofmtvwelcome"
+        android:layout_above="@+id/autofmtv4" />
+
+
+    <SeekBar
+        android:id="@+id/autofmtuneseekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_above="@+id/autofmswitch1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/autofmtvtunecontr"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:text="@string/fmfrtunecontr"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/autfmswitch1"
+        android:layout_alignTop="@+id/autfmswitch1"
+        android:layout_above="@+id/autoSeekBarFMFr" />
+
+    <Switch
+        android:id="@+id/autofmswitch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mute"
+        android:layout_above="@+id/autoSeekBarFMFr"
+        android:layout_alignParentEnd="true"
+       />
+
+    <SeekBar
+        android:id="@+id/autoSeekBarFMFr"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_above="@+id/autofmChSet"
+        android:layout_alignParentStart="true" />
+
+
+
+    <Button
+        android:id="@+id/autofmChSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fmChSet"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/autoChannelNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/autoFmChannelName"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/autofmChSet"
+        android:layout_alignTop="@+id/autofmChSet" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/autofmlistview"
+        android:layout_alignTop="@+id/autofmlistview"
+        android:id="@+id/autoFMFramLayout"
+        android:layout_alignBottom="@+id/autofmlistview">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/autofmtv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/autofmtuneseekBar"
+        android:layout_alignParentStart="true"
+        android:text="@string/autofmvolumcontr"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

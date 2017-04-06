@@ -53,7 +53,10 @@
         <activity android:name=".HouseFragmentDetails" />
         <activity android:name=".AutoTempActivity" />
         <activity android:name=".AutoTempDisplay" />
-        <activity android:name=".AutoLight"></activity>
+        <activity android:name=".AutoLight" />
+        <activity android:name=".AutoFMActivity" />
+        <activity android:name=".AutoFMPhoneFrameLayout" />
+        <activity android:name=".AutoFMFragment"></activity>
     </application>
 
 </manifest>
