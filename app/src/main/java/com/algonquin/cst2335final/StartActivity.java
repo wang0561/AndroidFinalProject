@@ -47,28 +47,36 @@ public class StartActivity extends AppCompatActivity {
             case R.id.livingroom:
                 Intent intentLivingRoom = new Intent(StartActivity.this, LivingRoomActivity.class);
                 startActivity(intentLivingRoom);
+
                 break;
 
             case R.id.kitchen:
-                Intent intentKitchen = new Intent(StartActivity.this, KitchenActivity.class);
+
+
                 startActivity(intentKitchen);
+
                 break;
 
             case R.id.house:
                 Intent intentHouse= new Intent(StartActivity.this, HouseActivity.class);
+
+
                 startActivity(intentHouse);
 
                 break;
 
             case R.id.auto:
                 Intent intentAuto= new Intent(StartActivity.this, AutoActivity.class);
+
+
                 startActivity(intentAuto);
+
                 break;
 
-            case R.id.about:
+        //    case R.id.about:
 
-                Toast.makeText(this, "CST2355 Final Project Version 1.0 by Bo Liu/WangTao/WangCheng/MinLuo", Toast.LENGTH_LONG).show();
-                break;
+        //        Toast.makeText(this, "CST2355 Final Project Version 1.0 by Bo Liu/WangTao/WangCheng/MinLuo", Toast.LENGTH_LONG).show();
+          //      break;
         }
 
         return true;

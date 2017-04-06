@@ -7,10 +7,26 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.algonquin.cst2335final.HouseActivity"
-    android:id="@+id/house_activity"
-    >
+    tools:context="com.algonquin.cst2335final.HouseActivity">
 
+    <ListView
+        android:layout_height="match_parent"
+        android:layout_width="@dimen/House_width_left"
+        android:layout_alignParentStart="true"
+        android:id="@+id/HouseListView"
+        android:layout_above="@+id/HouseButton"
+        android:layout_alignParentTop="true" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/HouseFrameLayout"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/HouseListView"
+        android:layout_above="@+id/houseProgressBar">
+
+    </FrameLayout>
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
@@ -22,14 +38,13 @@
         android:visibility="invisible"
         android:layout_alignParentEnd="true" />
 
-    <ListView
-        android:layout_height="match_parent"
+    <Button
+        android:layout_height="wrap_content"
         android:layout_width="@dimen/House_width_left"
-        android:id="@+id/HouseListView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/houseProgressBar" />
+        android:id="@+id/HouseButton"
+        android:text="@string/confirmB"
+        android:layout_above="@+id/houseProgressBar"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
