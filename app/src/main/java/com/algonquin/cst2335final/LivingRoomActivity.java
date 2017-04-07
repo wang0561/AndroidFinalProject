@@ -66,7 +66,9 @@ public class LivingRoomActivity extends AppCompatActivity {
         final SharedPreferences prefs = getSharedPreferences("livingroomFile", Context.MODE_PRIVATE);
         //Read the number of times run in the file:
         int ifirstrun = prefs.getInt("LivingRoomFirstRun", 0);
-        if (ifirstrun == 0){
+
+        if (ifirstrun <= 1){
+
             livingDataHelper = new LivingRoomDatabaseHelper(ctx);
             db = livingDataHelper.getReadableDatabase();
             db.execSQL(LivingRoomDatabaseHelper.DROP_TABLE_MESSAGE);
@@ -239,12 +241,25 @@ public class LivingRoomActivity extends AppCompatActivity {
         //strLamp1Status = prefs.getString("Lamp1Status", "Off");
 
 
+   try {
+       strLamp1Status = getValue("Lamp1Status");
+       myLamp2Progress = Integer.parseInt(getValue("Lamp2Progress"));
+       myLamp3Progress = Integer.parseInt(getValue("Lamp3Progress"));
+       myLamp3Color = Integer.parseInt(getValue("Lamp3Color"));
+       myTVChannel = Integer.parseInt(getValue("TVChannel"));
+       myBlindsHeight = Integer.parseInt(getValue("BlindsHeight"));
+   }catch (Exception e){
+
+   }
+
+
         strLamp1Status = getValue("Lamp1Status");
         myLamp2Progress = Integer.parseInt(getValue("Lamp2Progress"));
         myLamp3Progress = Integer.parseInt(getValue("Lamp3Progress"));
         myLamp3Color = Integer.parseInt(getValue("Lamp3Color"));
         myTVChannel = Integer.parseInt(getValue("TVChannel"));
         myBlindsHeight = Integer.parseInt(getValue("BlindsHeight"));
+
 
 
         //myLamp2Progress = prefs.getInt("Lamp2Progress", 0);
@@ -377,6 +392,7 @@ public class LivingRoomActivity extends AppCompatActivity {
             livingroom[4] = "Blinds is tuned to  " + myBlindsHeight + "  meters height";
 
             livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+
         }
     }
 
@@ -496,6 +512,128 @@ public class LivingRoomActivity extends AppCompatActivity {
             //db.insert(livingDataHelper.TABLE_NAME, null, newValues);
         }
     }
+
+
+        }
+    }
+
+    public void synclamp1(String lamp1status) {
+        putValue("Lamp1Status",strLamp1Status);
+        //
+        putValue("Lamp1Counter",""+myLamp1Counter);
+
+        strLamp1Status = lamp1status;
+        livingroom[0] = "Lamp1 is " + strLamp1Status;
+
+        livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+    }
+
+
+    public void synclamp2(int lamp2progress) {
+        myLamp2Progress = lamp2progress;
+        putValue("Lamp2Progress",""+myLamp2Progress);
+
+        livingroom[1] = "Lamp2 is " + myLamp2Progress + " degree";
+
+        livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+    }
+
+    public void synclamp3(int lamp3progress, int color) {
+        myLamp3Progress = lamp3progress;
+        myLamp3Color = color;
+        putValue("Lamp3Progress",""+myLamp3Progress);
+        putValue("Lamp3Color",""+myLamp3Color);
+
+        livingroom[2] = "Lamp3 is " + myLamp3Progress + " and color is " + myLamp3Color;
+
+        livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+    }
+
+    public void synctv(int tvChannel) {
+        myTVChannel = tvChannel;
+        putValue("TVChannel",""+myTVChannel);
+
+        livingroom[3] = "TV is tuned to channel " + myTVChannel;
+
+        livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+    }
+
+    public void syncblinds(int blindsHeight) {
+        myBlindsHeight = blindsHeight;
+        putValue("BlindsHeight",""+myBlindsHeight);
+
+        //livingroom[0] = "Lamp1 is " + strLamp1Status;
+        //livingroom[1] = "Lamp2 is " + myLamp2Progress + " degree";
+        //livingroom[2] = "Lamp3 is " + myLamp3Progress + " and color is " + myLamp3Color;
+        //livingroom[3] = "TV is tuned to channel " + myTVChannel;
+        livingroom[4] = "Blinds is tuned to  " + myBlindsHeight + "  meters height";
+
+        livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+    }
+
+    public void removeFragmentLamp1(Lamp1Activity  lamp1){
+        getSupportFragmentManager().beginTransaction().remove(lamp1).commit();
+    }
+
+    public void removeFragmentLamp2(Lamp2Activity  lamp2){
+        getSupportFragmentManager().beginTransaction().remove(lamp2).commit();
+    }
+
+    public void removeFragmentLamp3(Lamp3Activity  lamp3){
+        getSupportFragmentManager().beginTransaction().remove(lamp3).commit();
+    }
+
+    public void removeFragmentTV(TVActivity tv){
+        getSupportFragmentManager().beginTransaction().remove(tv).commit();
+    }
+
+    public void removeFragmentBlinds(BlindsActivity blinds){
+        getSupportFragmentManager().beginTransaction().remove(blinds).commit();
+    }
+
+    public String getValue(String strname){
+        livingDataHelper = new LivingRoomDatabaseHelper(this);
+        db = livingDataHelper.getReadableDatabase();
+
+        //String query = String
+          //      .format("SELECT * FROM %s WHERE %s=%s", livingDataHelper.TABLE_NAME, livingDataHelper.LIVINGITEM_KEY,strname);
+        //results = db.rawQuery(query, null);
+
+        results = db.query(false, livingDataHelper.TABLE_NAME,
+                new String[]{ livingDataHelper.LVINGITEM_ID, livingDataHelper.LIVINGITEM_KEY, livingDataHelper.LIVINGITEM_VALUE},
+                livingDataHelper.LVINGITEM_ID + " not null",
+                null, null, null, null, null);
+
+        int count = results.getCount();
+
+        results.moveToFirst();
+        while( ! results.isAfterLast() ){
+            String str1 = results.getString(results.getColumnIndex(livingDataHelper.LVINGITEM_ID));
+            String str2 = results.getString(results.getColumnIndex(livingDataHelper.LIVINGITEM_KEY));
+            String str3 = results.getString(results.getColumnIndex(livingDataHelper.LIVINGITEM_VALUE));
+            if(strname.compareTo(str2)==0){
+                return str3;
+            }
+            results.moveToNext();
+        }
+        return null;
+    }
+
+    public void putValue(String strname, String value){
+        livingDataHelper = new LivingRoomDatabaseHelper(this);
+        db = livingDataHelper.getWritableDatabase();
+        ContentValues newValues = new ContentValues();
+        newValues.put(livingDataHelper.LIVINGITEM_KEY,strname);
+        newValues.put(livingDataHelper.LIVINGITEM_VALUE, value);
+        //db.insert(livingDataHelper.TABLE_NAME, null, newValues);
+
+        try {
+            db.update(livingDataHelper.TABLE_NAME, newValues, livingDataHelper.LIVINGITEM_KEY + "='" + strname+"'", null);
+        }catch(Exception e) {
+            //db.insert(livingDataHelper.TABLE_NAME, null, newValues);
+        }
+    }
+
 
     public class LivingStatus extends AsyncTask<String, Integer, String>{
         @Override

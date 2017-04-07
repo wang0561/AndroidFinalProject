@@ -55,7 +55,9 @@ public class AutoFMActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auto_fm);
 
         instance = this;
-        listView = (ListView) findViewById(R.id.autoFMListview);
+
+        listView = (ListView) findViewById(R.id.autofmlistview);
+
         channelName = (EditText) findViewById(R.id.autoChannelNameEditText);
         btnAutoSetChannel = (Button) findViewById(R.id.autofmChSet);
         autoFMChannelAdapter = new AutoFMChannelAdapter(this);

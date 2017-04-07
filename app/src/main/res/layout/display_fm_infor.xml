@@ -8,5 +8,8 @@
         android:id="@+id/autodisochanlinfr"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:text="TextView" />
+
+        android:text="TextView"
+        android:textSize="20dp"/>
+
 </LinearLayout>
