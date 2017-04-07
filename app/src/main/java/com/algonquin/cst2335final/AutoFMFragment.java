@@ -26,7 +26,7 @@ public class AutoFMFragment extends Fragment {
     public AutoFMFragment() {}
 
     public AutoFMFragment(AutoFMActivity c) {
-        this.aFMa = c;
+        this.aFMa= c;
     }
 
 
@@ -48,8 +48,7 @@ public class AutoFMFragment extends Fragment {
        messageText.setText(message);
 
        TextView messageID = (TextView)gui.findViewById(R.id.autofmfrtv2);
-       messageID.setText(String.valueOf(id));
-
+        messageID.setText(String.valueOf(id));
        Button deleteButton = (Button)gui.findViewById(R.id.autofmfrbtn1);
        deleteButton.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -63,7 +62,8 @@ public class AutoFMFragment extends Fragment {
                }
                else{
                    //cw.deleteDbMessage(id);
-                  // cw.removeFragment();
+
+                   aFMa.removeFrag();
                }
            }
        });

@@ -79,7 +79,7 @@ public class AutoFMActivity extends AppCompatActivity {
 
                 //step 2, if a tablet, insert fragment into FrameLayout, pass data
                 if(isAutoTablet) {
-
+                    removeFrag();
                     AutoFMFragment autoFMFragment = new AutoFMFragment(AutoFMActivity.this);
                     autoFMFragment.setArguments(bun);
                     fragTransaction= getFragmentManager().beginTransaction();
@@ -96,6 +96,8 @@ public class AutoFMActivity extends AppCompatActivity {
                     startActivityForResult(intnt , 10); //go to view fragment details
 
                 }
+
+
             }
         });
 
@@ -144,6 +146,13 @@ public class AutoFMActivity extends AppCompatActivity {
             autoChannelCursor.moveToNext();
         }
         autoFMChannelAdapter.notifyDataSetChanged();
+    }
+
+    public void removeFrag(){
+
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.autoFMFramLayout);
+        if(fragment != null)
+            getFragmentManager().beginTransaction().remove(fragment).commit();
     }
 
 
