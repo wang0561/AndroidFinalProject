@@ -19,7 +19,9 @@
 
     <ListView
         android:layout_width="300dp"
+
         android:layout_height="550dp"
+
         android:id="@+id/autofmlistview"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/autofmtvwelcome"

@@ -169,6 +169,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                             blindsActivity.putExtra("ItemID",4);
                             blindsActivity.putExtra("IsTablet",0);
                             startActivityForResult(blindsActivity, 25);
+
                             break;
                     }
                 }else{// tablet
@@ -228,9 +229,11 @@ public class LivingRoomActivity extends AppCompatActivity {
                             bundle.putInt("IsTablet",1);
                             blindsintent.setArguments(bundle);
                             getSupportFragmentManager().beginTransaction().replace(R.id.livingroomfragmentHolder, blindsintent).commit();
+
                             break;
 
                     }
+
                 }
             }
         });
@@ -251,6 +254,7 @@ public class LivingRoomActivity extends AppCompatActivity {
    }catch (Exception e){
 
    }
+
 
 
         strLamp1Status = getValue("Lamp1Status");
@@ -392,6 +396,7 @@ public class LivingRoomActivity extends AppCompatActivity {
             livingroom[4] = "Blinds is tuned to  " + myBlindsHeight + "  meters height";
 
             livingroomlist.setAdapter(new ArrayAdapter<>(this, R.layout.living_row_layout, livingroom ));
+
 
         }
     }

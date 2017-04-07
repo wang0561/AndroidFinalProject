@@ -56,7 +56,9 @@ public class AutoFMActivity extends AppCompatActivity {
 
         instance = this;
 
+
         listView = (ListView) findViewById(R.id.autofmlistview);
+
 
         channelName = (EditText) findViewById(R.id.autoChannelNameEditText);
         btnAutoSetChannel = (Button) findViewById(R.id.autofmChSet);
@@ -79,7 +81,9 @@ public class AutoFMActivity extends AppCompatActivity {
 
                 //step 2, if a tablet, insert fragment into FrameLayout, pass data
                 if(isAutoTablet) {
+
                     removeFrag();
+
                     AutoFMFragment autoFMFragment = new AutoFMFragment(AutoFMActivity.this);
                     autoFMFragment.setArguments(bun);
                     fragTransaction= getFragmentManager().beginTransaction();
@@ -96,7 +100,6 @@ public class AutoFMActivity extends AppCompatActivity {
                     startActivityForResult(intnt , 10); //go to view fragment details
 
                 }
-
 
             }
         });
@@ -147,6 +150,7 @@ public class AutoFMActivity extends AppCompatActivity {
         }
         autoFMChannelAdapter.notifyDataSetChanged();
     }
+
 
     public void removeFrag(){
 
