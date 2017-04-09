@@ -45,6 +45,7 @@ public class HouseWeather extends AppCompatActivity {
         @Override
         protected String doInBackground(String ... args){
             String in="";
+            Log.i("1","1");
             try{
                 URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=d99666875e0e51521f0040a3d97d0f6a&mode=xml&units=metric");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
