@@ -66,7 +66,7 @@ public class LivingRoomActivity extends AppCompatActivity {
         final SharedPreferences prefs = getSharedPreferences("livingroomFile", Context.MODE_PRIVATE);
         //Read the number of times run in the file:
         int ifirstrun = prefs.getInt("LivingRoomFirstRun", 0);
-        if (ifirstrun == 0){
+        if (ifirstrun <= 1){
             livingDataHelper = new LivingRoomDatabaseHelper(ctx);
             db = livingDataHelper.getReadableDatabase();
             db.execSQL(LivingRoomDatabaseHelper.DROP_TABLE_MESSAGE);
@@ -459,7 +459,7 @@ public class LivingRoomActivity extends AppCompatActivity {
         db = livingDataHelper.getReadableDatabase();
 
         //String query = String
-          //      .format("SELECT * FROM %s WHERE %s=%s", livingDataHelper.TABLE_NAME, livingDataHelper.LIVINGITEM_KEY,strname);
+        //      .format("SELECT * FROM %s WHERE %s=%s", livingDataHelper.TABLE_NAME, livingDataHelper.LIVINGITEM_KEY,strname);
         //results = db.rawQuery(query, null);
 
         results = db.query(false, livingDataHelper.TABLE_NAME,

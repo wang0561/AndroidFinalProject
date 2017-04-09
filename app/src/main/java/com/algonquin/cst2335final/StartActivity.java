@@ -52,22 +52,21 @@ public class StartActivity extends AppCompatActivity {
 
             case R.id.kitchen:
 
+      
+              Intent intentKitchen= new Intent(StartActivity.this, KitchenActivity.class);
+              startActivity(intentKitchen);
 
-                startActivity(intentKitchen);
 
                 break;
 
             case R.id.house:
                 Intent intentHouse= new Intent(StartActivity.this, HouseActivity.class);
-
-
                 startActivity(intentHouse);
+
                 break;
 
             case R.id.auto:
                 Intent intentAuto= new Intent(StartActivity.this, AutoActivity.class);
-
-
                 startActivity(intentAuto);
 
                 break;
