@@ -1,6 +1,7 @@
 package com.algonquin.cst2335final;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
@@ -97,8 +99,11 @@ public class TrackGPS extends Service implements LocationListener {
             // if GPS Enabled get lat/long using GPS Services
             if (checkGPS) {
                 Toast.makeText(mContext,"GPS",Toast.LENGTH_SHORT).show();
+
+
                 if (loc == null) {
                     try {
+
                         locationManager.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
@@ -142,6 +147,9 @@ public class TrackGPS extends Service implements LocationListener {
     public boolean canGetLocation() {
         return this.canGetLocation;
     }
+
+
+
 
     public void showSettingsAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);

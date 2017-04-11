@@ -16,4 +16,29 @@
     <string name="living_lamp2logout">返回</string>
     <string name="living_deletemessage">删除</string>
     <string name="living_roomcustombt">自选</string>
+
+    <string name="title_activity_start">安卓应用</string>
+    <string name="autotemperature">温度控制</string>
+    <string name="autoradio">收音机</string>
+    <string name="autogps">GPS</string>
+    <string name="autolight">车灯</string>
+    <string name="autohelp">帮助</string>
+    <string name="autosettemperature">温度设置</string>
+    <string name="autosetlowtemperature">设置最低温度</string>
+    <string name="autosethightemperature">设置最高温度</string>
+    <string name="autotempset">设置</string>
+    <string name="autotempexit">退出</string>
+    <string name="autotempdisplay">显示</string>
+    <string name="autowelcome">汽车应用</string>
+    <string name="autoactivityreturn">返回</string>
+    <string name="autoactivitysetting">设置</string>
+    <string name="autolightdim">车灯明暗</string>
+    <string name="autoheadlightswitch">正常/远光</string>
+    <string name="fmwelcome">调频设置</string>
+    <string name="autoFmChannelName">调频频道名称</string>
+    <string name="fmChadd">增加频道</string>
+    <string name="fmfrtunecontr">调频道</string>
+    <string name="autofmvolumcontr">音量控制</string>
+    <string name="mute">禁音</string>
+
 </resources>

@@ -67,9 +67,6 @@
         <activity android:name=".MicrowaveActivity" />
         <activity android:name=".KitchenLightActivity" />
 
-        <activity android:name=".HouseFragmentDetails" />
-        <activity android:name=".AutoTempActivity" />
-        <activity android:name=".AutoTempDisplay" />
 
 
         <activity android:name=".AutoTempActivity" />
@@ -79,14 +76,10 @@
         <activity android:name=".House_Fragment_garage" />
         <activity android:name=".House_Fragment_Temperature"></activity>
 
-        <activity android:name=".HouseFragmentDetails" />
-        <activity android:name=".AutoTempActivity" />
-        <activity android:name=".AutoTempDisplay" />
 
         <activity android:name=".AutoLight" />
         <activity android:name=".AutoFMActivity" />
         <activity android:name=".AutoFMPhoneFrameLayout" />
-
         <activity android:name=".AutoFMFragment"></activity>
         <meta-data
             android:name="com.google.android.gms.version"

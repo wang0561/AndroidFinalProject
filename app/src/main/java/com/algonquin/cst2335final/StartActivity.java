@@ -71,10 +71,10 @@ public class StartActivity extends AppCompatActivity {
 
                 break;
 
-        //    case R.id.about:
+            case R.id.about:
 
-        //        Toast.makeText(this, "CST2355 Final Project Version 1.0 by Bo Liu/WangTao/WangCheng/MinLuo", Toast.LENGTH_LONG).show();
-          //      break;
+              Toast.makeText(this, "CST2355 Final Project Version 1.0 by Bo Liu/WangTao/WangCheng/MinLuo", Toast.LENGTH_LONG).show();
+               break;
         }
 
         return true;

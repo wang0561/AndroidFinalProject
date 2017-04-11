@@ -2,6 +2,7 @@ package com.algonquin.cst2335final;
 
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +20,7 @@ public class AutoFMFragment extends Fragment {
 
     Context parent;
     Long id;
-    String message;
+    String ChanlName,ChanlNo;
     Bundle bun;
     boolean isTablet;
 
@@ -37,7 +38,9 @@ public class AutoFMFragment extends Fragment {
         super.onCreate(savedInstanceState);
         bun = getArguments();
         id = bun.getLong("ID");
-        message = bun.getString("Message");
+        ChanlName = bun.getString("ChanlName");
+        ChanlNo = bun.getString("ChanlNo");
+
        // isTablet = bun.getBoolean("isTablet");
     }
 
@@ -46,12 +49,12 @@ public class AutoFMFragment extends Fragment {
 
        View gui = inflater.inflate(R.layout.activity_auto_fmframent, null);
 
-       TextView messageText = (TextView)gui.findViewById(R.id.autofmfrtv1);
-       messageText.setText(message);
+       TextView fmChannelNo = (TextView)gui.findViewById(R.id.autofmfrtv1);
+       fmChannelNo.setText("FM Channel No: " +ChanlNo);
 
-       TextView messageID = (TextView)gui.findViewById(R.id.autofmfrtv2);
+       TextView fmChannelName = (TextView)gui.findViewById(R.id.autofmfrtv2);
 
-        messageID.setText(String.valueOf(id));
+       fmChannelName.setText("FM Channel Name: " + ChanlName);
 
        Button deleteButton = (Button)gui.findViewById(R.id.autofmfrbtn1);
        deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +63,14 @@ public class AutoFMFragment extends Fragment {
 
                if (aFMa==null){
                    Intent intent = new Intent();
-                   intent.putExtra("id" ,id);
-                   getActivity().setResult(5, intent);
+                   intent.putExtra("ID" ,id);
+                   getActivity().setResult(Activity.RESULT_OK, intent);
+
+                  // getActivity().setResult(5, intent);
                    getActivity().finish();
                }
                else{
-                   //cw.deleteDbMessage(id);
+                   aFMa.deleteDb(id);
 
                   // cw.removeFragment();
 

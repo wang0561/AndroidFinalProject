@@ -48,8 +48,7 @@ public class AutoTempActivity extends AppCompatActivity {
 
         });
 
-        btnTempDisplay.setOnClickListener(
-            v-> {
+        btnTempDisplay.setOnClickListener(  v->{
 
                 String autoTempLow = sharedPref.getString("tempLow", "");
                 String autoTempHigh = sharedPref.getString("tempHigh", "");

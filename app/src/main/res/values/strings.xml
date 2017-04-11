@@ -40,10 +40,11 @@
     <string name="autoheadlightswitch">Normal/High</string>
     <string name="fmwelcome">Welcome to FM Radio Setting/High</string>
     <string name="autoFmChannelName">Auto FM Channel Name</string>
-    <string name="fmChSet">set Channel</string>
+    <string name="fmChadd">add Channel</string>
     <string name="fmfrtunecontr">FM Radio Channel Tune</string>
     <string name="autofmvolumcontr">FM Volume control</string>
     <string name="mute">Mute</string>
+    <string name="autoFmChannelNo">Auto Channel No</string>
 
 
 
