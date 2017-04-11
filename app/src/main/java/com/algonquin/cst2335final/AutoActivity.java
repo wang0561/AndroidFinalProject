@@ -168,14 +168,15 @@ public class AutoActivity extends AppCompatActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     TrackGPS gps = new TrackGPS(AutoActivity.this);
-                    double longitude=75.6972;
-                    double latitude=45.4215;
+                    double longitude=0;
+                    double latitude=0;
                     if(gps.canGetLocation()){
 
                         longitude = gps.getLongitude();
                         latitude = gps .getLatitude();
 
-                        Toast.makeText(getApplicationContext(),"Longitude:"+Double.toString(longitude)+"\nLatitude:"+Double.toString(latitude),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Longitude:"+Double.toString(longitude)+
+                                "\nLatitude:"+Double.toString(latitude),Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -197,6 +198,9 @@ public class AutoActivity extends AppCompatActivity {
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
+                    Toast.makeText(getApplicationContext(),"You Have Denied the Location service"
+                            ,Toast.LENGTH_SHORT).show();
+
                 }
                 return;
             }

@@ -40,5 +40,6 @@
     <string name="fmfrtunecontr">调频道</string>
     <string name="autofmvolumcontr">音量控制</string>
     <string name="mute">禁音</string>
+    <string name="about">关于</string>
 
 </resources>

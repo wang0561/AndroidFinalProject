@@ -59,14 +59,9 @@ public class AutoLight extends AppCompatActivity {
 
                 });
 
-
-        autoExitButton = (Button)
-
-                findViewById(R.id.autolightexit);
+        autoExitButton = (Button) findViewById(R.id.autolightexit);
         autoExitButton.setOnClickListener(v ->
-
         {
-
             setResult(0);
             finish();
         });

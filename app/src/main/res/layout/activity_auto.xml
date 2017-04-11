@@ -10,8 +10,6 @@
         tools:context="com.algonquin.cst2335final.AutoActivity">
 
 
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,16 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/autoactivityreturn"/>
-
-        <Button
-            android:id="@+id/autoSetting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="@string/micro_cancel"/>
-
-            android:text="@string/autoactivitysetting"/>
-
 
 
 
