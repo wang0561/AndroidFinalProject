@@ -135,12 +135,12 @@ public class ListDetailHouseFragment extends Fragment {
                     text = R.string.houseDoorON;
                     duration = Toast.LENGTH_SHORT;
                     sw2.setChecked(true);
-                    doorImage.setImageResource(R.drawable.dooropened48);
+                    doorImage.setImageResource(R.drawable.dooropen48);
 
                 }else{
                     text = R.string.houseDoorOFF;
                     duration = Toast.LENGTH_SHORT;
-                    doorImage.setImageResource(R.drawable.doorclosed48);
+                    doorImage.setImageResource(R.drawable.doorclose48);
 
                 }
                 Toast toast = Toast.makeText(getActivity(),text,duration);
@@ -301,9 +301,9 @@ public class ListDetailHouseFragment extends Fragment {
 
         //https://icons8.com/web-app/for/androidL/door
         if(sw1.isChecked()){
-            doorImage.setImageResource(R.drawable.dooropened48);
+            doorImage.setImageResource(R.drawable.dooropen48);
         }else{
-            doorImage.setImageResource(R.drawable.doorclosed48);
+            doorImage.setImageResource(R.drawable.doorclose48);
         }
         //https://icons8.com/web-app/for/androidL/light
         if(sw2.isChecked())
