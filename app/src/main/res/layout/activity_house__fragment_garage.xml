@@ -13,28 +13,32 @@
     <Switch
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Door Open"
+        android:text="@string/houseDoorStatement"
         android:id="@+id/HouseGarageDoorSwitch"
 
         />
 
+    <ImageView
+        android:id="@+id/houseDoorImag"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/HouseGarageDoorSwitch"
+        android:layout_alignParentStart="true" />
+
     <Switch
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="light Open"
+        android:text="@string/houseLightStatement"
         android:id="@+id/HouseGarageLightSwitch"
 
-        android:layout_below="@+id/HouseGarageDoorSwitch"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/houseDoorImag"
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="View State"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/HouseViewStateButton"/>
-    >
+    <ImageView
+        android:id="@+id/houseLightImag"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/HouseGarageLightSwitch"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

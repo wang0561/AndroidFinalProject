@@ -62,33 +62,30 @@
         </activity>
         <activity android:name=".MicrowaveActivity" />
         <activity android:name=".KitchenLightActivity" />
-
         <activity android:name=".HouseFragmentDetails" />
-     
 
         <activity android:name=".AutoTempActivity" />
         <activity android:name=".AutoTempDisplay" />
         <activity android:name=".HouseNumberPickers" />
         <activity android:name=".HouseWeather" />
-        <activity android:name=".House_Fragment_garage" />
+        <activity android:name=".House_Fragment_Detail_garage" />
+        <activity android:name=".House_Fragment_Detail_Temperature" />
 
-        <activity android:name=".House_Fragment_Temperature" />
-        <activity android:name=".HouseFragmentDetails" />
-     
-
-        
 
 
         <activity android:name=".AutoLight" />
         <activity android:name=".AutoFMActivity" />
         <activity android:name=".AutoFMPhoneFrameLayout" />
+
         <activity android:name=".AutoFMFragment"></activity>
+
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".LivingCustomizingActivity"></activity>
+       <activity android:name=".LivingCustomizingActivity"></activity>
+
     </application>
 
 </manifest>

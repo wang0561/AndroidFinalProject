@@ -11,11 +11,10 @@
 
     <ListView
         android:layout_height="match_parent"
-        android:layout_width="@dimen/House_width_left"
         android:layout_alignParentStart="true"
         android:id="@+id/HouseListView"
-        android:layout_above="@+id/HouseButton"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_width="150dp" />
 
 
     <FrameLayout
@@ -37,14 +36,6 @@
         android:id="@+id/houseProgressBar"
         android:visibility="invisible"
         android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="@dimen/House_width_left"
-        android:id="@+id/HouseButton"
-        android:text="@string/confirmB"
-        android:layout_above="@+id/houseProgressBar"
-        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -19,6 +19,21 @@
     <string name="houseYear">Year</string>
     <string name="houseSubmit">Submit</string>
     <string name="houseTemp">Temperature</string>
+    <string name="houseAddButton">ADD</string>
+    <string name="houseDelButton">Delete</string>
+    <string name="houseAuthor">Chen Wang\nVersion 1.0.0\nThis house activity allow you to set the temperature of your house, check the outside weather and control your garage remotely</string>
+    <string name="OK">OK</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="houseLightON">Light On</string>
+    <string name="houseLightOFF">Light OFF</string>
+    <string name="houseDoorON">House Door ON</string>
+    <string name="houseDoorOFF">House Door OFF</string>
+    <string name="houseDoorStatement">Door Statement: </string>
+    <string name="houseLightStatement">Light Statement: </string>
+
+    <string name="houseOn">ON</string>
+    <string name="houseOff">OFF</string>
+
 
 
     <string name="title_activity_start">FinalProject</string>
