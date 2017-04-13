@@ -282,7 +282,7 @@ public class KitchenFragment extends Fragment  {
                     stop.setEnabled(false);
                      Vibrator vibrator=(Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                      vibrator.vibrate(500);
-                     vibrator.cancel();
+                    // vibrator.cancel();
                 }
                 @Override
                 public void onTick(long milluntilfinished){
@@ -314,7 +314,7 @@ public class KitchenFragment extends Fragment  {
                         stop.setEnabled(false);
                        Vibrator vibrator=(Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                        vibrator.vibrate(500);
-                       vibrator.cancel();
+                       //vibrator.cancel();
                     }
                     @Override
                     public void onTick(long milluntilfinished){
