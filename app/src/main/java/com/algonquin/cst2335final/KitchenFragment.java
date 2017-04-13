@@ -194,9 +194,13 @@ public class KitchenFragment extends Fragment  {
         //SET THE ACTION OF BUTTON
             @Override
             public void onClick(View view){
-                String temp=editFreezer.getText().toString();
-                textOfFreezer.setText(getActivity().getString(R.string.freezertempchagetext)+temp+" °C");
-                tempofFreezer=Double.parseDouble(temp);
+               try {
+                   String temp = editFreezer.getText().toString();
+                   textOfFreezer.setText(getActivity().getString(R.string.freezertempchagetext) + temp + " °C");
+                   tempofFreezer = Double.parseDouble(temp);
+               }catch (NumberFormatException e){
+                   textOfFreezer.setText(getActivity().getString(R.string.freezertempchagetext)+tempofFreezer+" °C");
+               }
             }
 
         });
@@ -205,10 +209,14 @@ public class KitchenFragment extends Fragment  {
 
             @Override
             public void onClick(View view){
-                String temp=editFridge.getText().toString();
-                textOfFridge.setText(getActivity().getString(R.string.fridgetempchangetext)+temp+" °C");
-                tempofFridge=Double.parseDouble(temp);
-                Log.i("fridge temp",""+tempofFridge);
+               try {
+                   String temp = editFridge.getText().toString();
+                   textOfFridge.setText(getActivity().getString(R.string.fridgetempchangetext) + temp + " °C");
+                   tempofFridge = Double.parseDouble(temp);
+                   Log.i("fridge temp", "" + tempofFridge);
+               }catch (NumberFormatException e){
+                   textOfFridge.setText(getActivity().getString(R.string.fridgetempchangetext)+tempofFridge+" °C");
+               }
             }
 
         });
@@ -269,9 +277,13 @@ public class KitchenFragment extends Fragment  {
             stop.setEnabled(true);
             isPause=false;
             isCancel=false;
+            long timeSet=0;
+            long interval=0;
+            try{ timeSet= 1000*Long.parseLong(inputTime.getText().toString());
+             interval=1000;}catch (
+                    NumberFormatException e){
 
-            long timeSet= 1000*Long.parseLong(inputTime.getText().toString());
-            long interval=1000;
+            }
             new CountDownTimer(timeSet,interval){
                 @Override
                 public void onFinish(){
