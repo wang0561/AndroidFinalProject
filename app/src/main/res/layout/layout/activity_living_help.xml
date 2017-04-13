@@ -15,10 +15,11 @@
         android:src="@drawable/smartlivingroom"/>
 
     <TextView
-        android:id="@+id/livingcustomtext"
+        android:id="@+id/livinghelp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Add or Delete Items?" />
+        android:maxLines="15"
+        android:lines="15"
+        android:text="@string/living_helpcontent" />
+
 </LinearLayout>

@@ -15,6 +15,13 @@
         android:layout_width="300dp"
         android:layout_height="match_parent" />
 
+    <Button
+        android:id="@+id/livinghelpbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/livingProgressBar"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/living_helpinfo" />
 
     <ProgressBar
         android:id="@+id/livingProgressBar"
@@ -29,17 +36,19 @@
         android:id="@+id/livingroomcustombt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/living_roomcustombt"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/living_roomcustombt" />
 
 
     <Button
         android:id="@+id/livingroomrefreshbt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/living_refreshbt"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/livingroomcustombt"/>
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/living_refreshbt" />
 
 
 

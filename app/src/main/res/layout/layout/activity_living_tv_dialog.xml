@@ -14,11 +14,11 @@
         android:scaleType="center"
         android:src="@drawable/smartlivingroom"/>
 
-    <TextView
-        android:id="@+id/livingcustomtext"
+    <EditText
+        android:id="@+id/livingtvchannel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Add or Delete Items?" />
+        android:hint="@string/living_tvchannel" />
 </LinearLayout>

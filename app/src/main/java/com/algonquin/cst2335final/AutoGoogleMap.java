@@ -39,7 +39,9 @@ public class AutoGoogleMap extends AppCompatActivity {
                     longitude = gps.getLongitude();
                     latitude = gps .getLatitude();
 
-                    Toast.makeText(getApplicationContext(),"Longitude:"+Double.toString(longitude)+"\nLatitude:"+Double.toString(latitude),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Longitude:"+Double.toString(longitude)+"\nLatitude:"+Double.toString(latitude),
+                            Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

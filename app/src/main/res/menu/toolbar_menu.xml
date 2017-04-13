@@ -27,7 +27,7 @@
         app:showAsAction="always" />
 
     <item android:id="@+id/about"
-        android:title="About"
+        android:title="@string/about"
         android:orderInCategory="501"
         app:showAsAction="never" />
 

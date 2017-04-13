@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class KitchenDatabaseHelper extends SQLiteOpenHelper {
 
-    private String ACTIVITY_NAME = "LivingDatabaseHelper";
+    private String ACTIVITY_NAME = "KitchenDatabaseHelper";
 
     public static final String TABLE_NAME = "KitchenItems";
     public static final String KITCHENITEM_ID = "kitchenItemID";

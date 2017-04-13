@@ -6,7 +6,7 @@
     <string name="living_tvcontrol">电视控制</string>
     <string name="living_tvonoff">开/关</string>
     <string name="living_lamp3logout">返回</string>
-    <string name="living_tvlogout">返回k</string>
+    <string name="living_tvlogout">返回</string>
     <string name="living_blindslogout">返回</string>
     <string name="living_lamp3colorshow">灯光颜色显示</string>
     <string name="living_lamp3colorchoose">灯光颜色选择</string>
@@ -44,5 +44,88 @@
 
     <string name="houseOn">开</string>
     <string name="houseOff">关</string>
+
+    <string name="kitchensnacktext">信息已经保存</string>
+    <string name="kitchenlightison">灯开</string>
+    <string name="kitchenlightisoff">灯关</string>
+    <string name="kitchenlightturnon">灯开关</string>
+    <string name="kitchenlightbackbutton">保存并返回</string>
+    <string name="fridgesnackbartext">温度设置成功</string>
+    <string name="fridgetempchangetext">冰箱温度是 </string>
+    <string name="freezertempchagetext">冰柜温度是 </string>
+    <string name="fridgesavebuttontext">保存并返回</string>
+    <string name="freezertemptext">冰柜温度: -10 °C</string>
+    <string name="fridgeandfreezersetbutton">设置</string>
+    <string name="fridgetemptext">冰箱温度: 0 °C</string>
+    <string name="microtimefinishtext">时间到</string>
+    <string name="microtimetext">剩余时间</string>
+    <string name="microinputtext">请输入微波秒数</string>
+    <string name="microresetbuttontext">重设</string>
+    <string name="microexitbuttontext">退出</string>
+    <string name="microresumebuttontext">返回</string>
+    <string name="microoffbuttontext">停止</string>
+    <string name="microstartbuttontext">开始</string>
+    <string name="kitchenreturntohomepage">返回</string>
+    <string name="kitchenhelpbuttontext">帮助</string>
+    <string name="kitchenrefreshbuttontext">刷新</string>
+    <string name="welcomekitchentext">欢迎来到厨房页面</string>
+    <string name="micro_dialog_title">退出</string>
+    <string name="micro_dialog_message">确定退出吗?</string>
+    <string name="micro_ok">是的</string>
+    <string name="micro_cancel">取消</string>
+    <string name="kichenhelp_title">厨房使用指南</string>
+    <string name="kichenhelp_dialog_message">作者：王涛 \n 版本:1.0 \n 信息: \n -点击上面的列表，你将进入相对应的设备页面
+        \n -点击返回键返回到主页面 \n -点击刷新键刷新页面 \n
+        -点击增加和删除键可以添加新设备或者删除已有设备 \n 如果想要回到出厂设置，请删除所有设备并从新进入厨房页面
+    </string>
+    <string name="kitchenspinnerText">请选择一种设备</string>
+    <string name="textofkitchenspinnerbutton">确定</string>
+    <string name="textofkitchenselectdel">请选择一个设备</string>
+    <string name="textofkitchenitementerdialog">请输入设备名称</string>
+    <string name="buttonofkitchenspinneradd">添加设备</string>
+    <string name="buttonofkitchenspinnerdel">删除设备</string>
+    <string name="defaultmicrowave">微波炉</string>
+    <string name="defaultfridge">三星冰箱</string>
+    <string name="defaultfreezer">三星冰柜</string>
+    <string name="defaultkitchenlight">吊灯</string>
+
+    <string name="living_refreshbt">刷新</string>
+    <string name="living_checkboxm1">灯1</string>
+    <string name="living_checkboxm2">灯2</string>
+    <string name="living_checkboxm3">灯3</string>
+    <string name="living_checkboxtv">电视</string>
+    <string name="living_checkboxblinds">窗帘</string>
+    <string name="living_confirmbt">确认</string>
+    <string name="living_tvchannel">选台</string>
+    <string name="living_helpinfo">说明</string>
+    <string name="living_helpcontent">\t\t居室功能（版本1.0）由罗敏开发。支持用户对灯光电视窗帘进行调控设置.\n\t\t用户可以点击每一行对不同装置进行调控，返回后点击刷新键获得最新动态。\n\t\t用户可以点击定制键对装置进行增加或者删除。</string>
+
+
+    <string name="title_activity_start">安卓应用</string>
+    <string name="autotemperature">温度控制</string>
+    <string name="autoradio">收音机</string>
+    <string name="autogps">GPS</string>
+    <string name="autolight">车灯</string>
+    <string name="autohelp">帮助</string>
+    <string name="autosettemperature">温度设置</string>
+    <string name="autosetlowtemperature">设置最低温度</string>
+    <string name="autosethightemperature">设置最高温度</string>
+    <string name="autotempset">设置</string>
+    <string name="autotempexit">退出</string>
+    <string name="autotempdisplay">显示</string>
+    <string name="autowelcome">汽车应用</string>
+    <string name="autoactivityreturn">返回</string>
+    <string name="autoactivitysetting">设置</string>
+    <string name="autolightdim">车灯明暗</string>
+    <string name="autoheadlightswitch">正常/远光</string>
+    <string name="fmwelcome">调频设置</string>
+    <string name="autoFmChannelName">调频频道名称</string>
+    <string name="fmChadd">增加频道</string>
+    <string name="fmfrtunecontr">调频道</string>
+    <string name="autofmvolumcontr">音量控制</string>
+    <string name="mute">禁音</string>
+    <string name="about">关于</string>
+
+
 
 </resources>

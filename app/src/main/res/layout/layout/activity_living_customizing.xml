@@ -5,25 +5,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.algonquin.cst2335final.Lamp1Activity">
+    tools:context="com.algonquin.cst2335final.LivingCustomizingActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+     <Spinner
+        android:id="@+id/livingspinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/living_lamponoff"
-        android:textColor="@android:color/holo_orange_light"
-        android:textSize="25dp" />
-
-    <Switch
-        android:id="@+id/lamp1switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
 
     <Button
-        android:id="@+id/lamp1return"
+        android:id="@+id/livingchangebutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_light"
-        android:text="@string/living_lampreturn" />
+        android:text="@string/living_confirmbt"
+        android:textSize="18sp" />
+
 </LinearLayout>

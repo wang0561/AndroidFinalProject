@@ -12,10 +12,12 @@
     tools:context="com.algonquin.cst2335final.BlindsActivity">
 
     <TextView
-        android:text="@string/living_blinds"
+        android:id="@+id/blinds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/blinds" />
+        android:text="@string/living_blinds"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="25dp" />
 
     <SeekBar
         android:layout_width="match_parent"
@@ -24,7 +26,8 @@
 
     <Button
         android:id="@+id/buttonblinds"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
         android:text="@string/living_blindslogout" />
 </LinearLayout>

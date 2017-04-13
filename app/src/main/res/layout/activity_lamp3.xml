@@ -13,10 +13,12 @@
 
 
     <TextView
-        android:text="@string/living_colorlamp3"
+        android:id="@+id/lamp3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lamp3" />
+        android:text="@string/living_colorlamp3"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="25dp" />
 
     <SeekBar
         android:id="@+id/lampDimmable"
@@ -39,6 +41,7 @@
         android:id="@+id/livinglampbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
         android:text="@string/living_lamp3logout" />
 
 

@@ -8,11 +8,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/fridgebackgroud"
     tools:context="com.algonquin.cst2335final.FridgeActivity">
 
 
     <TextView
-        android:text="Fridge Temp: 0 °C"
+        android:text="@string/fridgetemptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -22,7 +23,7 @@
         android:id="@+id/fridgetextview" />
 
     <Button
-        android:text="SET"
+        android:text="@string/fridgeandfreezersetbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/editTextfridge"
@@ -31,7 +32,7 @@
         android:id="@+id/buttonsetfridge" />
 
     <Button
-        android:text="SET"
+        android:text="@string/fridgeandfreezersetbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editTextfreezer"
@@ -60,7 +61,7 @@
         android:layout_alignEnd="@+id/fridgetextview" />
 
     <TextView
-        android:text="Freezer Temp: -10 °C"
+        android:text="@string/freezertemptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="49dp"
@@ -80,7 +81,7 @@
         android:layout_alignEnd="@+id/freezertextView" />
 
     <Button
-        android:text="Save"
+        android:text="@string/fridgesavebuttontext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSave"
