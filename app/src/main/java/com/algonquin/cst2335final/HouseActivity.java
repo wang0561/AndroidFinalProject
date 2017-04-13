@@ -29,7 +29,8 @@ public class HouseActivity extends AppCompatActivity {
     int progress;
     protected boolean isTablet;
     protected Context context;
-    protected HouseDatabaseHelper myhelper;
+
+    protected static HouseDatabaseHelper myhelper;
 
     protected Cursor cursor;
     protected String tempDevice;
@@ -279,11 +280,17 @@ public class HouseActivity extends AppCompatActivity {
         return list;
     }
 
+
+    public static SQLiteDatabase getInstance() {
+        return myhelper.getReadableDatabase();
+    }
     public void checkDeviceState(){
 
         //SQL PART
         myhelper = new HouseDatabaseHelper(this);
-        final SQLiteDatabase db = myhelper.getReadableDatabase();
+
+        final SQLiteDatabase db = getInstance();
+
         cursor = db.query(false,myhelper.TABLE_STATE,new String[]{myhelper.KEY_DEVICE,myhelper.KEY_STATE},null,null,null,null,null,null);
         cursor.moveToFirst();
         tempStatementBundle = new Bundle();
