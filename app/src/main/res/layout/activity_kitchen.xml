@@ -27,33 +27,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/kitchenreturntohomepage"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/kitchenhelp"
         android:text="@string/kitchenhelpbuttontext"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
 
     <Button
         android:id="@+id/buttonofkitchenitemadd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonofkitchenspinneradd"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
     <Button
         android:id="@+id/kitchenitemdeletebutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonofkitchenspinnerdel"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
     <Button
         android:id="@+id/kitchenSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/kitchenrefreshbuttontext"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
 
     <ProgressBar
         android:layout_width="match_parent"

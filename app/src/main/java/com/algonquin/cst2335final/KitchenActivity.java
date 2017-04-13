@@ -61,12 +61,12 @@ public class KitchenActivity extends AppCompatActivity {
         prefs=getSharedPreferences("listview",Context.MODE_PRIVATE);
         set=prefs.getStringSet("key",new HashSet<String>());
         Log.i("set value",set.toString());
-//        if(set.isEmpty()){
-//            set.add(getString(R.string.defaultmicrowave));
-//            set.add(getString(R.string.defaultfridge));
-//            set.add(getString(R.string.defaultfreezer));
-//            set.add(getString(R.string.defaultkitchenlight));
-//        }
+        if(set.isEmpty()){
+            set.add("Microwave");
+            set.add("Samsung Fridge");
+            set.add("Samsung Freezer");
+            set.add("Main Ceiling Light");
+        }
         nameList= new ArrayList<>(set);
 
         ctx = this;
