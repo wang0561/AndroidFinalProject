@@ -74,10 +74,51 @@
     <string name="living_helpcontent">\t\tThe LivingRoomActivity, Version 1.0, is written by Min Luo. \n\t\tThis activity provides three lamps, one tv, and one blinds for users to control.\n\tUsers could enter different control pages by clicking each item, changes the status, and click confirm buttons to return back to the main page of LivingRoom. Refresh button is used to get updated status. \n\t\tWhen clicking customizing button, users can add and delete items as you like.</string>
 
 
+
+    <string name="kitchensnacktext">INFORMATION SAVING</string>
+    <string name="kitchenlightison">Light is On</string>
+    <string name="kitchenlightisoff">light is off</string>
+    <string name="kitchenlightturnon">Turn light on</string>
+    <string name="kitchenlightbackbutton">Save and Back</string>
+    <string name="fridgesnackbartext">TEMPERATURE SAVED SUCCESSFUL</string>
+    <string name="fridgetempchangetext">Fridge Temp is </string>
+    <string name="freezertempchagetext">Freezer Temp is </string>
+    <string name="fridgesavebuttontext">SAVE</string>
+    <string name="freezertemptext">Freezer Temp: -10 °C</string>
+    <string name="fridgeandfreezersetbutton">SET</string>
+    <string name="fridgetemptext">Fridge Temp: 0 °C</string>
+    <string name="microtimefinishtext">Time up</string>
+    <string name="microtimetext">Time</string>
+    <string name="microinputtext">Enter time in seconds</string>
+    <string name="microresetbuttontext">CANCEL/RESET</string>
+    <string name="microexitbuttontext">EXIT</string>
+     <string name="microresumebuttontext">RESUME</string>
+     <string name="microoffbuttontext">PAUSE</string>
+    <string name="microstartbuttontext">START</string>
+    <string name="kitchenreturntohomepage">RETURN TO HOMEPAGE</string>
+    <string name="kitchenhelpbuttontext">HELP</string>
+    <string name="kitchenrefreshbuttontext">REFRESH</string>
+    <string name="welcomekitchentext">WELCOME TO MY KITCHEN</string>
     <string name="micro_dialog_title">Exit</string>
-    <string name="micro_dialog_message">Do you want to finish the activity?</string>
+    <string name="micro_dialog_message">Do you want to back to kitchen page?</string>
     <string name="micro_ok">ok</string>
     <string name="micro_cancel">cancel</string>
+    <string name="kichenhelp_title">Kitchen Help Information</string>
+    <string name="kichenhelp_dialog_message">Author:Tao Wang \n Version:1.0 \n Information: \n -click the items on the list, you will
+    enter into the page of the item \n -click on return button to back to home page \n click on refresh button to save all information \n
+        click add and delete button to add or delete items \n if you want to restore to the default page, delete all items and re-entry kitchen page
+    </string>
+    <string name="kitchenspinnerText">Please select one type of the items</string>
+    <string name="textofkitchenspinnerbutton">Confirm</string>
+    <string name="textofkitchenselectdel">please choose a item</string>
+    <string name="textofkitchenitementerdialog">Please enter the name of the item</string>
+    <string name="buttonofkitchenspinneradd">ADD DEVICE</string>
+    <string name="buttonofkitchenspinnerdel">DELETE DEVICE</string>
+    <string name="defaultmicrowave">Microwave</string>
+    <string name="defaultfridge">Samsung Fridge</string>
+    <string name="defaultfreezer">Samsung Freezer</string>
+    <string name="defaultkitchenlight">Main celing Light</string>
+
 
 
 
