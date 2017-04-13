@@ -11,9 +11,10 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
-// Anupam Chugh, [online]Feb 25, 2016, www.journaldev.com/10324/android-snackbar-example-tutorial, [Accessed ] Mar 26, 2017
 
-
+/**
+ * This class support user to turn on and off the lamp1.
+ */
 public class Lamp1Activity extends Fragment {
     private int lamp1counter;
     private CharSequence text;
@@ -21,8 +22,10 @@ public class Lamp1Activity extends Fragment {
     private int isTablet;
     private LivingRoomActivity livingroomwindow;
 
+    //default constructor
     public  Lamp1Activity () {}
 
+    //constructor with parameter
     public Lamp1Activity(LivingRoomActivity cw){
         livingroomwindow = cw;
     }
@@ -40,6 +43,7 @@ public class Lamp1Activity extends Fragment {
         View gui = inflater.inflate(R.layout.activity_lamp1, null);
 
         //ctx = this;
+        // when return button is clicked, mobile system record the status of lamp1 into database
         Button lampButton = (Button) gui.findViewById(R.id.lamp1return);
         lampButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,7 +60,7 @@ public class Lamp1Activity extends Fragment {
             }
         });
 
-
+        // user click switch button. It can change the status of lamp1 to on or off.
         Switch lampSwitch = (Switch) gui.findViewById(R.id.lamp1switch);
         if(lamp1status.compareTo("On") == 0){
             lampSwitch.setChecked(true);
@@ -71,10 +75,10 @@ public class Lamp1Activity extends Fragment {
 
                 if(isChecked){
                     text = "On";
-                    duration = Toast.LENGTH_SHORT;
+                    duration = Toast.LENGTH_SHORT;   // toast shows on
                 }else{
                     text = "Off";
-                    duration = Toast.LENGTH_SHORT;
+                    duration = Toast.LENGTH_SHORT;    // toast shows off
                 }
                 lamp1status = text.toString();
 
@@ -90,7 +94,7 @@ public class Lamp1Activity extends Fragment {
                 writer.commit();*/
 
 
-                Toast toast = Toast.makeText(getActivity(),"Lamp is "+ text, duration);
+                Toast toast = Toast.makeText(getActivity(),"Lamp is "+ text, duration); // format the display message
                 toast.show();
             }
         });

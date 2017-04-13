@@ -6,7 +6,7 @@
     <string name="living_tvcontrol">电视控制</string>
     <string name="living_tvonoff">开/关</string>
     <string name="living_lamp3logout">返回</string>
-    <string name="living_tvlogout">返回k</string>
+    <string name="living_tvlogout">返回</string>
     <string name="living_blindslogout">返回</string>
     <string name="living_lamp3colorshow">灯光颜色显示</string>
     <string name="living_lamp3colorchoose">灯光颜色选择</string>
@@ -16,6 +16,18 @@
     <string name="living_lamp2logout">返回</string>
     <string name="living_deletemessage">删除</string>
     <string name="living_roomcustombt">自选</string>
+
+    <string name="living_refreshbt">刷新</string>
+    <string name="living_checkboxm1">灯1</string>
+    <string name="living_checkboxm2">灯2</string>
+    <string name="living_checkboxm3">灯3</string>
+    <string name="living_checkboxtv">电视</string>
+    <string name="living_checkboxblinds">窗帘</string>
+    <string name="living_confirmbt">确认</string>
+    <string name="living_tvchannel">选台</string>
+    <string name="living_helpinfo">说明</string>
+    <string name="living_helpcontent">\t\t居室功能（版本1.0）由罗敏开发。支持用户对灯光电视窗帘进行调控设置.\n\t\t用户可以点击每一行对不同装置进行调控，返回后点击刷新键获得最新动态。\n\t\t用户可以点击定制键对装置进行增加或者删除。</string>
+
 
     <string name="title_activity_start">安卓应用</string>
     <string name="autotemperature">温度控制</string>
@@ -41,5 +53,6 @@
     <string name="autofmvolumcontr">音量控制</string>
     <string name="mute">禁音</string>
     <string name="about">关于</string>
+
 
 </resources>

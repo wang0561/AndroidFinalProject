@@ -13,41 +13,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:singleLine="true"
         android:text="WELCOME TO SMART LIVINGROOM"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="25dp" />
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20dp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/livingroomwelcome"
-        android:id="@+id/livinglists"/>
+        android:id="@+id/livinglists"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/livinghelpbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/livingProgressBar"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/living_helpinfo" />
 
     <ProgressBar
         android:id="@+id/livingProgressBar"
-
-
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/livingroomcustombt" />
 
 
-
     <Button
         android:id="@+id/livingroomcustombt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/living_roomcustombt"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/living_roomcustombt" />
 
     <Button
         android:id="@+id/livingroomrefreshbt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/living_refreshbt"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/livingroomcustombt"/>
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/living_refreshbt" />
 
 </RelativeLayout>

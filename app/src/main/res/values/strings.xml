@@ -47,21 +47,32 @@
     <string name="autoFmChannelNo">Auto Channel No</string>
     <string name="about">About</string>
 
-
-
     <string name="living_blinds">Window Blinds Control</string>
     <string name="living_colorlamp3">Colorful Lamp</string>
     <string name="living_tvcontrol">TV Control</string>
     <string name="living_tvonoff">On/Off</string>
-    <string name="living_lamp3logout">Go Back</string>
-    <string name="living_tvlogout">Go Back</string>
-    <string name="living_blindslogout">Go Back</string>
+    <string name="living_lamp3logout">Return</string>
+    <string name="living_tvlogout">Return</string>
+    <string name="living_blindslogout">Return</string>
     <string name="living_lamp3colorshow">Here shows your color choice</string>
     <string name="living_lamp3colorchoose">Color Choose</string>
     <string name="living_lamponoff">Lamp On/Off</string>
-    <string name="living_lampreturn">Go Back</string>
+    <string name="living_lampreturn">Return</string>
     <string name="living_lamp2dim">Lamp Dimmable</string>
-    <string name="living_lamp2logout">Go Back</string>
+    <string name="living_lamp2logout">Return</string>
+    <string name="living_deletemessage">Delete This Item</string>
+    <string name="living_roomcustombt">Customizing Equipment</string>
+    <string name="living_refreshbt">Refresh Status</string>
+    <string name="living_checkboxm1">Lamp1</string>
+    <string name="living_checkboxm2">Lamp2</string>
+    <string name="living_checkboxm3">Lamp3</string>
+    <string name="living_checkboxtv">TV</string>
+    <string name="living_checkboxblinds">Blinds</string>
+    <string name="living_confirmbt">Confirm Your Choice</string>
+    <string name="living_tvchannel">Choose TV Channel</string>
+    <string name="living_helpinfo">Help Info</string>
+    <string name="living_helpcontent">\t\tThe LivingRoomActivity, Version 1.0, is written by Min Luo. \n\t\tThis activity provides three lamps, one tv, and one blinds for users to control.\n\tUsers could enter different control pages by clicking each item, changes the status, and click confirm buttons to return back to the main page of LivingRoom. Refresh button is used to get updated status. \n\t\tWhen clicking customizing button, users can add and delete items as you like.</string>
+
 
     <string name="micro_dialog_title">Exit</string>
     <string name="micro_dialog_message">Do you want to finish the activity?</string>
@@ -69,9 +80,7 @@
     <string name="micro_cancel">cancel</string>
 
 
-    <string name="living_deletemessage">Delete This Item</string>
-    <string name="living_roomcustombt">Customization CheckBox</string>
-    <string name="living_refreshbt">Refresh Status</string>
+
 
 
 
