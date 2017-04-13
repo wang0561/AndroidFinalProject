@@ -16,4 +16,33 @@
     <string name="living_lamp2logout">返回</string>
     <string name="living_deletemessage">删除</string>
     <string name="living_roomcustombt">自选</string>
+
+
+    <string name="HouseActivityName">房屋</string>
+    <string name="HouseHintString">输入</string>
+    <string name="confirmB">确定</string>
+    <string name="labelHouseNumberPicker">取数器</string>
+    <string name="houseHour">小时</string>
+    <string name="houseMinute">分钟</string>
+    <string name="houseSecond">秒</string>
+    <string name="houseMonth">月</string>
+    <string name="houseDay">日</string>
+    <string name="houseYear">年</string>
+    <string name="houseSubmit">提交</string>
+    <string name="houseTemp">温度</string>
+    <string name="houseAddButton">添加</string>
+    <string name="houseDelButton">删除</string>
+    <string name="houseAuthor">王宸\nVersion 1.0.0\n啊啦啦啦啦啦啦啦啦啦啦啦啦</string>
+    <string name="OK">确认</string>
+    <string name="CANCEL">取消</string>
+    <string name="houseLightON">灯开</string>
+    <string name="houseLightOFF">灯关</string>
+    <string name="houseDoorON">门开</string>
+    <string name="houseDoorOFF">门关</string>
+    <string name="houseDoorStatement">门状态：</string>
+    <string name="houseLightStatement">灯状态: </string>
+
+    <string name="houseOn">开</string>
+    <string name="houseOff">关</string>
+
 </resources>

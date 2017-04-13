@@ -20,10 +20,14 @@ import android.widget.TextView;
 public class NumberPickerFragment extends Fragment {
     protected int hour ;
     protected int min  ;
+    protected static HouseActivity houseActivity;
     protected int temp ;
-    protected House_Fragment_Detail_Temperature activity;
     protected Bundle input;
+
     public NumberPickerFragment(){
+    }
+    public NumberPickerFragment(HouseActivity houseActivity){
+        this.houseActivity =houseActivity;
     }
 
     @Override
@@ -101,7 +105,7 @@ public class NumberPickerFragment extends Fragment {
             }
         });
         //initial & load default value
-        Log.i("Pickers","hour"+hour+"min"+min+"temp"+temp);
+     //   Log.i("Pickers","hour"+hour+"min"+min+"temp"+temp);
         hourPicker.setValue(hour);
         minPicker.setValue(min);
         tempPicker.setValue(temp);
@@ -110,15 +114,17 @@ public class NumberPickerFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle tempBundle =new Bundle();
+                //insert data into database
+                houseActivity.putTempValue(hour,min,temp);
 
+
+                Bundle tempBundle =new Bundle();
                 Log.i("Upload","hour"+hour+"min"+min+"temp"+temp);
 
                 tempBundle.putInt("hour",hour);
                 tempBundle.putInt("min",min);
                 tempBundle.putInt("temp",temp);
                 tempBundle.putLong("ID", 1);
-
 
                 tempBundle.putBundle("tempBundle",tempBundle);
                 /// / Log.i("setResult",getActivity().toString());
@@ -132,6 +138,9 @@ public class NumberPickerFragment extends Fragment {
              //   activity.removeFragment();
 
                 getFragmentManager().beginTransaction().remove(NumberPickerFragment.this).commit();
+
+
+
 
             }
         });

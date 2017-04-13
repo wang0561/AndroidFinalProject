@@ -32,8 +32,8 @@ import java.util.List;
 public class ListDetailHouseFragment extends Fragment {
     protected long id;
     protected Context context;
-    protected Bundle StatementBundle;
-    protected Bundle tempBundle;
+    protected static Bundle StatementBundle;
+    protected static Bundle tempBundle;
     protected boolean doorState;
     protected boolean lightState;
     protected boolean isTablet;
@@ -41,11 +41,12 @@ public class ListDetailHouseFragment extends Fragment {
     protected Switch sw2 ;
     protected ImageView doorImage ;
     protected ImageView lightImage;
-    protected HouseActivity houseActivity = null;
+    protected static HouseActivity houseActivity;
     protected ArrayList<String> tempList = new ArrayList<>();
-    protected ArrayList<Long> tempIdList;
+    protected static ArrayAdapter<String> arrayAdapter;
     protected String tempDoorState;
     protected String tempLightState;
+    protected static int selectedID;
     public ListDetailHouseFragment(){}
     public ListDetailHouseFragment(HouseActivity houseActivity){
         this.houseActivity = houseActivity;
@@ -60,8 +61,10 @@ public class ListDetailHouseFragment extends Fragment {
         StatementBundle = bundle.getBundle("StateData");
         tempBundle = bundle.getBundle("tempBundle");
         isTablet =  (getActivity().findViewById(R.id.HouseFrameLayout) != null);
-        tempDoorState=StatementBundle.getString("door",null);
-        tempLightState = StatementBundle.getString("light",null);
+        if(id != 1) {
+            tempDoorState = StatementBundle.getString("door", null);
+            tempLightState = StatementBundle.getString("light", null);
+        }
   //      Log.i("tempDoorState",tempDoorState);
 //        Log.i("tempLightState",tempLightState);
 
@@ -200,24 +203,40 @@ public class ListDetailHouseFragment extends Fragment {
 
 
         //action for ListView
-        if (tempBundle!= null){
-                hour = tempBundle.getInt("hour");
-            min = tempBundle.getInt("min");
-            temp = tempBundle.getInt("temp");
-            tempList.add("time: "+hour+":"+min+" -> "+temp+" `C");
+//        if (tempBundle!= null){
+//                hour = tempBundle.getInt("hour");
+//            min = tempBundle.getInt("min");
+//            temp = tempBundle.getInt("temp");
+//            tempList.add("time: "+hour+":"+min+" -> "+temp+" `C");
+//
+//        }
 
-        }
-            if (tempList.isEmpty()) {
+        ArrayList<HouseTempArray> resultList = houseActivity.readTempSQL();
+        if (resultList.isEmpty()) {
                 tempList.add("Please Add a New Record");
-            }
 
-        TempListView.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,tempList));
+            }else{
+                tempList = new ArrayList<>();
+               // Log.i("ArrayList","Hour is "+resultList.get(1).getHour());
+                for(int i =0;i<resultList.size();i++){
+                    tempList.add("Time is: "+resultList.get(i).getHour()+":"+resultList.get(i).getMin()+"-> "+resultList.get(i).getTemp()+"`C");
+                //    Log.i("ArrayList For Loop","index is "+i+"result temp:"+resultList.get(i).getTemp());
+                }
+            }
+        arrayAdapter =new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,tempList);
+        TempListView.setAdapter(arrayAdapter);
         TempListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //tempBundle.putLong("tempID",id);
-                NumberPickerFragment pickerFragment = new NumberPickerFragment();
-                pickerFragment.setArguments(tempBundle);
+                NumberPickerFragment pickerFragment = new NumberPickerFragment(houseActivity);
+                Bundle resultBun = new Bundle();
+                selectedID = (int)id;
+                resultBun.putLong("tempID",id);
+                resultBun.putInt("hour",resultList.get((int) id).getHour());
+                resultBun.putInt("min",resultList.get((int) id).getMin());
+                resultBun.putInt("temp",resultList.get((int) id).getTemp());
+
+                pickerFragment.setArguments(resultBun);
                 getFragmentManager().beginTransaction().replace(R.id.numberPickerFrameLayout,pickerFragment).commit();
 
             }
@@ -228,10 +247,28 @@ public class ListDetailHouseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.i("HouseTempActivity","addButton clicked");
-                NumberPickerFragment fragment = new NumberPickerFragment();
+                NumberPickerFragment fragment = new NumberPickerFragment(houseActivity);
                 getFragmentManager().beginTransaction().replace(R.id.numberPickerFrameLayout,fragment).commit();
             }
         });
+
+        //action for deletebutton
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("ID", "ID is " + selectedID);
+
+                    houseActivity.deleteDataRecord(selectedID,resultList);
+                    tempList.remove(selectedID);
+                    arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tempList);
+                    TempListView.setAdapter(arrayAdapter);
+                    //drop the fragment
+                    getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.numberPickerFrameLayout)).commit();
+
+                }
+            });
+
 
 
     }
@@ -277,6 +314,7 @@ public class ListDetailHouseFragment extends Fragment {
 
         }
     }
+}
 
 //    @Override
 //    public void onActivityResult(int requestCode,int resultCode,Intent data){
@@ -284,21 +322,3 @@ public class ListDetailHouseFragment extends Fragment {
 //    }
 
 
-
-    private class tempListAdapter extends ArrayAdapter<String>{
-        public tempListAdapter(Context ctx){
-            super(ctx,0);
-        }
-        public int getCount(){
-            return tempList.size();
-        }
-
-        public long getItemId(int position){
-            return tempIdList.get(position);
-        }
-
-        public String getItem(int position){
-            return tempList.get(position);
-        }
-    }
-}

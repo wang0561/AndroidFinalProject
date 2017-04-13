@@ -13,7 +13,7 @@
     <Switch
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Door Open"
+        android:text="@string/houseDoorStatement"
         android:id="@+id/HouseGarageDoorSwitch"
 
         />
@@ -28,7 +28,7 @@
     <Switch
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="light Open"
+        android:text="@string/houseLightStatement"
         android:id="@+id/HouseGarageLightSwitch"
 
         android:layout_below="@+id/houseDoorImag"

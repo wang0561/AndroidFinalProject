@@ -30,7 +30,7 @@ public class HouseActivity extends AppCompatActivity {
     protected boolean isTablet;
     protected Context context;
     protected HouseDatabaseHelper myhelper;
-    protected static SQLiteDatabase db;
+
     protected Cursor cursor;
     protected String tempDevice;
     protected String tempState;
@@ -201,7 +201,7 @@ public class HouseActivity extends AppCompatActivity {
 
     public void putValue(String strname, String value){
         myhelper = new HouseDatabaseHelper(this);
-        db = myhelper.getWritableDatabase();
+        final SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues newValues = new ContentValues();
         newValues.put(myhelper.KEY_DEVICE,strname);
         newValues.put(myhelper.KEY_STATE, value);
@@ -215,11 +215,75 @@ public class HouseActivity extends AppCompatActivity {
         }
     }
 
+    public void putTempValue(int hour, int min, int temp){
+        myhelper = new HouseDatabaseHelper(this);
+        final SQLiteDatabase db = myhelper.getWritableDatabase();
+        ContentValues newValues = new ContentValues();
+        newValues.put(myhelper.KEY_HOUR,hour);
+        newValues.put(myhelper.KEY_MIN, min);
+        newValues.put(myhelper.KEY_TEMP,temp);
+        // db.insert(myhelper.TABLE_STATE, null, newValues);
+        db.insert(myhelper.TABLE_TEMPERATURE,null,newValues);
+        Log.i("inDatabase","Hour"+hour+"min"+min+"temp"+temp);
+    }
+
+    public ArrayList<HouseTempArray> readTempSQL(){
+        ArrayList<HouseTempArray> list = new ArrayList<>();
+        myhelper = new HouseDatabaseHelper(this);
+        final SQLiteDatabase db = myhelper.getReadableDatabase();
+        cursor = db.query(false,myhelper.TABLE_TEMPERATURE,new String[]{myhelper.KEY_ID,myhelper.KEY_HOUR,myhelper.KEY_MIN,myhelper.KEY_TEMP},null,null,null,null,null,null);
+        cursor.moveToFirst();
+        HouseTempArray tempArray;
+        while (! cursor.isAfterLast()){
+            tempArray = new HouseTempArray();
+            tempArray.setHour(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_HOUR)));
+            tempArray.setMin(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_MIN)));
+            tempArray.setTemp(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_TEMP)));
+            tempArray.setId(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_ID)));
+          //  Log.i("Cursor","Hour is " +tempArray.getHour());
+            list.add(tempArray);
+         //   Log.i("CursorArray","Hour is " +list.get(0).getHour());
+
+            cursor.moveToNext();
+        }
+
+        return list;
+    }
+
+    public ArrayList<HouseTempArray> deleteDataRecord(int id,ArrayList<HouseTempArray>inputList){
+
+        ArrayList<HouseTempArray> list = new ArrayList<>();
+        myhelper = new HouseDatabaseHelper(this);
+        final SQLiteDatabase db =myhelper.getWritableDatabase();
+
+        db.delete(myhelper.TABLE_TEMPERATURE,"_id = "+inputList.get(id).getId(),null);
+
+        Log.i("SQLDELETE","Query deleted");
+        cursor = db.query(false,myhelper.TABLE_TEMPERATURE,new String[]{myhelper.KEY_ID,myhelper.KEY_HOUR,myhelper.KEY_MIN,myhelper.KEY_TEMP},null,null,null,null,null,null);
+        cursor.moveToFirst();
+        HouseTempArray tempArray;
+        while (! cursor.isAfterLast()){
+            tempArray = new HouseTempArray();
+            tempArray.setHour(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_HOUR)));
+            tempArray.setMin(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_MIN)));
+            tempArray.setTemp(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_TEMP)));
+            int DatabaseId = cursor.getInt(cursor.getColumnIndex(myhelper.KEY_ID));
+            tempArray.setId(DatabaseId);
+              Log.i("Cursor","Hour is " +tempArray.getHour());
+            list.add(tempArray);
+               Log.i("CursorArray","Hour is " +list.get(0).getHour());
+               Log.i("CursorDatabaseID", "DatabaseID is "+DatabaseId);
+
+            cursor.moveToNext();
+        }
+        return list;
+    }
+
     public void checkDeviceState(){
 
         //SQL PART
         myhelper = new HouseDatabaseHelper(this);
-        db = myhelper.getReadableDatabase();
+        final SQLiteDatabase db = myhelper.getReadableDatabase();
         cursor = db.query(false,myhelper.TABLE_STATE,new String[]{myhelper.KEY_DEVICE,myhelper.KEY_STATE},null,null,null,null,null,null);
         cursor.moveToFirst();
         tempStatementBundle = new Bundle();
@@ -241,20 +305,7 @@ public class HouseActivity extends AppCompatActivity {
 
     }
 
-    public void initialSQL(){
-        myhelper = new HouseDatabaseHelper(this);
-        db = myhelper.getWritableDatabase();
-        ContentValues statementValue1 = new ContentValues();
-        statementValue1.put(myhelper.KEY_DEVICE,"door");
-        statementValue1.put(myhelper.KEY_STATE,"false");
-        db.insert(myhelper.TABLE_STATE,null,statementValue1);
 
-        ContentValues statementValue2 = new ContentValues();
-        statementValue1.put(myhelper.KEY_DEVICE,"light");
-        statementValue1.put(myhelper.KEY_STATE,"false");
-        db.insert(myhelper.TABLE_STATE,null,statementValue2);
-
-    }
 
 
 }

@@ -16,7 +16,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_above="@id/houseAddButton"
-        android:layout_alignEnd="@+id/houseDeleteButton"
         android:id="@+id/houseTempListView"/>
 
 

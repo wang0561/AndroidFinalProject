@@ -70,7 +70,6 @@
         <activity android:name=".HouseWeather" />
         <activity android:name=".House_Fragment_Detail_garage" />
         <activity android:name=".House_Fragment_Detail_Temperature" />
-        <activity android:name=".HouseFragmentDetails" />
 
 
         <activity android:name=".AutoLight" />
