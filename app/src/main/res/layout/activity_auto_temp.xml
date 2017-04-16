@@ -20,7 +20,7 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:id = "@+id/autotempeditText1"
-        android:hint = "Enter the Lowest Temperature Here"
+        android:hint = "@string/lowtemp"
         android:focusable = "true"
         android:inputType="numberDecimal"
         android:textColorHighlight = "#ff7eff15"

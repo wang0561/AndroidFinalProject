@@ -1,3 +1,8 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
 package com.algonquin.cst2335final;
 
 import android.app.Activity;
@@ -33,6 +38,13 @@ import java.util.HashMap;
 
 import static android.R.attr.fragment;
 
+/**
+ * This class is autmobile FM management class which can set/display/delete the auto FM channels in
+ * fragment
+ * @version 1.0
+ * @author BO
+ */
+
 public class AutoFMActivity extends AppCompatActivity {
 
     private final static String ACTIVITY_NAME = "AutoFMActivity" ;
@@ -62,6 +74,10 @@ public class AutoFMActivity extends AppCompatActivity {
     protected Switch autoFMMuteSwitch;
     SeekBar autofFMVolseekBar;
 
+    /**
+     * onCreate create activity
+     * @param savedInstanceState the bundle
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +117,14 @@ public class AutoFMActivity extends AppCompatActivity {
 
         listView.setAdapter(autoFMChannelAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            /**
+             * method onItemClick  handle the click on the listview item
+             * @param adapterView is adapter view
+             *  @param view is the view
+             *  @param i is the index of item from the  arraylist
+             *  @param l is he index of the item from database
+             * */
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -205,6 +229,14 @@ public class AutoFMActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * method onActivityResult  handle result from the phone when user click the delete button
+     * from the fragment activity
+     * @param requestCode is adapter view
+     *  @param resultCode is the view
+     *  @param data is the index of item from the  arraylist
+     * */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -233,6 +265,11 @@ public class AutoFMActivity extends AppCompatActivity {
 
     }//onActivityResult
 
+    /**
+     * method deleteDb  delete the item selected by user from the database
+     *  @param id is the index of item will be delted from the  database
+     * */
+
     public   void deleteDb( long id ){
 
         autoChannelDB.delete(autoDatabaseHelper.TABLE_NAME, autoDatabaseHelper.CHANNEL_ID + "=" + id, null);
@@ -248,6 +285,11 @@ public class AutoFMActivity extends AppCompatActivity {
         //listView.setAdapter(messageAdapter);
         */
     }
+
+    /**
+     * method refreshMessages after the database row deleted this method refresh the arraylist to
+     * synch the data in the database and arryalist for the listview
+     * */
 
     private void refreshMessages(){
 
@@ -271,6 +313,9 @@ public class AutoFMActivity extends AppCompatActivity {
         autoFMChannelAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * method removeFrag removes the fragment
+     * */
 
     public void removeFrag(){
 
@@ -279,6 +324,9 @@ public class AutoFMActivity extends AppCompatActivity {
             getFragmentManager().beginTransaction().remove(fragment).commit();
     }
 
+    /**
+     * method setAutoFm check the toast the auto light swich status
+     * */
     private void setAutoFm(boolean autoLightSwitchStatus){
         CharSequence text;
         int duration;
@@ -289,15 +337,33 @@ public class AutoFMActivity extends AppCompatActivity {
         toast.show();
     }
 
-
+    /**
+     * the inner  class  AutoFMChannelAdapter is to instantiate the adapter for the list view
+     * fragment
+     * @version 1.0
+     * @author BO
+     */
     private class AutoFMChannelAdapter extends ArrayAdapter<String> {
 
+        /**
+         * constructor AutoFMChannelAdapter instantiate the AutoFMChannelAdapter object
+         * @param ctx  is a context
+         * */
         public AutoFMChannelAdapter(Context ctx) {
             super(ctx, 0);
         }
 
+        /**
+         * method getCount returns the  size of the arrraylist
+         *
+         * */
         public int getCount() {return autoChannelArrayList.size();}
 
+        /**
+         * method getItemId move the  cursor to the row of the data reads from database
+         * @param position is he row number cursor should move to
+         *
+         * */
         public long getItemId(int position)
         {
             autoChannelCursor.moveToPosition(position);
@@ -305,11 +371,23 @@ public class AutoFMActivity extends AppCompatActivity {
             return autoChannelCursor.getLong( autoChannelCursor.getColumnIndex(AutoDatabaseHelper.CHANNEL_ID));
         }
 
+        /**
+         * method getItem return the selected item index from the arraylist
+         * @param position is he row number cursor should move to
+         *
+         * */
         @Override
         public String getItem(int position) {
 
             return autoChannelArrayList.get(position).toString();
         }
+
+        /**
+         * method getView inflate the view of the selected item
+         * @param position is the index selected
+         * @param convertView convert view
+         * @param parent parent view group
+         * */
 
         public View getView(int position, View convertView, ViewGroup parent) {
             // View view= new View();

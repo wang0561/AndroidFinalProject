@@ -1,3 +1,9 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
+
 package com.algonquin.cst2335final;
 
 import android.content.Context;
@@ -13,6 +19,12 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
+/**
+ * This class is autmobile light managment class.
+ * @version 1.0
+ * @author BO
+ */
+
 public class AutoLight extends AppCompatActivity {
 
     protected Switch autoLightSwitch;
@@ -24,8 +36,10 @@ public class AutoLight extends AppCompatActivity {
     SharedPreferences autoLightsharedPref;
     SharedPreferences.Editor autoLightsharedPrefEditor;
 
-
-    @Override
+    /**
+     * method onCreate creates activity
+     *  @param savedInstanceState is bundle
+     * */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto_light);
@@ -107,7 +121,10 @@ public class AutoLight extends AppCompatActivity {
                 });
 
     }
-
+    /**
+     * method setAutoLight set auto light  switch
+     *  @param autoLightSwitchStatus is status of the switch
+     * */
         private void setAutoLight(boolean autoLightSwitchStatus){
             CharSequence text;
             int duration;

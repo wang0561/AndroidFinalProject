@@ -1,8 +1,11 @@
-package com.algonquin.cst2335final;
 
 /**
- * Created by beaul on 2017-03-10.
- */
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
+package com.algonquin.cst2335final;
+
 
 
 //package com.terry.bobobo;
@@ -15,6 +18,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
+ * Copy and reuse by Bo Liu from below author
+ * this class initiates the HTTP connection
  * @author Terry E-mail: yaoxinghuo at 126 dot com
  * @version create: 2010-10-21 ??01:40:03
  */

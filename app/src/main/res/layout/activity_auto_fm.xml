@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="Enter the Channel No here"
+        android:hint="@string/autoenterchanno"
         android:layout_below="@+id/autofmtuneseekBar"
         android:layout_alignParentStart="true"
         />
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:hint="Enter the Channel Name here"
+        android:hint="@string/autoenterchanname"
         android:layout_below="@+id/autoFMChannenNo"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/autofmChSet"

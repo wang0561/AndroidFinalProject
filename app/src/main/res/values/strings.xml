@@ -61,6 +61,14 @@
     <string name="mute">Mute</string>
     <string name="autoFmChannelNo">Auto Channel No</string>
     <string name="about">About</string>
+    <string name="lowtemp">Enter the Lowest Temperature Here</string>
+    <string name="hightemp">Enter the Highest Temperature Here</string>
+    <string name="autoenterchanno">Enter FM channel Number here</string>
+    <string name="autoenterchanname">Enter FM channel Name here</string>
+    <string name="autoauthor">Author: Bo Liu</string>
+    <string name="autoversion">Version:  V1</string>
+    <string name="autoinstruction">Instruction: Click on each item, it will bring you to next level  </string>
+
 
     <string name="living_blinds">Window Blinds Control</string>
     <string name="living_colorlamp3">Colorful Lamp</string>

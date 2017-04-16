@@ -1,3 +1,9 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
+
 package com.algonquin.cst2335final;
 
 import android.content.Intent;
@@ -18,6 +24,11 @@ public class AutoGoogleMap extends AppCompatActivity {
     private TrackGPS gps;
     double longitude;
     double latitude;
+
+    /**
+     * method onCreate creates activity
+     *  @param savedInstanceState is bundle
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +63,10 @@ public class AutoGoogleMap extends AppCompatActivity {
             }
         });
     }
+    /**
+     * method onDestroy destroys the activity
+
+     * */
 
     @Override
     protected void onDestroy() {

@@ -125,6 +125,14 @@
     <string name="autofmvolumcontr">音量控制</string>
     <string name="mute">禁音</string>
     <string name="about">关于</string>
+    <string name="lowtemp">请输入最低温度</string>
+    <string name="hightemp">请输入最高温度</string>
+    <string name="autoenterchanno">请输入调频频道</string>
+    <string name="autoenterchanname">请输入调频频道名称</string>
+    <string name="autoauthor">作者：刘波</string>
+    <string name="autoversion">版本： 1.0:</string>
+    <string name="autoinstruction">使用说明: 点击每一个栏目，你将进入下一个菜单</string>
+
 
 
 

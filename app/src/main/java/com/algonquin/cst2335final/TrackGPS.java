@@ -1,3 +1,8 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
 package com.algonquin.cst2335final;
 
 import android.Manifest;
@@ -19,8 +24,10 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
+
 /**
- * Created by beaul on 2017-03-30.
+ * Copy by beaul on 2017-03-30 from below web sites
+ * this class read GPS signal and return GPS location inforamtion
  * Copy from web site http://www.androidhive.info/2012/07/android-gps-location-manager-tutorial/
  * http://clover.studio/2016/08/09/getting-current-location-in-android-using-location-manager/
  */
@@ -47,11 +54,18 @@ public class TrackGPS extends Service implements LocationListener {
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     protected LocationManager locationManager;
 
+    /**
+     * Concsructor  TrackGPS verify if  the file exists
+     *  @param mContext is file variable
+     * */
     public TrackGPS(Context mContext) {
         this.mContext = mContext;
         getLocation();
     }
 
+    /**
+     * method getLocation return GPS location
+     * */
     private Location getLocation() {
 
         try {
@@ -130,13 +144,18 @@ public class TrackGPS extends Service implements LocationListener {
         return loc;
     }
 
+    /**
+     * method  getLongitude get the longitude
+     * */
     public double getLongitude() {
         if (loc != null) {
             longitude = loc.getLongitude();
         }
         return longitude;
     }
-
+    /**
+     * method  getLatitude get the Latitude
+     * */
     public double getLatitude() {
         if (loc != null) {
             latitude = loc.getLatitude();
@@ -144,12 +163,19 @@ public class TrackGPS extends Service implements LocationListener {
         return latitude;
     }
 
+    /**
+     * method  canGetLocation returns boolean value to know if we can get location information
+     * */
     public boolean canGetLocation() {
         return this.canGetLocation;
     }
 
 
-
+    /**
+     * method  showSettingsAlert notifies use GPS is not enalbe on phone
+     * and pop up the dialog to ask userr if user would like to enable GPS
+     * service
+     * */
 
     public void showSettingsAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
@@ -177,6 +203,10 @@ public class TrackGPS extends Service implements LocationListener {
 
         alertDialog.show();
     }
+
+    /**
+     * method  stopUsingGPS stops GPS service
+     * */
 
 
     public void stopUsingGPS() {

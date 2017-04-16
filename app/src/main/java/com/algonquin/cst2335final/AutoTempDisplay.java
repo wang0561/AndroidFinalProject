@@ -1,3 +1,9 @@
+
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
 package com.algonquin.cst2335final;
 
 import android.content.Context;
@@ -26,6 +32,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * This class is autmobile temperature dispaly management class
+ * @version 1.0
+ * @author BO
+ */
 
 public class AutoTempDisplay extends AppCompatActivity {
 
@@ -41,7 +52,10 @@ public class AutoTempDisplay extends AppCompatActivity {
     String tempLow, tempHigh;
 
 
-
+    /**
+     * method onCreate creates activity
+     *  @param savedInstanceState is bundle
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +76,21 @@ public class AutoTempDisplay extends AppCompatActivity {
 
     }
 
+    /**
+     * the inner  class  ForecastQuery is subclass of AsyncTask to  run activity in the back ground
+     *
+     * @version 1.0
+     * @author BO
+     */
     private class ForecastQuery extends AsyncTask<String, Integer, String[]> {
 
         String minTemp, maxTemp, currentTemp, iconName;
         String[] result = new String[4];
 
+        /**
+         * method doInBackground run activity in the backgroud
+         *  @param args is string variable
+         * */
         @Override
         protected String[] doInBackground(String... args) {
 
@@ -167,6 +191,10 @@ public class AutoTempDisplay extends AppCompatActivity {
             return result;
         }
 
+        /**
+         * method onProgressUpdate updae the  activity progress
+         *  @param progress is string variable
+         * */
         public void onProgressUpdate(Integer... progress) {
             //  outputText.setText("Progress:" + progress[0]);
 
@@ -177,6 +205,10 @@ public class AutoTempDisplay extends AppCompatActivity {
             Log.i("ASYNCTASK Onprogress", "" + progress[0]);
         }
 
+        /**
+         * method onPostExecute updae the  activity progress
+         *  @param value is string variable
+         * */
         public void onPostExecute(String... value) {
 
             autoTempListView = (ListView) findViewById(R.id.autotemplistview1);
@@ -207,14 +239,22 @@ public class AutoTempDisplay extends AppCompatActivity {
             Log.i("ASYNCTASK PostExecute:", "Completed");
         }
 
-
+        /**
+         * method fileExistance verify if  the file exists
+         *  @param file is file variable
+         * */
         private boolean fileExistance(File file) {
 
             return file.exists();
         }
     }
 
-
+    /**
+     * the inner  class  AutoChatAdapter is to instantiate the adapter for the list view
+     * fragment
+     * @version 1.0
+     * @author BO
+     */
     private class AutoChatAdapter extends ArrayAdapter<String> {
 
         public AutoChatAdapter(Context ctx) {

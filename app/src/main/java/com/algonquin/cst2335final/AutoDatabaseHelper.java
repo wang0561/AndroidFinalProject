@@ -1,3 +1,8 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
 package com.algonquin.cst2335final;
 
 import android.content.ContentValues;
@@ -9,9 +14,11 @@ import android.util.Log;
 
 
 /**
- * Created by beaul on 2017-03-30.
+ * This class is autmobile database help which creat the database and tables to store for  example
+ * auto FM channels
+ * @version 1.0
+ * @author BO
  */
-
 public class AutoDatabaseHelper extends SQLiteOpenHelper {
 
 
@@ -37,6 +44,10 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
 
 
 
+/**
+ * onRequestPermissionsResult method  check the permisssion from user to access GPS location
+ * @param ctx context
+ * */
 
     public AutoDatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, DATABASE_VERSION );
@@ -59,6 +70,12 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
 
     };
 
+    /**
+     * onUpgrade method  when a newer version required database requires, his method will be called
+     * @param db database
+     *  @param oldVersion old version
+     *  @param newVersion new Version
+     * */
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

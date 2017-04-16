@@ -1,6 +1,15 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
 package com.algonquin.cst2335final;
 
-
+/**
+ * This class is autmobile FM management Fragment class which create and close the fragment activites.
+ * @version 1.0
+ * @author BO
+ */
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -32,6 +41,10 @@ public class AutoFMFragment extends Fragment {
 
     }
 
+    /**
+     * method onCreate create the activity
+     * @param savedInstanceState is bundle
+        * */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +56,13 @@ public class AutoFMFragment extends Fragment {
 
        // isTablet = bun.getBoolean("isTablet");
     }
+
+    /**
+     * method onCreateView inflate the fragment view of the selected item
+     * @param inflater is layout inflater
+     *  @param container is view group
+     *  @param savedInstanceState is bundle
+     * */
 
    @Override
    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

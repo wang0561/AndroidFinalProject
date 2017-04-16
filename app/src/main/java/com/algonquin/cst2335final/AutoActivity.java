@@ -1,3 +1,8 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
 package com.algonquin.cst2335final;
 
 import android.Manifest;
@@ -25,6 +30,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This class starts the automobile temperature setting, FM channal setting, GPS launch,
+ * auto light setting and help activity
+ * @version 1.0
+ * @author BO
+ */
+
 public class AutoActivity extends AppCompatActivity {
 
     protected ListView autoActivityListView;
@@ -34,6 +46,10 @@ public class AutoActivity extends AppCompatActivity {
     int progress =0;
     protected static final String ACTIVITY_NAME = "AutoActivity";
 
+    /**
+     * onCreate method  create the activity
+     *@param  savedInstanceState
+     * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +81,7 @@ public class AutoActivity extends AppCompatActivity {
 
                         startActivityForResult(new Intent(AutoActivity.this, AutoFMActivity.class),5);
                         break;
-                    case 2: //light
+                    case 2: //GPS
 
                         ActivityCompat.requestPermissions(AutoActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 /*
@@ -113,11 +129,8 @@ public class AutoActivity extends AppCompatActivity {
 
                                 // set values for custom dialog components - text, image and button
                                 TextView text1 = (TextView) dialog.findViewById(R.id.authorName);
-                                text1.setText("Author: Bo Liu ");
                                 TextView text2 = (TextView) dialog.findViewById(R.id.autoVersion);
-                                text2.setText("Version: Version 1 ");
                                 TextView text3 = (TextView) dialog.findViewById(R.id.instruction);
-                                text3.setText("Instruction: Click on each item, it will bring you to next level");
                                 Button dialogExit = (Button) dialog.findViewById(R.id.autoDialogbutton);
 
                                 ProgressBar progressBar = (ProgressBar)dialog.findViewById(R.id.autoDialogProgressBar);
@@ -159,6 +172,13 @@ public class AutoActivity extends AppCompatActivity {
 
         });
     }
+
+    /**
+     * onRequestPermissionsResult method  check the permisssion from user to access GPS location
+     * @param requestCode GPS permission request code
+     * @param permissions  Manefist permission parameter
+     * @param grantResults  USE GPS access permission grant result
+     * */
 
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -208,6 +228,11 @@ public class AutoActivity extends AppCompatActivity {
             // permissions this app might request
         }
     }
+
+    /**
+     * checkLocationPermission method  check the permisssion from user to access GPS location
+     * check stored user GPS access grants when need to access location service
+     * */
 
     public boolean checkLocationPermission()
     {

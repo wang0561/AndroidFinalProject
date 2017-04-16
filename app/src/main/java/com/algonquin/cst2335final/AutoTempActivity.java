@@ -1,3 +1,9 @@
+/**
+ * @version 1.0
+ * @(#)ActivityDate.java 1.0 2017/04/19
+ * this is a part of project for CST2335_010 Android final Project;
+ * */
+
 package com.algonquin.cst2335final;
 
 import android.app.Activity;
@@ -11,6 +17,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * This class is autmobile temperature management class
+ * @version 1.0
+ * @author BO
+ */
 public class AutoTempActivity extends AppCompatActivity {
 
 
@@ -19,7 +30,10 @@ public class AutoTempActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
     SharedPreferences.Editor sharedPrefEditor;
 
-
+    /**
+     * method onCreate creates activity
+     *  @param savedInstanceState is bundle
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

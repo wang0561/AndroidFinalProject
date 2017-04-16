@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:text="@string/autoauthor"
         android:textColor="@color/colorPrimaryDark"
         android:id="@+id/authorName"/>
 
@@ -15,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:text="@string/autoversion"
         android:textColor="@color/colorPrimaryDark"
         android:id="@+id/autoVersion"/>
 
@@ -22,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:text="@string/autoinstruction"
         android:textColor="@color/colorPrimaryDark"
         android:id="@+id/instruction"/>
 
