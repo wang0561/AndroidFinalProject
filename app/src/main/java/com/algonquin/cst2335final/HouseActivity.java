@@ -22,22 +22,35 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
+/**
+ * Main activity of the house part
+ * @author Chen
+ * @version 1.0*/
 public class HouseActivity extends AppCompatActivity {
-    ProgressBar progressBar;
-    int progress;
-    protected boolean isTablet;
+
+    /**the progressBar*/
+    protected ProgressBar progressBar;
+    /**the progress of the progressBar*/
+    protected int progress;
+    /**check if this is a tablet*/
+    protected static boolean isTablet;
+
+    /**store the context of the activity*/
     protected Context context;
 
+    /**databaseHelper to create the database*/
     protected static HouseDatabaseHelper myhelper;
 
-    protected Cursor cursor;
-    protected String tempDevice;
-    protected String tempState;
-    protected Bundle tempStatementBundle;
+    /**device name for passing the information*/
+    protected static String tempDevice;
+    /**statement name for passing the information*/
+    protected static String tempState;
+    /**statement bundle for passing the information*/
+    protected static Bundle tempStatementBundle;
 
 
+    /**getData which get the adapter of the arraylist
+     * @return data*/
     //http://www.cnblogs.com/devinzhang/archive/2012/01/20/2328334.html
     private List<String> getData(){
     List<String> data = new ArrayList<>();
@@ -48,12 +61,14 @@ public class HouseActivity extends AppCompatActivity {
         return data;
     }
 
+    /**Override the onCreate method to start the application
+     * @param savedInstanceState*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
         final SharedPreferences pref = getSharedPreferences("counter",MODE_PRIVATE);
-
+        myhelper = new HouseDatabaseHelper(this);
         context =this;
         isTablet = (findViewById(R.id.HouseFrameLayout) != null);
         progressBar = (ProgressBar)findViewById(R.id.houseProgressBar);
@@ -77,18 +92,7 @@ public class HouseActivity extends AppCompatActivity {
             }
         }).start();
 
-        boolean test = pref.getBoolean("isFirstTime",true);
 
-        SharedPreferences.Editor editor  = pref.edit();
-        editor.putBoolean("isFirstTime",false);
-        //check if this is the first time for database
-        if(test){
-            try {
-            //    initialSQL();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            }
         //run the sql to check the statement of the devices
         checkDeviceState();
 
@@ -174,7 +178,13 @@ public class HouseActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * catch the data which return by startActivityforresult
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     *
+     * */
     public void onActivityResult(int requestCode, int resultCode, Intent data){
             if (data != null){
                 if (requestCode == 0 && resultCode ==0) {
@@ -192,7 +202,7 @@ public class HouseActivity extends AppCompatActivity {
                 }
                 }
     }
-
+    /**Override the onResume method which can also check the device statement*/
     @Override
     public void onResume(){
         super.onResume();
@@ -200,104 +210,115 @@ public class HouseActivity extends AppCompatActivity {
         checkDeviceState();
     }
 
-    public void putValue(String strname, String value){
-        myhelper = new HouseDatabaseHelper(this);
+    /**
+     * a method which could access the database and insert query
+     * @param strname
+     * @param value*/
+    public static void putValue(String strname, String value){
         final SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues newValues = new ContentValues();
-        newValues.put(myhelper.KEY_DEVICE,strname);
-        newValues.put(myhelper.KEY_STATE, value);
+        newValues.put(HouseDatabaseHelper.KEY_DEVICE,strname);
+        newValues.put(HouseDatabaseHelper.KEY_STATE, value);
        // db.insert(myhelper.TABLE_STATE, null, newValues);
 
         try {
-            db.update(myhelper.TABLE_STATE, newValues, myhelper.KEY_DEVICE + "='" + strname+"'", null);
+            db.update(HouseDatabaseHelper.TABLE_STATE, newValues, HouseDatabaseHelper.KEY_DEVICE + "='" + strname+"'", null);
             Log.i("database update","1"+strname+"2"+value);
         }catch(Exception e) {
             e.printStackTrace();
         }
     }
-
-    public void putTempValue(int hour, int min, int temp){
-        myhelper = new HouseDatabaseHelper(this);
+    /**
+     * a method which could access the database and insert query for temperature
+     * @param hour
+     * @param min
+     * @param temp*/
+    public static void putTempValue(int hour, int min, int temp){
         final SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues newValues = new ContentValues();
-        newValues.put(myhelper.KEY_HOUR,hour);
-        newValues.put(myhelper.KEY_MIN, min);
-        newValues.put(myhelper.KEY_TEMP,temp);
+        newValues.put(HouseDatabaseHelper.KEY_HOUR,hour);
+        newValues.put(HouseDatabaseHelper.KEY_MIN, min);
+        newValues.put(HouseDatabaseHelper.KEY_TEMP,temp);
         // db.insert(myhelper.TABLE_STATE, null, newValues);
-        db.insert(myhelper.TABLE_TEMPERATURE,null,newValues);
+        db.insert(HouseDatabaseHelper.TABLE_TEMPERATURE,null,newValues);
         Log.i("inDatabase","Hour"+hour+"min"+min+"temp"+temp);
     }
 
-    public ArrayList<HouseTempArray> readTempSQL(){
+    /**
+     *      * a method which could access the database and read query for temperature
+     *      @return Arraylist(result)
+     * */
+    public static ArrayList<HouseTempArray> readTempSQL(){
         ArrayList<HouseTempArray> list = new ArrayList<>();
-        myhelper = new HouseDatabaseHelper(this);
         final SQLiteDatabase db = myhelper.getReadableDatabase();
-        cursor = db.query(false,myhelper.TABLE_TEMPERATURE,new String[]{myhelper.KEY_ID,myhelper.KEY_HOUR,myhelper.KEY_MIN,myhelper.KEY_TEMP},null,null,null,null,null,null);
-        cursor.moveToFirst();
+        Cursor cursorRead;
+        cursorRead = db.query(false,HouseDatabaseHelper.TABLE_TEMPERATURE,new String[]{HouseDatabaseHelper.KEY_ID,HouseDatabaseHelper.KEY_HOUR,HouseDatabaseHelper.KEY_MIN,HouseDatabaseHelper.KEY_TEMP},null,null,null,null,null,null);
+        cursorRead.moveToFirst();
         HouseTempArray tempArray;
-        while (! cursor.isAfterLast()){
+        while (! cursorRead.isAfterLast()){
             tempArray = new HouseTempArray();
-            tempArray.setHour(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_HOUR)));
-            tempArray.setMin(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_MIN)));
-            tempArray.setTemp(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_TEMP)));
-            tempArray.setId(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_ID)));
+            tempArray.setHour(cursorRead.getInt(cursorRead.getColumnIndex(HouseDatabaseHelper.KEY_HOUR)));
+            tempArray.setMin(cursorRead.getInt(cursorRead.getColumnIndex(HouseDatabaseHelper.KEY_MIN)));
+            tempArray.setTemp(cursorRead.getInt(cursorRead.getColumnIndex(HouseDatabaseHelper.KEY_TEMP)));
+            tempArray.setId(cursorRead.getInt(cursorRead.getColumnIndex(HouseDatabaseHelper.KEY_ID)));
           //  Log.i("Cursor","Hour is " +tempArray.getHour());
             list.add(tempArray);
          //   Log.i("CursorArray","Hour is " +list.get(0).getHour());
 
-            cursor.moveToNext();
+            cursorRead.moveToNext();
         }
+        cursorRead.close();
 
         return list;
     }
-
-    public ArrayList<HouseTempArray> deleteDataRecord(int id,ArrayList<HouseTempArray>inputList){
+/**a method which can access database and delete the records
+ * @param id
+ * @param inputList*/
+    public static ArrayList<HouseTempArray> deleteDataRecord(int id,ArrayList<HouseTempArray>inputList){
 
         ArrayList<HouseTempArray> list = new ArrayList<>();
-        myhelper = new HouseDatabaseHelper(this);
         final SQLiteDatabase db =myhelper.getWritableDatabase();
 
-        db.delete(myhelper.TABLE_TEMPERATURE,"_id = "+inputList.get(id).getId(),null);
+        db.delete(HouseDatabaseHelper.TABLE_TEMPERATURE,"_id = "+inputList.get(id).getId(),null);
 
         Log.i("SQLDELETE","Query deleted");
-        cursor = db.query(false,myhelper.TABLE_TEMPERATURE,new String[]{myhelper.KEY_ID,myhelper.KEY_HOUR,myhelper.KEY_MIN,myhelper.KEY_TEMP},null,null,null,null,null,null);
-        cursor.moveToFirst();
+        Cursor cursorTemp;
+        cursorTemp = db.query(false,HouseDatabaseHelper.TABLE_TEMPERATURE,new String[]{HouseDatabaseHelper.KEY_ID,HouseDatabaseHelper.KEY_HOUR,HouseDatabaseHelper.KEY_MIN,HouseDatabaseHelper.KEY_TEMP},null,null,null,null,null,null);
+        cursorTemp.moveToFirst();
         HouseTempArray tempArray;
-        while (! cursor.isAfterLast()){
+        while (! cursorTemp.isAfterLast()){
             tempArray = new HouseTempArray();
-            tempArray.setHour(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_HOUR)));
-            tempArray.setMin(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_MIN)));
-            tempArray.setTemp(cursor.getInt(cursor.getColumnIndex(myhelper.KEY_TEMP)));
-            int DatabaseId = cursor.getInt(cursor.getColumnIndex(myhelper.KEY_ID));
+            tempArray.setHour(cursorTemp.getInt(cursorTemp.getColumnIndex(myhelper.KEY_HOUR)));
+            tempArray.setMin(cursorTemp.getInt(cursorTemp.getColumnIndex(myhelper.KEY_MIN)));
+            tempArray.setTemp(cursorTemp.getInt(cursorTemp.getColumnIndex(myhelper.KEY_TEMP)));
+            int DatabaseId = cursorTemp.getInt(cursorTemp.getColumnIndex(myhelper.KEY_ID));
             tempArray.setId(DatabaseId);
               Log.i("Cursor","Hour is " +tempArray.getHour());
             list.add(tempArray);
                Log.i("CursorArray","Hour is " +list.get(0).getHour());
                Log.i("CursorDatabaseID", "DatabaseID is "+DatabaseId);
 
-            cursor.moveToNext();
+            cursorTemp.moveToNext();
         }
+        cursorTemp.close();
         return list;
     }
 
 
-    public static SQLiteDatabase getInstance() {
-        return myhelper.getReadableDatabase();
-    }
-    public void checkDeviceState(){
+/**a method which can access the database and check the statement for garage*/
+    public static void checkDeviceState(){
 
         //SQL PART
-        myhelper = new HouseDatabaseHelper(this);
 
-        final SQLiteDatabase db = getInstance();
-
-        cursor = db.query(false,myhelper.TABLE_STATE,new String[]{myhelper.KEY_DEVICE,myhelper.KEY_STATE},null,null,null,null,null,null);
-        cursor.moveToFirst();
+        final SQLiteDatabase db = myhelper.getReadableDatabase();
+        Cursor cursorGarage;
+        cursorGarage = db.query(false,HouseDatabaseHelper.TABLE_STATE,new String[]{HouseDatabaseHelper.KEY_DEVICE,HouseDatabaseHelper.KEY_STATE},null,null,null,null,null,null);
+        cursorGarage.moveToFirst();
         tempStatementBundle = new Bundle();
         tempStatementBundle.putBoolean("isTablet",isTablet);
-        while (! cursor.isAfterLast()){
-            tempDevice = cursor.getString(cursor.getColumnIndex(myhelper.KEY_DEVICE));
-            tempState = cursor.getString(cursor.getColumnIndex(myhelper.KEY_STATE));
+        while (! cursorGarage.isAfterLast()){
+            tempDevice = cursorGarage.getString(cursorGarage.getColumnIndex(HouseDatabaseHelper.KEY_DEVICE));
+            tempState = cursorGarage.getString(cursorGarage.getColumnIndex(HouseDatabaseHelper.KEY_STATE));
           Log.i("IN Cursor",""+tempDevice+tempState);
            if(tempDevice.equals("door")) {
                tempStatementBundle.putString("door", tempState);
@@ -307,8 +328,9 @@ public class HouseActivity extends AppCompatActivity {
                Log.i("inDatabase Light", tempState);
 
            }
-               cursor.moveToNext();
+            cursorGarage.moveToNext();
         }
+        cursorGarage.close();
 
     }
 

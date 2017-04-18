@@ -23,33 +23,43 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+/**code are from the lab
+ *Created by marvi on 3/6/2017.
+ * @author Chen
+ * @version 1.0
+ *
+ * */
 public class HouseWeather extends AppCompatActivity {
-
-    String current, min, max, iconName;
+    /**varibles for information*/
+    protected String current, min, max, iconName;
+    /**store the image*/
     Bitmap image;
+
+    /**Override the onCreate method to start the application
+     * @param savedInstanceState*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.house_weather_layout);
-
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.houseProgressBar);
         progressBar.setVisibility(View.VISIBLE);
-
         ForecastQuery thread = new ForecastQuery();
         thread.execute();
     }
 
+    /**inner class for the Asynctask*/
     public class ForecastQuery extends AsyncTask<String, Integer, String> {
 
+        /**download the online information
+         * @param args
+         * @return nothing*/
         @Override
         protected String doInBackground(String ... args){
-            String in="";
-            Log.i("1","1");
+            Log.i("Weather","inBackGround");
             try{
                 URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=d99666875e0e51521f0040a3d97d0f6a&mode=xml&units=metric");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                InputStream inStream = conn.getInputStream();
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                InputStream inStream = connection.getInputStream();
 
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 factory.setNamespaceAware(false);
@@ -65,26 +75,20 @@ public class HouseWeather extends AppCompatActivity {
                         if(xpp.getName().equals("temperature") ){
                             max =xpp.getAttributeValue(null, "max");
                             publishProgress(25);
-                            Thread.sleep(200);
-                            Log.i("XML maxTemp:" , max );
-
+                            Thread.sleep(50);
                             min = xpp.getAttributeValue(null, "min");
                             publishProgress(50);
-                            Thread.sleep(200);
-                            Log.i("XML minTemp:", min);
-
+                            Thread.sleep(50);
                             current = xpp.getAttributeValue(null, "value");
                             publishProgress(75);
-                            Thread.sleep(200);
-                            Log.i("XML currentTemp:" , current );
-                        }
+                            Thread.sleep(50);                        }
                         else if (xpp.getName().equals("weather")){
                             iconName = xpp.getAttributeValue(null, "icon");
                             publishProgress(100);
-                            Thread.sleep(200);
+                            Thread.sleep(50);
                             Log.i("XML iconName:" , iconName );
 
-                            if (!fileExistance( iconName + ".png")) {
+                            if (!isFileExist( iconName + ".png")) {
                                 URL imageURL = new URL("http://openweathermap.org/img/w/" + iconName + ".png");
                                 Bitmap img = getImage(imageURL);
                                 FileOutputStream outputStream = openFileOutput(iconName + ".png", Context.MODE_PRIVATE);
@@ -117,14 +121,19 @@ public class HouseWeather extends AppCompatActivity {
                 Log.e("AsyncTask", "Malformed URL:" + me.getMessage());
             }
 
-            return in;
+            return " ";
         }
-
-        public boolean fileExistance(String fname){
+        /**
+         * Check the file if it exist
+         * @param fname
+         * @return exists or not
+         * */
+        public boolean isFileExist(String fname){
             File file = getBaseContext().getFileStreamPath(fname);
             return file.exists();   }
 
-
+        /**download the Image from website
+         * @param url*/
         public Bitmap getImage(URL url) {
 
             HttpURLConnection connection = null;
@@ -145,15 +154,8 @@ public class HouseWeather extends AppCompatActivity {
             }
         }
 
-        public Bitmap getImage(String urlString) {
-            try {
-                URL url = new URL(urlString);
-                return getImage(url);
-            } catch (MalformedURLException e) {
-                return null;
-            }
-        }
-
+        /**the progress Bar
+         * @param values*/
         public void onProgressUpdate(Integer ... values){
 
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.houseProgressBar);
@@ -161,6 +163,8 @@ public class HouseWeather extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
         }
 
+        /** set the Textview
+         * @param result*/
         public void onPostExecute(String result){
 
             TextView currentTempView = (TextView)findViewById(R.id.currentTemp);

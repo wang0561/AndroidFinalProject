@@ -1,18 +1,17 @@
 package com.algonquin.cst2335final;
 
-import android.content.DialogInterface;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
 
+/**
+ * the activity of the numberPickers which can access the fragment of the garage
+ * @author Chen
+ * @version 1.0
+ * */
 public class House_Fragment_Detail_garage extends AppCompatActivity {
 
+    /**Override the onCreate method which could access the garage fragment*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

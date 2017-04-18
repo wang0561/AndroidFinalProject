@@ -1,9 +1,7 @@
 package com.algonquin.cst2335final;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,35 +11,59 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+
 /**
- * Created by marvi on 4/10/2017.
+ * Fragment for the numberPickers for the temperature
+ * Created by marvin on 4/10/2017.
+ * @Author Chen Wang
  */
 
 public class NumberPickerFragment extends Fragment {
+    /**
+     * store the variable hour
+     * */
     protected int hour ;
+    /**
+     * store the variable min
+     * */
     protected int min  ;
-    protected static HouseActivity houseActivity;
+    /**
+     * store the variable temperature
+     * */
     protected int temp ;
+    /**
+     * store the bundle of database input
+     * */
     protected Bundle input;
+    /**is tablet or not*/
+    protected boolean isTablet;
 
+    /**default constructor*/
     public NumberPickerFragment(){
     }
-    public NumberPickerFragment(HouseActivity houseActivity){
-        this.houseActivity =houseActivity;
-    }
 
+    /**
+     * Override the onCreate method
+     * @param bundle
+     * */
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
         input = getArguments();
+
         if (input != null) {
             hour = input.getInt("hour", 0);
             min = input.getInt("min", 0);
             temp = input.getInt("temp", 16);
-
+            isTablet = input.getBoolean("isTablet");
         }
     }
+
+    /**
+     * Override onAttach method and add a Log inside the method for debugging
+     * @param ctx
+     * */
     @Override
     public void onAttach(Context ctx){
         super.onAttach(ctx);
@@ -49,6 +71,12 @@ public class NumberPickerFragment extends Fragment {
 
     }
 
+    /**
+     * Override the onCreateView for the listeners
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * */
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container, Bundle savedInstanceState){
         View gui;
@@ -58,6 +86,9 @@ public class NumberPickerFragment extends Fragment {
         return gui;
     }
 
+    /**a custom method for store the listeners of the buttons and number pickers
+     * @param  gui
+     * */
     public void getNumberPickers(View gui){
         NumberPicker hourPicker = (NumberPicker)gui.findViewById(R.id.house_hour_picker);
         NumberPicker minPicker = (NumberPicker)gui.findViewById(R.id.house_min_picker);
@@ -115,7 +146,7 @@ public class NumberPickerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //insert data into database
-                houseActivity.putTempValue(hour,min,temp);
+                HouseActivity.putTempValue(hour,min,temp);
 
 
                 Bundle tempBundle =new Bundle();
@@ -128,10 +159,15 @@ public class NumberPickerFragment extends Fragment {
 
                 tempBundle.putBundle("tempBundle",tempBundle);
                 /// / Log.i("setResult",getActivity().toString());
-                ListDetailHouseFragment fragment = new ListDetailHouseFragment();
-                fragment.setArguments(tempBundle);
-                getFragmentManager().beginTransaction().replace(R.id.HouseFrameLayout, fragment).commit();
-             //   getActivity().setResult(Activity.RESULT_OK,intent);
+                if(isTablet) {
+                    ListDetailHouseFragment fragment = new ListDetailHouseFragment();
+                    fragment.setArguments(tempBundle);
+                    getFragmentManager().beginTransaction().replace(R.id.HouseFrameLayout, fragment).commit();
+                }else{
+                    ListDetailHouseFragment.setArrayListContent(getActivity());
+
+                }
+                    //   getActivity().setResult(Activity.RESULT_OK,intent);
 //                getParentFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK,intent);
 //                Log.i("requestCode",getTargetRequestCode()+"");
 //                getFragmentManager().popBackStack();
@@ -146,6 +182,8 @@ public class NumberPickerFragment extends Fragment {
         });
     }
 
+    /**toString method to covert the output of the method to string
+     * @return String result*/
     @Override
     public String toString(){
         return "The time is "+hour+ ":" + min +"\nThe temperature is :"+temp;

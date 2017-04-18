@@ -1,12 +1,12 @@
 package com.algonquin.cst2335final;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,51 +16,90 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
+ * main fragment which contains two fragments for Garage and temperature
  * Created by marvi on 3/29/2017.
  */
 
 public class ListDetailHouseFragment extends Fragment {
+    /**store the id information*/
     protected long id;
+    /**store the context obj*/
     protected Context context;
+    /**store the database bundle for future use*/
     protected static Bundle StatementBundle;
+    /**store the database bundle tempbundle for future use
+     * */
     protected static Bundle tempBundle;
+
+    /**the statement of the door*/
     protected boolean doorState;
+    /**the statement of the light*/
     protected boolean lightState;
-    protected boolean isTablet;
+
+    /**boolean value to see if this is a Tablet*/
+    protected static boolean isTablet;
+    /**switch for the door*/
     protected Switch sw1 ;
+    /**swtich for the light*/
     protected Switch sw2 ;
+    /**store the image of the door*/
     protected ImageView doorImage ;
+    /**store the image of the light*/
     protected ImageView lightImage;
+    /**store the houseActivity(main activity for the house)*/
     protected static HouseActivity houseActivity;
-    protected ArrayList<String> tempList = new ArrayList<>();
+    /**temperature arraylist which store all information of the temperature*/
+    protected static ArrayList<String> tempList = new ArrayList<>();
+    /**The arrayAdapter for the temperature arraylist*/
     protected static ArrayAdapter<String> arrayAdapter;
+    /**store the statement of the door*/
     protected String tempDoorState;
+    /**store the statement of the light*/
     protected String tempLightState;
+    /**stores the database ID of the temperature*/
     protected static int selectedID;
+    /**The list view of the temperature*/
+    protected static  ListView TempListView ;
+    /**the deleteButton of the temperature*/
+    protected static Button deleteButton;
+    /**the fragmentManger of this fragment*/
+    protected static FragmentManager fragmentManager;
+
+
+    /**Default constructor
+     * */
     public ListDetailHouseFragment(){}
+
+    /**
+     * parameterized constructor which pass the MainActivity to others
+     * @param houseActivity
+     * */
     public ListDetailHouseFragment(HouseActivity houseActivity){
         this.houseActivity = houseActivity;
     }
 
+    /**
+     * Override the onCreate method and store the bundles to local'
+     * @param b
+     * */
     @Override
     public void onCreate(Bundle b){
         super.onCreate(b);
-
-        Bundle bundle = getArguments();
-        id = bundle.getLong("ID");
-        StatementBundle = bundle.getBundle("StateData");
-        tempBundle = bundle.getBundle("tempBundle");
         isTablet =  (getActivity().findViewById(R.id.HouseFrameLayout) != null);
+            Bundle bundle = getArguments();
+            id = bundle.getLong("ID");
+            StatementBundle = bundle.getBundle("StateData");
+            tempBundle = bundle.getBundle("tempBundle");
+
         if(id != 1) {
             tempDoorState = StatementBundle.getString("door", null);
             tempLightState = StatementBundle.getString("light", null);
@@ -71,6 +110,8 @@ public class ListDetailHouseFragment extends Fragment {
 
     }
 
+    /**Override the onAttach method and get the context of the activity
+     * @param context*/
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
@@ -78,6 +119,7 @@ public class ListDetailHouseFragment extends Fragment {
 
     }
 
+    /**Override the onResume method and write log for debugging*/
     @Override
     public void onResume(){
         super.onResume();
@@ -86,10 +128,14 @@ public class ListDetailHouseFragment extends Fragment {
 
     }
 
+    /**Override the onCreateView method and write the listeners of buttons
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * */
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container,Bundle savedInstanceState){
         View gui;
-        TextView textView;
 
         if(id == 0){
 
@@ -115,16 +161,24 @@ public class ListDetailHouseFragment extends Fragment {
     }
 
 
-
+/**stores the listener of the garage
+ * @param gui*/
     public void getGarageView(View gui){
         Log.i("ListDetailHouseFragment","getGarageView");
          sw1 = (Switch)gui.findViewById(R.id.HouseGarageDoorSwitch);
          sw2 = (Switch)gui.findViewById(R.id.HouseGarageLightSwitch);
          doorImage = (ImageView)gui.findViewById(R.id.houseDoorImag);
          lightImage=(ImageView)gui.findViewById(R.id.houseLightImag);
-
+      //  Button garageSubmitB = (Button)gui.findViewById(R.id.houseGarageSubmitButton);
 
         checkState(sw1,sw2,tempDoorState,tempLightState,doorImage,lightImage);
+
+//        garageSubmitB.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//              //  getFragmentManager().beginTransaction().remove()
+//            }
+//        });
 
         sw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
@@ -154,12 +208,13 @@ public class ListDetailHouseFragment extends Fragment {
                     result.putExtra("state", Boolean.toString(sw1.isChecked()));
                     getActivity().setResult(0, result);
                 }else{
-                    houseActivity.putValue("door",Boolean.toString(sw1.isChecked()));
+                    HouseActivity.putValue("door",Boolean.toString(sw1.isChecked()));
                     Log.i("FragmentResult","door"+Boolean.toString(sw1.isChecked()));
-                    houseActivity.putValue("light",Boolean.toString(sw2.isChecked()));
+                    HouseActivity.putValue("light",Boolean.toString(sw2.isChecked()));
                     Log.i("FragmentResult","light"+Boolean.toString(sw2.isChecked()));
 
                 }
+                HouseActivity.checkDeviceState();
             }
         });//okk
         sw2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
@@ -182,25 +237,29 @@ public class ListDetailHouseFragment extends Fragment {
                     result.putExtra("state", Boolean.toString(sw2.isChecked()));
                     getActivity().setResult(0, result);
                 }else{
-                    houseActivity.putValue("light",Boolean.toString(sw2.isChecked()));
+                    HouseActivity.putValue("light",Boolean.toString(sw2.isChecked()));
                     Log.i("FragmentResult","light"+Boolean.toString(sw2.isChecked()));
 
                 }
+                HouseActivity.checkDeviceState();
+
             }
         });
 
 
     }
+    /**stores the listener of the Temperature
+     * @param gui*/
     public void getTempView(View gui){
         //action for temp View
 
         Button addButton = (Button)gui.findViewById(R.id.houseAddButton);
-        Button deleteButton =(Button)gui.findViewById(R.id.houseDeleteButton);
-        ListView TempListView = (ListView)gui.findViewById(R.id.houseTempListView);
+         deleteButton =(Button)gui.findViewById(R.id.houseDeleteButton);
+        deleteButton.setEnabled(false);
+        TempListView = (ListView)gui.findViewById(R.id.houseTempListView);
         int hour;
         int min;
         int temp;
-
 
         //action for ListView
 //        if (tempBundle!= null){
@@ -211,43 +270,27 @@ public class ListDetailHouseFragment extends Fragment {
 //
 //        }
 
-        ArrayList<HouseTempArray> resultList = houseActivity.readTempSQL();
-        if (resultList.isEmpty()) {
-                tempList.add("Please Add a New Record");
+        ArrayList<HouseTempArray> resultList = HouseActivity.readTempSQL();
 
-            }else{
-                tempList = new ArrayList<>();
-               // Log.i("ArrayList","Hour is "+resultList.get(1).getHour());
-                for(int i =0;i<resultList.size();i++){
-                    tempList.add("Time is: "+resultList.get(i).getHour()+":"+resultList.get(i).getMin()+"-> "+resultList.get(i).getTemp()+"`C");
-                //    Log.i("ArrayList For Loop","index is "+i+"result temp:"+resultList.get(i).getTemp());
-                }
-            }
-        arrayAdapter =new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,tempList);
-        TempListView.setAdapter(arrayAdapter);
-        TempListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                NumberPickerFragment pickerFragment = new NumberPickerFragment(houseActivity);
-                Bundle resultBun = new Bundle();
-                selectedID = (int)id;
-                resultBun.putLong("tempID",id);
-                resultBun.putInt("hour",resultList.get((int) id).getHour());
-                resultBun.putInt("min",resultList.get((int) id).getMin());
-                resultBun.putInt("temp",resultList.get((int) id).getTemp());
+//                tempList = new ArrayList<>();
+//               // Log.i("ArrayList","Hour is "+resultList.get(1).getHour());
+//                for(int i =0;i<resultList.size();i++){
+//                    tempList.add("Time is: "+resultList.get(i).getHour()+":"+resultList.get(i).getMin()+"-> "+resultList.get(i).getTemp()+"`C");
+//                //    Log.i("ArrayList For Loop","index is "+i+"result temp:"+resultList.get(i).getTemp());
+//
+//                }
+        setArrayListContent(getActivity());
+        fragmentManager =getFragmentManager();
+//        arrayAdapter =new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,tempList);
+//        TempListView.setAdapter(arrayAdapter);
 
-                pickerFragment.setArguments(resultBun);
-                getFragmentManager().beginTransaction().replace(R.id.numberPickerFrameLayout,pickerFragment).commit();
-
-            }
-        });
 
         //action for addButton
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("HouseTempActivity","addButton clicked");
-                NumberPickerFragment fragment = new NumberPickerFragment(houseActivity);
+                NumberPickerFragment fragment = new NumberPickerFragment();
                 getFragmentManager().beginTransaction().replace(R.id.numberPickerFrameLayout,fragment).commit();
             }
         });
@@ -259,13 +302,13 @@ public class ListDetailHouseFragment extends Fragment {
                 public void onClick(View v) {
                     Log.i("ID", "ID is " + selectedID);
 
-                    houseActivity.deleteDataRecord(selectedID,resultList);
-                    tempList.remove(selectedID);
-                    arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tempList);
-                    TempListView.setAdapter(arrayAdapter);
-                    //drop the fragment
-                    getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.numberPickerFrameLayout)).commit();
-
+                        HouseActivity.deleteDataRecord(selectedID, resultList);
+                        tempList.remove(selectedID);
+                        arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tempList);
+                        TempListView.setAdapter(arrayAdapter);
+                        //drop the fragment
+                        getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.numberPickerFrameLayout)).commit();
+                        deleteButton.setEnabled(false);
                 }
             });
 
@@ -273,8 +316,16 @@ public class ListDetailHouseFragment extends Fragment {
 
     }
 
+    /**method for check the statement of the switchs
+     * @param  sw1
+     * @param sw2
+     * @param tempDoorState
+     * @param tempLightState
+     * @param doorImage
+     * @param lightImage*/
     public void checkState(Switch sw1,Switch sw2,String tempDoorState,String tempLightState,ImageView doorImage,ImageView lightImage){
         try {
+
             if (tempDoorState.equals("true")) {
                 doorState = true;
             } else {
@@ -314,6 +365,41 @@ public class ListDetailHouseFragment extends Fragment {
 
         }
     }
+    /**method for refresh the listView
+     * @param Activity*/
+    public static void setArrayListContent(Activity Activity){
+        ArrayList<HouseTempArray> resultList = HouseActivity.readTempSQL();
+
+        tempList = new ArrayList<>();
+        // Log.i("ArrayList","Hour is "+resultList.get(1).getHour());
+        for(int i =0;i<resultList.size();i++){
+            tempList.add("Time is: "+resultList.get(i).getHour()+":"+resultList.get(i).getMin()+"-> "+resultList.get(i).getTemp()+"`C");
+            //    Log.i("ArrayList For Loop","index is "+i+"result temp:"+resultList.get(i).getTemp());
+        }
+
+        arrayAdapter =new ArrayAdapter<>(Activity,android.R.layout.simple_list_item_1,tempList);
+        TempListView.setAdapter(arrayAdapter);
+        TempListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                deleteButton.setEnabled(true);
+                NumberPickerFragment pickerFragment = new NumberPickerFragment();
+                Bundle resultBun = new Bundle();
+                selectedID = (int)id;
+                resultBun.putLong("tempID",id);
+                resultBun.putInt("hour",resultList.get((int) id).getHour());
+                resultBun.putInt("min",resultList.get((int) id).getMin());
+                resultBun.putInt("temp",resultList.get((int) id).getTemp());
+                resultBun.putBoolean("isTablet",isTablet);
+                pickerFragment.setArguments(resultBun);
+                fragmentManager.beginTransaction().replace(R.id.numberPickerFrameLayout,pickerFragment).commit();
+
+            }
+
+
+        });
+    }
+
 }
 
 //    @Override
