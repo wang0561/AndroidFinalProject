@@ -3,10 +3,18 @@ package com.algonquin.cst2335final;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+/**
+ * Class for kitchen microwave activity
+ * @author Wang,Tao
+ * @version 1.0
+ * */
 
 public class MicrowaveActivity extends AppCompatActivity {
-
+/**
+ * onCreate method for microwave activity
+ * @param savedInstanceState
+ *
+ * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

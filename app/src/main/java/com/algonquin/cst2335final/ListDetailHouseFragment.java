@@ -161,7 +161,7 @@ public class ListDetailHouseFragment extends Fragment {
 
                 }
             }
-        });
+        });//okk
         sw2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton a, boolean isChecked){

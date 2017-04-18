@@ -28,32 +28,101 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * This is the main activity of kithcen
+ * @author Wang,Tao
+ * @version 1.0
+ * */
 public class KitchenActivity extends AppCompatActivity {
-
+/**
+ * string attribute for store the temperory name of selected item from spinner
+ */
+    private String tempNameOfItem;
+    /**
+     * list view for showing the current item in the kitchen
+     * */
     protected ListView listView;
-
+    /**
+     *
+     * ArrayList for store the name of all items
+     * */
     protected ArrayList<String> nameList=new ArrayList<>();
+    /**
+     *
+     * Button for return to the home page of the project
+     * */
     protected Button returnButton;
+    /**
+     *
+     * check if the device is a tablet or a phone
+     * */
     protected boolean isTablet;
-
+    /**
+     *
+     * Cusor object
+     * */
     protected Cursor results;
+    /**
+     * kitchen database helper
+     * */
     protected KitchenDatabaseHelper dbHelper;
+    /**
+     *
+     * kitchen database
+     * */
     protected SQLiteDatabase db;
+    /**
+     * Context object
+     * */
     protected Context ctx;
     //item key
+    /**
+     *
+     * key name for the fridge temperature
+     * */
     protected String fridgetemp="Fridgetemp";
+    /**
+     * key name for the freezer temperature
+     * */
     protected String freezertemp="FreezerTemp";
+    /**
+     * key name for the light status
+     * */
     protected String lightStatus="lightStatus";
+    /**
+     * key name for the light progress
+     * */
     protected String progressLight="progressOfLight";
     //item value
+    /**
+     * value of the fridge temperature
+     * */
     protected double fridgeTemp=5;
+    /**
+     * value of the freezer temperature
+     * */
     protected double freezerTemp=-10;
+    /**
+     * value of lightstatus
+     * */
     protected String lightOfKitchen="off";
+    /**
+     * value of the light progress
+     * */
     protected int progressofLight=0;
+    /**
+     * sharepreference for store the status of the listview
+     * */
     protected SharedPreferences prefs;
+    /**
+     * set for store the name of the device
+     * */
     protected Set<String> set=new HashSet<>();
-
+/**
+ * onCreate method for kitchen activity
+ * @param savedInstanceState bundle for the kitchen activity
+ *
+ * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +154,14 @@ public class KitchenActivity extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, itemselect);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    tempNameOfItem=nameList.get(position);
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView){}
+            });
             //confirm to add the type of item
             Button confirm=(Button)v.findViewById(R.id.buttonOfkitchenItemSpinner);
             confirm.setOnClickListener((view1)->{
@@ -100,7 +177,7 @@ public class KitchenActivity extends AppCompatActivity {
                 EditText edtext=(EditText)v1.findViewById(R.id.editOfkichenitemadd);
                 Button confirm1=(Button)v1.findViewById(R.id.kitchenitemnameconfirm);
                 confirm1.setOnClickListener((view2)->{
-                    nameList.add(edtext.getText().toString());
+                    nameList.add(tempNameOfItem+"("+edtext.getText().toString()+")");
                     listView.setAdapter(new ArrayAdapter<>(this, R.layout.kitchen_row, nameList));});
 
 
@@ -219,12 +296,12 @@ public class KitchenActivity extends AppCompatActivity {
                 Log.i("conteent isssss",listID);
                 if (!isTablet) {//phone
 
-                    if(listID.toLowerCase().contains("micro")||listID.toLowerCase().contains("微波炉")){
+                    if(listID.toLowerCase().contains("micro")){
                         Intent intentMic=new Intent(KitchenActivity.this, MicrowaveActivity.class);
                            intentMic.putExtra("ID",listID);
                            startActivityForResult(intentMic,5);
                     }
-                    else if(listID.toLowerCase().contains("fridge")||listID.toLowerCase().contains("freezer")||listID.toLowerCase().contains("冰")){
+                    else if(listID.toLowerCase().contains("fridge")||listID.toLowerCase().contains("freezer")){
                         Intent intentFridge=new Intent(KitchenActivity.this, FridgeActivity.class);
                             intentFridge.putExtra("ID",listID);
                             intentFridge.putExtra(fridgetemp,fridgeTemp);
@@ -256,6 +333,12 @@ public class KitchenActivity extends AppCompatActivity {
 
 
     }
+  /**
+   * Method for writing the values of the items status into database
+   * @param  key key status name
+   * @param  value value of the status
+   *
+   * */
     public void putDBValue(String key, String value){
         dbHelper = new KitchenDatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
@@ -270,6 +353,11 @@ public class KitchenActivity extends AppCompatActivity {
 
         }
     }
+    /**
+     * Method for getting the datas from database
+     * @param  itemkey status key value
+     *
+     * */
     public String getDBValue(String itemkey){
         dbHelper = new KitchenDatabaseHelper(ctx);
         db = dbHelper.getReadableDatabase();
@@ -291,7 +379,12 @@ public class KitchenActivity extends AppCompatActivity {
         }
         return null;
     }
-
+    /**
+     * Method of the get the result from intent
+     * @param  requestCode requested code into intent
+     * @param  resultCode  result code into intent
+     * @param  data intent from other activity
+     * */
     public void onActivityResult(int requestCode,int resultCode, Intent data){
         if(data!=null){
             if(requestCode == 10  && resultCode == 0){
@@ -311,7 +404,9 @@ public class KitchenActivity extends AppCompatActivity {
             putDBValue(progressLight,""+progressofLight);
         }
     }
-
+    /**
+     * onStart method for kitchen activity
+     * */
     @Override
     public void onStart() {
         super.onStart();
@@ -319,7 +414,9 @@ public class KitchenActivity extends AppCompatActivity {
 
     }
 
-
+/**
+ * onDestroy method for kitchen activity
+ * */
     @Override
     public void onDestroy(){
         super.onDestroy();
@@ -328,6 +425,10 @@ public class KitchenActivity extends AppCompatActivity {
         Log.i("current set value",set.toString());
 
     }
+    /**
+     *
+     * finish method for kitchen activity
+     * */
     @Override
     public void finish(){
         super.finish();
@@ -336,10 +437,17 @@ public class KitchenActivity extends AppCompatActivity {
         Log.i("current set value",set.toString());
     }
     @Override
+    /**
+     * onStop for kitchen activity
+     * */
     public void onStop(){
     super.onStop();
         Log.i("on stop .......","yes");
     }
+  /**
+   * Method for write a set into sharepreference
+   *
+   * */
     public void writeSetintoShare(){
         prefs=getSharedPreferences("listview",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=prefs.edit();
@@ -348,6 +456,9 @@ public class KitchenActivity extends AppCompatActivity {
         editor.putStringSet("key",set);
         editor.commit();
     }
+    /**
+     * Method for creating database when first run the application
+     * */
     public void createDBfirstTime(){
         dbHelper = new KitchenDatabaseHelper(ctx);
         db = dbHelper.getReadableDatabase();
@@ -374,9 +485,20 @@ public class KitchenActivity extends AppCompatActivity {
         newValues4.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, progressofLight);
         db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues4);
     }
+  /**
+   * Method for removing the fragment from kitchen activity
+   * @param fragment object of KitchenFragment
+   *
+   * */
     public void removeFragment(KitchenFragment fragment){
         getFragmentManager().beginTransaction().remove(fragment).commit();
     }
+
+    /**
+     * Method for getting data from fragment
+     * @param key key status
+     *            @param  value value of the status
+     * */
     public void getValuefromfragment(String key,String value){
         putDBValue(key,value);
         freezerTemp=Double.parseDouble(getDBValue(freezertemp));
@@ -384,8 +506,19 @@ public class KitchenActivity extends AppCompatActivity {
         lightOfKitchen=getDBValue(lightStatus);
         progressofLight=Integer.parseInt(getDBValue(progressLight));
     }
-    public class KitchenStatus extends AsyncTask<String, Integer, String> {
 
+    /**
+     * Class derived from AsyncTask class
+     * @author  Wang,Tao
+     * @version 1.0
+     *
+     * */
+    public class KitchenStatus extends AsyncTask<String, Integer, String> {
+       /**
+        * Method for back ground set
+        * @return String value of the array
+        * @param args
+        * */
         @Override
         protected String doInBackground(String... args) {
             String in = "";
@@ -416,14 +549,21 @@ public class KitchenActivity extends AppCompatActivity {
 
             return in;
         }
-
+        /**
+         * Method for controlling the progress updating
+         * @param  values
+         *
+         * */
         public void onProgressUpdate(Integer... values) {
 
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.KitchenRefProgress);
             progressBar.setProgress(25);
             progressBar.setVisibility(View.VISIBLE);
         }
-
+        /**
+         * Method for controlling posted string values
+         * @param  result
+         * */
         public void onPostExecute(String result) {
 
 

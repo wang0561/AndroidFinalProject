@@ -78,13 +78,13 @@ public class AutoTempActivity extends AppCompatActivity {
         btnTempExit.setOnClickListener(v->{
 
             AlertDialog.Builder builder = new AlertDialog.Builder(AutoTempActivity.this);
-            builder.setMessage(R.string.micro_dialog_message).setTitle(R.string.micro_dialog_title).setPositiveButton(R.string.micro_ok,
+            builder.setMessage("Do you want to exit?").setTitle(R.string.micro_dialog_title).setPositiveButton(R.string.micro_ok,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             //USER CLICK OK
                             Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Response", "My information to share");
+                            //resultIntent.putExtra("Response", "My information to share");
                             setResult(Activity.RESULT_OK, resultIntent);
                             finish();
 
