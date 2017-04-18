@@ -1,4 +1,7 @@
 package com.algonquin.cst2335final;
+/**
+ * Created by Min Luo, Version 1.0, Date April 12, 2017
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.Toast;
  * This class support user to turn on and off the lamp1.
  */
 public class Lamp1Activity extends Fragment {
+    // set variables to store keys and their values
     private int lamp1counter;
     private CharSequence text;
     private String lamp1status;
@@ -42,19 +46,18 @@ public class Lamp1Activity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View gui = inflater.inflate(R.layout.activity_lamp1, null);
 
-        //ctx = this;
         // when return button is clicked, mobile system record the status of lamp1 into database
         Button lampButton = (Button) gui.findViewById(R.id.lamp1return);
         lampButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(isTablet == 0) {
+                if(isTablet == 0) { // when using phone, send back status to the main activity
                     Intent dataBack = new Intent();
                     dataBack.putExtra("Lamp1Status", lamp1status);
                     getActivity().setResult(0, dataBack);
                     getActivity().finish();
-                }else{
-                    livingroomwindow.synclamp1(lamp1status);
+                }else{ // when using tablet, store and send back status to the same fragment
+                    livingroomwindow.synclamp1(lamp1status); // using self-defined method to update status
                     livingroomwindow.removeFragmentLamp1(Lamp1Activity.this);
                 }
             }
@@ -67,7 +70,7 @@ public class Lamp1Activity extends Fragment {
         }else{
             lampSwitch.setChecked(false);
         }
-        lampSwitch.setSelected(true);
+        lampSwitch.setSelected(true);  // set action when user choose Switch status
         lampSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -82,18 +85,6 @@ public class Lamp1Activity extends Fragment {
                 }
                 lamp1status = text.toString();
 
-                /*
-                //Open a file for storing shared preferences:
-                final SharedPreferences prefs =  getActivity().getSharedPreferences("livingroomFile", Context.MODE_PRIVATE);
-                //Get an editor object for writing to the file:
-                SharedPreferences.Editor writer = prefs.edit();
-                writer.putString("Lamp1Status", lamp1status);
-                writer.putInt("LampCounter",++ lamp1counter);
-
-                //Write the file:
-                writer.commit();*/
-
-
                 Toast toast = Toast.makeText(getActivity(),"Lamp is "+ text, duration); // format the display message
                 toast.show();
             }
@@ -102,13 +93,13 @@ public class Lamp1Activity extends Fragment {
         return gui;
 
     }
-
+    // activity lifecycle
     public void onStart(){
 
         super.onStart();
         Log.i("Lamp1Activity", "onStart");
     }
-
+    // activity lifecycle
     public void onResume(){
 
         super.onResume();
@@ -120,13 +111,13 @@ public class Lamp1Activity extends Fragment {
         super.onPause();
         Log.i("Lamp1Activity", "onPause");
     }
-
+    // activity lifecycle
     public void onStop(){
 
         super.onStop();
         Log.i("Lamp1Activity", "onStop");
     }
-
+    // activity lifecycle
     public void onDestroy(){
 
         super.onDestroy();

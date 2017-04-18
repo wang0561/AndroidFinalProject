@@ -38,7 +38,7 @@ public class LivingRoomActivity extends AppCompatActivity {
     protected Boolean isTablet;
     private int myLamp2Progress, myLamp3Progress, myLamp3Color, myTVChannel,myBlindsHeight;
     private String strLamp1Status;
-    LivingFragmentActivity livingroomfrag;
+    //LivingFragmentActivity livingroomfrag;
     Bundle bundle;
     protected static LivingRoomDatabaseHelper livingDataHelper;
     protected SQLiteDatabase db;
@@ -232,10 +232,10 @@ public class LivingRoomActivity extends AppCompatActivity {
                         case 0: //lamp1
                             Lamp1Activity lamp1intent = new Lamp1Activity(LivingRoomActivity.this);
                             Bundle bundle = new Bundle();
-                            bundle.putString("Lamp1Status",strLamp1Status);
-                            bundle.putInt("ItemID",0);
-                            bundle.putInt("IsTablet",1);
-                            lamp1intent.setArguments(bundle);
+                            bundle.putString("Lamp1Status",strLamp1Status); // key
+                            bundle.putInt("ItemID",0); // value
+                            bundle.putInt("IsTablet",1); // boolean value for Tablet
+                            lamp1intent.setArguments(bundle);// pass data to fragement
                             getSupportFragmentManager().beginTransaction().replace(R.id.livingroomfragmentHolder, lamp1intent).commit();
                             break;
                         case 1://lamp2
@@ -243,8 +243,8 @@ public class LivingRoomActivity extends AppCompatActivity {
                             bundle = new Bundle();
                             bundle.putInt("Lamp2Progress", myLamp2Progress);
                             bundle.putInt("ItemID",1);
-                            bundle.putInt("IsTablet",1);
-                            lamp2intent.setArguments(bundle);
+                            bundle.putInt("IsTablet",1); // boolean value for Tablet
+                            lamp2intent.setArguments(bundle); // pass data
                             getSupportFragmentManager().beginTransaction().replace(R.id.livingroomfragmentHolder, lamp2intent).commit();
                             break;
                         case 2://lamp3
@@ -519,10 +519,7 @@ public class LivingRoomActivity extends AppCompatActivity {
         livingDataHelper = new LivingRoomDatabaseHelper(this);
         db = livingDataHelper.getReadableDatabase();
 
-        //String query = String
-        //      .format("SELECT * FROM %s WHERE %s=%s", livingDataHelper.TABLE_NAME, livingDataHelper.LIVINGITEM_KEY,strname);
-        //results = db.rawQuery(query, null);
-        // query existed data in table
+        // query all table content from database
         results = db.query(false, livingDataHelper.TABLE_NAME,
                 new String[]{ livingDataHelper.LVINGITEM_ID, livingDataHelper.LIVINGITEM_KEY, livingDataHelper.LIVINGITEM_VALUE},
                 livingDataHelper.LVINGITEM_ID + " not null",
@@ -530,7 +527,16 @@ public class LivingRoomActivity extends AppCompatActivity {
 
         // use cursor to read through database, if key value existed, then return value column
         int count = results.getCount();
+        while(count <=0){// if database doesn't exist, recreate database
+            recreateTable();
+            results = db.query(false, livingDataHelper.TABLE_NAME,
+                    new String[]{ livingDataHelper.LVINGITEM_ID, livingDataHelper.LIVINGITEM_KEY, livingDataHelper.LIVINGITEM_VALUE},
+                    livingDataHelper.LVINGITEM_ID + " not null",
+                    null, null, null, null, null);
+            count = results.getCount();
+        }
         results.moveToFirst();
+        boolean notfound = true;
         while( ! results.isAfterLast() ){
             String str1 = results.getString(results.getColumnIndex(livingDataHelper.LVINGITEM_ID));
             String str2 = results.getString(results.getColumnIndex(livingDataHelper.LIVINGITEM_KEY));
@@ -540,7 +546,94 @@ public class LivingRoomActivity extends AppCompatActivity {
             }
             results.moveToNext();
         }
+        if(notfound){
+            recreateTable();
+            results = db.query(false, livingDataHelper.TABLE_NAME,
+                    new String[]{ livingDataHelper.LVINGITEM_ID, livingDataHelper.LIVINGITEM_KEY, livingDataHelper.LIVINGITEM_VALUE},
+                    livingDataHelper.LVINGITEM_ID + " not null",
+                    null, null, null, null, null);
+            count = results.getCount();
+            results.moveToFirst();
+            while( ! results.isAfterLast() ){
+                String str1 = results.getString(results.getColumnIndex(livingDataHelper.LVINGITEM_ID));
+                String str2 = results.getString(results.getColumnIndex(livingDataHelper.LIVINGITEM_KEY));
+                String str3 = results.getString(results.getColumnIndex(livingDataHelper.LIVINGITEM_VALUE));
+                if(strname.compareTo(str2)==0){
+                    return str3;
+                }
+                results.moveToNext();
+            }
+        }
         return null;
+    }
+
+    /**
+     * When database doesn't exist, recreate database
+     */
+    private void recreateTable(){
+        db.execSQL(LivingRoomDatabaseHelper.DROP_TABLE_MESSAGE);
+        db.execSQL(LivingRoomDatabaseHelper.CREATE_TABLE_MESSAGE);
+
+        ContentValues newValues1 = new ContentValues();
+        newValues1.put(livingDataHelper.LIVINGITEM_KEY,"Lamp1Status");
+        newValues1.put(livingDataHelper.LIVINGITEM_VALUE, "On");
+        db.insert(livingDataHelper.TABLE_NAME, null, newValues1);
+
+        ContentValues newValues2 = new ContentValues();
+        newValues2.put(livingDataHelper.LIVINGITEM_KEY,"Lamp2Progress");
+        newValues2.put(livingDataHelper.LIVINGITEM_VALUE, "50");
+        db.insert(livingDataHelper.TABLE_NAME, null, newValues2);
+
+        ContentValues newValues3 = new ContentValues();
+        newValues3.put(livingDataHelper.LIVINGITEM_KEY,"Lamp3Progress");
+        newValues3.put(livingDataHelper.LIVINGITEM_VALUE, "50");
+        db.insert(livingDataHelper.TABLE_NAME, null, newValues3);
+
+        ContentValues newValues4 = new ContentValues();
+        newValues4.put(livingDataHelper.LIVINGITEM_KEY,"Lamp3Color");
+        newValues4.put(livingDataHelper.LIVINGITEM_VALUE, "0");
+        db.insert(livingDataHelper.TABLE_NAME, null, newValues4);
+
+        ContentValues newValues5 = new ContentValues();
+        newValues5.put(livingDataHelper.LIVINGITEM_KEY,"TVChannel");
+        newValues5.put(livingDataHelper.LIVINGITEM_VALUE, "10");
+        db.insert(livingDataHelper.TABLE_NAME, null, newValues5);
+
+        ContentValues newValues6 = new ContentValues();
+        newValues6.put(livingDataHelper.LIVINGITEM_KEY,"BlindsHeight");
+        newValues6.put(livingDataHelper.LIVINGITEM_VALUE, "10");
+        db.insert(livingDataHelper.TABLE_NAME, null, newValues6);
+
+        // when initialization, the counter and each item position is recorded into the same database
+        ContentValues newValuesItemCounter = new ContentValues();
+        newValuesItemCounter.put(livingDataHelper.LIVINGITEM_KEY,"itemscounter");
+        newValuesItemCounter.put(livingDataHelper.LIVINGITEM_VALUE,itemscounter);
+        db.insert(livingDataHelper.TABLE_NAME, null, newValuesItemCounter);
+
+        ContentValues newValuesItem0 = new ContentValues();
+        newValuesItem0.put(livingDataHelper.LIVINGITEM_KEY,"items0");
+        newValuesItem0.put(livingDataHelper.LIVINGITEM_VALUE,dynamicitems.get(0));
+        db.insert(livingDataHelper.TABLE_NAME, null, newValuesItem0);
+
+        ContentValues newValuesItem1 = new ContentValues();
+        newValuesItem1.put(livingDataHelper.LIVINGITEM_KEY,"items1");
+        newValuesItem1.put(livingDataHelper.LIVINGITEM_VALUE,dynamicitems.get(1));
+        db.insert(livingDataHelper.TABLE_NAME, null, newValuesItem1);
+
+        ContentValues newValuesItem2 = new ContentValues();
+        newValuesItem2.put(livingDataHelper.LIVINGITEM_KEY,"items2");
+        newValuesItem2.put(livingDataHelper.LIVINGITEM_VALUE,dynamicitems.get(2));
+        db.insert(livingDataHelper.TABLE_NAME, null, newValuesItem2);
+
+        ContentValues newValuesItem3 = new ContentValues();
+        newValuesItem3.put(livingDataHelper.LIVINGITEM_KEY,"items3");
+        newValuesItem3.put(livingDataHelper.LIVINGITEM_VALUE,dynamicitems.get(3));
+        db.insert(livingDataHelper.TABLE_NAME, null, newValuesItem3);
+
+        ContentValues newValuesItem4 = new ContentValues();
+        newValuesItem4.put(livingDataHelper.LIVINGITEM_KEY,"items4");
+        newValuesItem4.put(livingDataHelper.LIVINGITEM_VALUE,dynamicitems.get(4));
+        db.insert(livingDataHelper.TABLE_NAME, null, newValuesItem4);
     }
 
     /**

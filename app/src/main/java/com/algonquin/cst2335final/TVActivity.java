@@ -1,9 +1,11 @@
 package com.algonquin.cst2335final;
+/**
+ * Created by Min Luo, Version 1.0, April 12, 2017
+ */
 
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -18,14 +20,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TVActivity extends Fragment {
+/**
+ * This class support use turn on/off and choose TV channel.
+ */
+public class TVActivity extends Fragment { // define activity as fragment
     private int tvChannel, tvCounter;
     private View gui;
     private  int isTablet;
     private LivingRoomActivity livingroomwindow;
 
+    // default constructor
     public  TVActivity () {}
 
+    // constructor with parameter
     public TVActivity(LivingRoomActivity cw){
         livingroomwindow = cw;
     }
@@ -33,6 +40,7 @@ public class TVActivity extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //get parameter from activity
         Bundle bun = getArguments();
         tvChannel = bun.getInt("TVChannel", 0);
         tvCounter = bun.getInt("TVCounter", 0);
@@ -45,34 +53,28 @@ public class TVActivity extends Fragment {
         TextView input = (TextView)gui.findViewById(R.id.tvchannel);
         input.setText(String.valueOf(tvChannel));
 
+        // when user click tvbutton, save status to database
         Button tvButton = (Button) gui.findViewById(R.id.tvbutton);
         tvButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 TextView input = (TextView)gui.findViewById(R.id.tvchannel);
                 tvChannel = Integer.parseInt(input.getText().toString());
-                /*
-                final SharedPreferences prefs = getActivity().getSharedPreferences("livingroomFile", Context.MODE_PRIVATE);
-                //Get an editor object for writing to the file:
-                SharedPreferences.Editor writer = prefs.edit();
-                writer.putInt("TVChannel", tvChannel);
-                writer.putInt("TVCounter",++ tvCounter);
 
-                //Write the file:
-                writer.commit();*/
-                if(isTablet == 0) {
+                if(isTablet == 0) { // when using phone, return status change to main activity
                     Intent dataBack = new Intent();
                     dataBack.putExtra("TVChannel", tvChannel);
                     dataBack.putExtra("TVCounter", tvCounter);
                     getActivity().setResult(0, dataBack);
                     getActivity().finish();
-                }else{
-                    livingroomwindow.synctv(tvChannel);
+                }else{ // when using Tablet, return status change
+                    livingroomwindow.synctv(tvChannel); //self-defined method to update
                     livingroomwindow.removeFragmentTV(TVActivity.this);
                 }
             }
         });
 
+        // use Switch for TV control
         Switch lampSwitch = (Switch) gui.findViewById(R.id.switchTV);
         lampSwitch.setSelected(true);
         lampSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
@@ -88,22 +90,24 @@ public class TVActivity extends Fragment {
                     text = "Home TV is Off";
                     duration = Toast.LENGTH_SHORT;
                 }
-
+                // set Toast display
                 Toast toast = Toast.makeText(getActivity(), text, duration);
                 toast.show();
             }
 
         });
 
+        // when user click center button, input channel value and save changes
         Button custombt = (Button)gui.findViewById(R.id.imageViewCenter);
         custombt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // create dialog to display
                 AlertDialog.Builder customConfirm = new AlertDialog.Builder(getActivity());
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View v = inflater.inflate(R.layout.activity_living_tv_dialog, null);
                 customConfirm.setView(inflater.inflate(R.layout.activity_living_tv_dialog, null))
-                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener(){ // set confirm button
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 Log.i("Confirm", "Confirm");
@@ -113,12 +117,13 @@ public class TVActivity extends Fragment {
                              }
                         })
                         .setCancelable(true)
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){ // set cancel button
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 Log.i("Cancel", "Cancel");
                             }
                         });
+                // display dialog
                 customConfirm.setView(v);
                 customConfirm.create().show();
             }
@@ -126,30 +131,30 @@ public class TVActivity extends Fragment {
 
         return gui;
     }
-
+    // activity lifecycle
     public void onStart(){
         super.onStart();
         Log.i("TVActivity", "onStart");
     }
-
+    // activity lifecycle
     public void onResume(){
 
         super.onResume();
         Log.i("TVActivity", "onResume");
     }
-
+    // activity lifecycle
     public void onPause(){
 
         super.onPause();
         Log.i("TVActivity", "onPause");
     }
-
+    // activity lifecycle
     public void onStop()
     {
         super.onStop();
         Log.i("TVActivity", "onStop");
     }
-
+    // activity lifecycle
     public void onDestroy(){
 
         super.onDestroy();

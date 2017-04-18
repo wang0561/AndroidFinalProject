@@ -1,5 +1,9 @@
 package com.algonquin.cst2335final;
 
+/**
+ * Created by Min Luo, Version 1.0, Date April 12, 2017
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +20,7 @@ import android.widget.SeekBar;
 /**
  * This class support user to drag the bar to set the lightness of lamp2
  */
-public class Lamp2Activity extends Fragment {
+public class Lamp2Activity extends Fragment {  // set activity to fragment
     private int lamp2counter;
     private int lamp2progress;
     private int isTablet;
@@ -47,15 +51,13 @@ public class Lamp2Activity extends Fragment {
         lampButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-
-                if(isTablet == 0) {  // if using Tablet, show content in the same window and show the record status
+                if(isTablet == 0) {  // if using phone, send back status to main activity
                     Intent dataBack = new Intent();
                     dataBack.putExtra("Lamp2Progress", lamp2progress);
                     getActivity().setResult(0, dataBack);
                     getActivity().finish();
-                }else{   // if using phone, show content with new window and show the record status
-                    livingroomwindow.synclamp2(lamp2progress);
+                }else{   // if using Tablet, show the record status in the same fragment
+                    livingroomwindow.synclamp2(lamp2progress); // self-defined method to update status
                     livingroomwindow.removeFragmentLamp2(Lamp2Activity.this);
                 }
             }

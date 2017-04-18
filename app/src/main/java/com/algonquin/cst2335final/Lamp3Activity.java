@@ -1,4 +1,7 @@
 package com.algonquin.cst2335final;
+/**
+ * Created by Min Luo, Version 1.0, Date April 12, 2017
+ */
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,14 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 
-// Anupam Chugh, [online]Feb 25, 2016, www.journaldev.com/10324/android-snackbar-example-tutorial, [Accessed ] Mar 26, 2017
-
-
-public class Lamp3Activity extends Fragment {
+/**
+ * This activity support user to change lamp3 color and turn on/off
+ * [1] StackOverflow, [Online]http://stackoverflow.com/questions/6980906/android-color-picker, [Accessed March 24, 2017]
+ */
+public class Lamp3Activity extends Fragment { // set activity to fragment
     private Context ctx;
     private int lamp3counter;
     private int lamp3progress;
@@ -32,11 +35,14 @@ public class Lamp3Activity extends Fragment {
 
     private LivingRoomActivity livingroomwindow;
 
+    // default constructor
     public  Lamp3Activity () {}
 
+    // constructor with parameter
     public Lamp3Activity(LivingRoomActivity cw){
         livingroomwindow = cw;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,36 +58,27 @@ public class Lamp3Activity extends Fragment {
 
         colorDialog = new ColorPicker(getActivity(), 255,255,255);
 
-
         TextView textView = (TextView)gui.findViewById(R.id.colorlamptext);
         textView.setTextColor(lamp3color);
         Button lampButton = (Button) gui.findViewById(R.id.livinglampbutton);
         lampButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*
-                final SharedPreferences prefs = getActivity().getSharedPreferences("livingroomFile", Context.MODE_PRIVATE);
-                //Get an editor object for writing to the file:
-                SharedPreferences.Editor writer = prefs.edit();
-                writer.putInt("Lamp3Progress", lamp3progress);
-                writer.putInt("Lamp3Counter",++ lamp3counter);
-                writer.putInt("Lamp3Color", lamp3color);
-                //Write the file:
-                writer.commit();
-                */
-                if(isTablet == 0) {
+
+                if(isTablet == 0) { // when using phone, send back tatus to the main activity
                     Intent dataBack = new Intent();
                     dataBack.putExtra("Lamp3Progress", lamp3progress);
                     dataBack.putExtra("Lamp3Color", lamp3color);
                     getActivity().setResult(0, dataBack);
                     getActivity().finish();
-                }else{
-                    livingroomwindow.synclamp3(lamp3progress, lamp3color);
+                }else{ // when using Tablet, store and send back status to the same fragment
+                    livingroomwindow.synclamp3(lamp3progress, lamp3color);// use self-defined method to update status
                     livingroomwindow.removeFragmentLamp3(Lamp3Activity.this);
                 }
             }
         });
 
+        // user click button to confirm status change
         Button colorlampbutton = (Button) gui.findViewById(R.id.colorlampbutton);
         colorlampbutton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -104,7 +101,7 @@ public class Lamp3Activity extends Fragment {
             }
         });
 
-
+        // create Seekbar to change lamp status
         final SeekBar lampDim = (SeekBar) gui.findViewById(R.id.lampDimmable);
         lampDim.setProgress(lamp3progress);
         lampDim.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
@@ -123,8 +120,7 @@ public class Lamp3Activity extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
-
-
+            // create Snackbar to show update message
             public void update(View v){
                 Snackbar snackbar = Snackbar
                         .make(v, "Lamp is tuned", Snackbar.LENGTH_LONG)
@@ -140,31 +136,31 @@ public class Lamp3Activity extends Fragment {
         });
         return gui;
     }
-
+    //activity lifecycle
     public void onStart(){
 
         super.onStart();
         Log.i("Lamp3Activity", "onStart");
     }
-
+    //activity lifecycle
     public void onResume(){
 
         super.onResume();
         Log.i("Lamp3Activity", "onResume");
     }
-
+    //activity lifecycle
     public void onPause(){
 
         super.onPause();
         Log.i("Lamp3Activity", "onPause");
     }
-
+    //activity lifecycle
     public void onStop(){
 
         super.onStop();
         Log.i("Lamp3Activity", "onStop");
     }
-
+    //activity lifecycle
     public void onDestroy(){
 
         super.onDestroy();
