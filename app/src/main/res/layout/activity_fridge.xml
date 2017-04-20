@@ -37,7 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editTextfreezer"
         android:layout_alignStart="@+id/buttonsetfridge"
-        android:id="@+id/buttonsetfreezer" />
+        android:id="@+id/buttonsetfreezer"
+        android:inputType="numberDecimal"/>
 
 
     <ProgressBar
@@ -47,18 +48,20 @@
         android:layout_below="@+id/buttonSave"
         android:layout_alignStart="@+id/editTextfreezer"
         android:id="@+id/fridgeprogressbar"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
 
         android:ems="10"
         android:layout_marginTop="38dp"
         android:id="@+id/editTextfridge"
         android:layout_below="@+id/fridgetextview"
-        android:layout_alignEnd="@+id/fridgetextview" />
+        android:layout_alignEnd="@+id/fridgetextview"
+        />
 
     <TextView
         android:text="@string/freezertemptext"
@@ -72,7 +75,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
 
         android:ems="10"
         android:layout_marginTop="58dp"

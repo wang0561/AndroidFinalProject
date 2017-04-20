@@ -36,7 +36,7 @@ public class HouseDatabaseHelper extends SQLiteOpenHelper {
     /**query of the create statement table */
     final static String DATABASE_STATE_CREATE = "CREATE TABLE "+TABLE_STATE+ " ( "+KEY_ID +" INTEGER PRIMARY KEY AUTOINCREMENT , "+KEY_DEVICE+ " TEXT, " + KEY_STATE + " TEXT);";
     /**query of the create schedule table*/
-    final static String DATABASE_SCHEDULE_CREATE = "CREATE TABLE "+TABLE_TEMPERATURE+" ( "+KEY_ID +" INTEcGER PRIMARY KEY AUTOINCREMENT , " +KEY_HOUR +" INTEGER, "+ KEY_MIN+" INTEGER, " +KEY_TEMP +" INTEGER);";
+    final static String DATABASE_SCHEDULE_CREATE = "CREATE TABLE "+TABLE_TEMPERATURE+" ( "+KEY_ID +" INTEGER PRIMARY KEY AUTOINCREMENT , " +KEY_HOUR +" INTEGER, "+ KEY_MIN+" INTEGER, " +KEY_TEMP +" INTEGER);";
     /**parameterized constructor which alos create the database
      * @param ctx*/
     public HouseDatabaseHelper(Context ctx){

@@ -26,7 +26,7 @@
         android:layout_below="@+id/theList"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/kitchenfragmentHolder"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
 
     <ListView
         android:layout_width="300dp"
@@ -50,13 +50,13 @@
         android:layout_below="@+id/kitchenReturn"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/kitchenReturn"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/kitchenhelp"
         android:text="@string/kitchenhelpbuttontext"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:layout_below="@+id/kitchenSetting"
         android:layout_alignEnd="@+id/kitchenSetting"/>
 
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonofkitchenitemadd"
         android:text="@string/buttonofkitchenspinneradd"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:layout_below="@+id/kitchenhelp"
         android:layout_alignEnd="@+id/kitchenSetting"/>
     <Button
@@ -74,7 +74,7 @@
         android:id="@+id/kitchenitemdeletebutton"
         android:layout_below="@+id/buttonofkitchenitemadd"
         android:text="@string/buttonofkitchenspinnerdel"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:layout_alignEnd="@+id/kitchenSetting"/>
 
     <ProgressBar

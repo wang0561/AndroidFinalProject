@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -126,6 +128,9 @@ public class KitchenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_kitchen);
         prefs=getSharedPreferences("listview",Context.MODE_PRIVATE);
         set=prefs.getStringSet("key",new HashSet<String>());
@@ -144,8 +149,8 @@ public class KitchenActivity extends AppCompatActivity {
         //code for user to add a new device.
         buttonAdd.setOnClickListener((view)->{
             Log.i("kitchen","additem");
-            String [] itemselect=new String[]{getString(R.string.defaultfreezer),
-                    getString(R.string.defaultfridge),getString(R.string.defaultmicrowave),getString(R.string.defaultkitchenlight)};
+            String [] itemselect=new String[]{"Samsung Freezer",
+                    "Samsung Fridge","MicroWave","Light"};
            //ask user which item will be added.
             AlertDialog.Builder builder=new AlertDialog.Builder(ctx);
             LayoutInflater inflater = getLayoutInflater();
@@ -157,7 +162,8 @@ public class KitchenActivity extends AppCompatActivity {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    tempNameOfItem=nameList.get(position);
+                    tempNameOfItem=itemselect[((int)id)];
+                    Log.i("tepnameofitem",tempNameOfItem);
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView){}
@@ -178,6 +184,7 @@ public class KitchenActivity extends AppCompatActivity {
                 Button confirm1=(Button)v1.findViewById(R.id.kitchenitemnameconfirm);
                 confirm1.setOnClickListener((view2)->{
                     nameList.add(tempNameOfItem+"("+edtext.getText().toString()+")");
+                    Log.i("tempofitemname",tempNameOfItem);
                     listView.setAdapter(new ArrayAdapter<>(this, R.layout.kitchen_row, nameList));});
 
 
@@ -240,22 +247,22 @@ public class KitchenActivity extends AppCompatActivity {
         });
 
 
-       final SharedPreferences prefs = getSharedPreferences("KitchenFile", Context.MODE_PRIVATE);
-
-        int i = prefs.getInt("KitchenFirstRun", 0);
-       if (i <=1){
-            //open a new db
-          createDBfirstTime();
-
-
-        }
-
-         //record the times to enter database
-       SharedPreferences.Editor writer = prefs.edit();
-        writer.putInt("KitchenFirstRun", ++i);
-
-        writer.commit();
-        Log.i("times to create db",""+i);
+//       final SharedPreferences prefs = getSharedPreferences("KitchenFile", Context.MODE_PRIVATE);
+//
+//        int i = prefs.getInt("KitchenFirstRun", 0);
+//       if (i <=1){
+//            //open a new db
+//          createDBfirstTime();
+//
+//
+//        }
+//
+//         //record the times to enter database
+//       SharedPreferences.Editor writer = prefs.edit();
+//        writer.putInt("KitchenFirstRun", ++i);
+//
+//        writer.commit();
+//        Log.i("times to create db",""+i);
 
             // get all data from database
         freezerTemp=Double.parseDouble(getDBValue(freezertemp));
@@ -308,7 +315,7 @@ public class KitchenActivity extends AppCompatActivity {
                             Log.i("fridge temp",""+fridgeTemp);
                             intentFridge.putExtra(freezertemp,freezerTemp);
                             startActivityForResult(intentFridge,10);
-                    }else if (listID.toLowerCase().contains("light")||listID.toLowerCase().contains("灯")){
+                    }else if (listID.toLowerCase().contains("light")){
                         Intent intentLight=new Intent(KitchenActivity.this, KitchenLightActivity.class);
                             intentLight.putExtra("ID",listID);
                             intentLight.putExtra(lightStatus,lightOfKitchen);
@@ -456,35 +463,35 @@ public class KitchenActivity extends AppCompatActivity {
         editor.putStringSet("key",set);
         editor.commit();
     }
-    /**
-     * Method for creating database when first run the application
-     * */
-    public void createDBfirstTime(){
-        dbHelper = new KitchenDatabaseHelper(ctx);
-        db = dbHelper.getReadableDatabase();
-        db.execSQL(KitchenDatabaseHelper.DROP_TABLE_MESSAGE);
-        db.execSQL(KitchenDatabaseHelper.CREATE_TABLE_MESSAGE);
-        //set the default values for the iteme key and item value
-        ContentValues newValues1 = new ContentValues();
-        newValues1.put(KitchenDatabaseHelper.KITCHENITEM_KEY,fridgetemp);
-        newValues1.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, fridgeTemp);
-        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues1);
-
-        ContentValues newValues2 = new ContentValues();
-        newValues2.put(KitchenDatabaseHelper.KITCHENITEM_KEY,freezertemp);
-        newValues2.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, freezerTemp);
-        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues2);
-
-        ContentValues newValues3 = new ContentValues();
-        newValues3.put(KitchenDatabaseHelper.KITCHENITEM_KEY,lightStatus);
-        newValues3.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, lightOfKitchen);
-        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues3);
-
-        ContentValues newValues4 = new ContentValues();
-        newValues4.put(KitchenDatabaseHelper.KITCHENITEM_KEY,progressLight);
-        newValues4.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, progressofLight);
-        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues4);
-    }
+//    /**
+//     * Method for creating database when first run the application
+//     * */
+//    public void createDBfirstTime(){
+//        dbHelper = new KitchenDatabaseHelper(ctx);
+//        db = dbHelper.getReadableDatabase();
+//        db.execSQL(KitchenDatabaseHelper.DROP_TABLE_MESSAGE);
+//        db.execSQL(KitchenDatabaseHelper.CREATE_TABLE_MESSAGE);
+//        //set the default values for the iteme key and item value
+//        ContentValues newValues1 = new ContentValues();
+//        newValues1.put(KitchenDatabaseHelper.KITCHENITEM_KEY,fridgetemp);
+//        newValues1.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, fridgeTemp);
+//        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues1);
+//
+//        ContentValues newValues2 = new ContentValues();
+//        newValues2.put(KitchenDatabaseHelper.KITCHENITEM_KEY,freezertemp);
+//        newValues2.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, freezerTemp);
+//        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues2);
+//
+//        ContentValues newValues3 = new ContentValues();
+//        newValues3.put(KitchenDatabaseHelper.KITCHENITEM_KEY,lightStatus);
+//        newValues3.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, lightOfKitchen);
+//        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues3);
+//
+//        ContentValues newValues4 = new ContentValues();
+//        newValues4.put(KitchenDatabaseHelper.KITCHENITEM_KEY,progressLight);
+//        newValues4.put(KitchenDatabaseHelper.KITCHENITEM_VALUE, progressofLight);
+//        db.insert(KitchenDatabaseHelper.TABLE_NAME, null, newValues4);
+//    }
   /**
    * Method for removing the fragment from kitchen activity
    * @param fragment object of KitchenFragment

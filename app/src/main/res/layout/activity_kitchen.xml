@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/activity_kitchen"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/kitchenbackground"
 
 >
@@ -15,11 +17,14 @@
         android:layout_gravity="center"
         android:textSize="25dp"
         android:singleLine="true"
-        android:textColor="@android:color/holo_blue_light" />
+        android:textColor="@android:color/holo_blue_light"
+        android:id="@+id/textviewofkitchen"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textviewofkitchen"
+        android:layout_below="@+id/textviewofkitchen"
         android:id="@+id/theList" />
 
     <Button
@@ -27,39 +32,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/kitchenreturntohomepage"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/theList"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/kitchenhelp"
         android:text="@string/kitchenhelpbuttontext"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/kitchenitemdeletebutton"/>
 
     <Button
         android:id="@+id/buttonofkitchenitemadd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonofkitchenspinneradd"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/kitchenReturn"/>
     <Button
         android:id="@+id/kitchenitemdeletebutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonofkitchenspinnerdel"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/buttonofkitchenitemadd"/>
     <Button
         android:id="@+id/kitchenSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/kitchenrefreshbuttontext"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/kitchenhelp"
+        />
 
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:id="@+id/KitchenRefProgress"/>
+        android:id="@+id/KitchenRefProgress"
+        android:layout_below="@id/kitchenSetting"
+        android:layout_alignParentBottom="true"/>
 
 
-</LinearLayout>
+</RelativeLayout>

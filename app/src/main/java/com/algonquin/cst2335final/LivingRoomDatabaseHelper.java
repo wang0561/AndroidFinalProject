@@ -2,6 +2,7 @@ package com.algonquin.cst2335final;
 /**
  * Created by Min Luo, April 12, 2017
  */
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -41,6 +42,35 @@ public class LivingRoomDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_MESSAGE);
+        ContentValues newValues1 = new ContentValues();
+        newValues1.put(LIVINGITEM_KEY,"Lamp1Status");
+        newValues1.put(LIVINGITEM_VALUE, "On");
+        db.insert(TABLE_NAME, null, newValues1);
+
+        ContentValues newValues2 = new ContentValues();
+        newValues2.put(LIVINGITEM_KEY,"Lamp2Progress");
+        newValues2.put(LIVINGITEM_VALUE, "50");
+        db.insert(TABLE_NAME, null, newValues2);
+
+        ContentValues newValues3 = new ContentValues();
+        newValues3.put(LIVINGITEM_KEY,"Lamp3Progress");
+        newValues3.put(LIVINGITEM_VALUE, "50");
+        db.insert(TABLE_NAME, null, newValues3);
+
+        ContentValues newValues4 = new ContentValues();
+        newValues4.put(LIVINGITEM_KEY,"Lamp3Color");
+        newValues4.put(LIVINGITEM_VALUE, "0");
+        db.insert(TABLE_NAME, null, newValues4);
+
+        ContentValues newValues5 = new ContentValues();
+        newValues5.put(LIVINGITEM_KEY,"TVChannel");
+        newValues5.put(LIVINGITEM_VALUE, "10");
+        db.insert(TABLE_NAME, null, newValues5);
+
+        ContentValues newValues6 = new ContentValues();
+        newValues6.put(LIVINGITEM_KEY,"BlindsHeight");
+        newValues6.put(LIVINGITEM_VALUE, "10");
+        db.insert(TABLE_NAME, null, newValues6);
         Log.i(ACTIVITY_NAME, "onCreate");
     }
 

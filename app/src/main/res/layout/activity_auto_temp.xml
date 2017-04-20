@@ -45,7 +45,7 @@
         android:layout_alignRight="@+id/autotempeditText1"
         android:layout_alignEnd="@+id/autotempeditText1"
         android:textColorHint="#ffff299f"
-        android:hint="Enter the highest temperature here" />
+        android:hint="@string/hightemp" />
 
 
     <Button
