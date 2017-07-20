@@ -311,6 +311,7 @@ public class KitchenActivity extends AppCompatActivity {
                     else if(listID.toLowerCase().contains("fridge")||listID.toLowerCase().contains("freezer")){
                         Intent intentFridge=new Intent(KitchenActivity.this, FridgeActivity.class);
                             intentFridge.putExtra("ID",listID);
+
                             intentFridge.putExtra(fridgetemp,fridgeTemp);
                             Log.i("fridge temp",""+fridgeTemp);
                             intentFridge.putExtra(freezertemp,freezerTemp);
@@ -462,6 +463,7 @@ public class KitchenActivity extends AppCompatActivity {
         set=new HashSet<>(nameList);
         editor.putStringSet("key",set);
         editor.commit();
+
     }
 //    /**
 //     * Method for creating database when first run the application

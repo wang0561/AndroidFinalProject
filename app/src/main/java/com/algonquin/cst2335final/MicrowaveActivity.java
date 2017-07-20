@@ -22,8 +22,9 @@ public class MicrowaveActivity extends AppCompatActivity {
         setContentView(R.layout.kitchen_fragment);
         KitchenFragment frag = new KitchenFragment(null);
         Bundle bun = getIntent().getExtras();
+
         frag.setArguments( bun );
-        getFragmentManager().beginTransaction().add(R.id.kitchenfragmentHolder,frag).commit();
+        getFragmentManager().beginTransaction().replace(R.id.kitchenfragmentHolder,frag).commit();
 
        
     }
